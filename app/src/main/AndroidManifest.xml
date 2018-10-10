@@ -4,13 +4,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/edwin_icon_bg"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/edwin_icon_bg"
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:theme="@style/themeTest.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -83,15 +83,6 @@
         </activity>
 
         <activity android:name=".QuizDetailsActivity" android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".SplashActivity" android:theme="@style/SplashTheme"
-            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

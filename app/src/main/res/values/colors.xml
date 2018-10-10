@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="backgroundColor">#1b28d8</color>
+    <color name="primaryColor">#243a81</color>
+    <color name="secondaryColor">#3999dd</color>
+    <color name="tertiaryColor">#64b683</color>
+    <color name="quartColor">#e12828</color>
 </resources>

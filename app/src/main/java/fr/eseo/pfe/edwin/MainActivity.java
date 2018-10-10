@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
 
         //AFFICHE LA VUE ACCUEIL
         super.onCreate(savedInstanceState);
