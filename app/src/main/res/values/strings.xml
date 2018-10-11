@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Edwin</string>
+    <string name="tutorial_yes">Oui</string>
+    <string name="tutorial_no">Non</string>
 </resources>
