@@ -55,11 +55,6 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".SplashActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity"/>
-
-        <activity
             android:name=".TutorialActivity"
             android:screenOrientation="portrait"/>
 

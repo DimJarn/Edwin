@@ -30,6 +30,36 @@
             android:textColor="#FFFFFF"
             android:textSize="45sp" />
 
+        <TextView
+            android:id="@+id/textDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:adjustViewBounds="true"
+            android:fontFamily="@font/hind_medium"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_marginTop="30dp"
+            android:textStyle="italic" />
+
+        <Button
+            android:id="@+id/toMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:adjustViewBounds="true"
+            android:background="#D92934"
+            android:fontFamily="@font/alfa_slab_one"
+            android:layout_below="@+id/textDetails"
+            android:lineSpacingExtra="8sp"
+            android:paddingHorizontal="40dp"
+            android:paddingVertical="20dp"
+            android:text="DEMARRER"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -1,9 +1,12 @@
 package fr.eseo.pfe.edwin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -21,6 +24,7 @@ public class TutorialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tutorial_image_slider);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
+
         sliderDotspanel = (LinearLayout) findViewById(R.id.SliderDots);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
