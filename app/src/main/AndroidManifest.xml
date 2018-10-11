@@ -9,58 +9,51 @@
         android:roundIcon="@mipmap/edwin_icon_bg"
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
-
-        <activity android:name=".MainActivity" android:theme="@style/themeTest.Launcher">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/themeTest.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".AideActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AProposActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".FicheDetailsActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".FichesActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".GlossaireActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".GlossaireDetailsActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity
-            android:name=".MenuActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".QuizActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".QuizDetailsActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".TutorialActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name=".MenuActivityy"
+            android:label="@string/title_activity_menu_activityy"
+            android:theme="@style/SplashTheme"></activity>
     </application>
 
 </manifest>
