@@ -8,4 +8,5 @@
     <color name="secondaryColor">#3999dd</color>
     <color name="tertiaryColor">#64b683</color>
     <color name="quartColor">#e12828</color>
+    <color name="LightGreyColor">#f0f0f0</color>
 </resources>

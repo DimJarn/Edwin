@@ -68,7 +68,7 @@ public class ViewPagerAdapter extends PagerAdapter {
             buttonMenu.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     // Perform action on click
-                    Intent i = new Intent(context,MenuActivity.class);
+                    Intent i = new Intent(context,MenuActivityy.class);
                     context.startActivity(i);
 
                 }

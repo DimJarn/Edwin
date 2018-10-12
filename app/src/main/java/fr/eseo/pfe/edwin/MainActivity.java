@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         {
             public void onClick(View actuelView)
             {
-                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                Intent intent = new Intent(MainActivity.this, MenuActivityy.class);
                 startActivity(intent);
             }
         });
