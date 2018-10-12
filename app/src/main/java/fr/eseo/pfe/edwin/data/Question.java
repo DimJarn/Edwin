@@ -3,12 +3,12 @@ package fr.eseo.pfe.edwin.data;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-import java.util.ArrayList;
-
-@Entity(tableName = "question", foreignKeys = {@ForeignKey(entity= Quiz.class, parentColumns = "id_quiz", childColumns="ref_quiz")})
+@Entity(tableName = "question", foreignKeys = {@ForeignKey(entity= Quiz.class, parentColumns = "id_quiz", childColumns="ref_quiz")},
+        indices=@Index(value="ref_quiz"))
 public class Question {
 
     @PrimaryKey
@@ -20,7 +20,7 @@ public class Question {
     private String intitule;
 
     @NonNull
-    private ArrayList<String> choix;
+    private String choix;
 
     @NonNull
     private String reponse;
@@ -29,7 +29,7 @@ public class Question {
     @ColumnInfo(name="ref_quiz")
     private int refQuiz;
 
-    public Question(@NonNull int idQuestion, @NonNull String intitule, @NonNull ArrayList<String> choix,
+    public Question(@NonNull int idQuestion, @NonNull String intitule, @NonNull String choix,
                     @NonNull String reponse, @NonNull int refQuiz) {
         this.idQuestion = idQuestion;
         this.intitule = intitule;
@@ -57,11 +57,11 @@ public class Question {
     }
 
     @NonNull
-    public ArrayList<String> getChoix() {
+    public String getChoix() {
         return choix;
     }
 
-    public void setChoix(@NonNull ArrayList<String> choix) {
+    public void setChoix(@NonNull String choix) {
         this.choix = choix;
     }
 

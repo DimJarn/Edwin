@@ -3,10 +3,13 @@ package fr.eseo.pfe.edwin.data;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-@Entity(tableName = "quiz", foreignKeys = {@ForeignKey(entity= FicheInformative.class, parentColumns = "id_fiche", childColumns="ref_fiche")})
+@Entity(tableName = "quiz", foreignKeys = {@ForeignKey(entity= FicheInformative.class,
+        parentColumns = "id_fiche", childColumns="ref_fiche")},
+        indices=@Index(value="ref_fiche"))
 public class Quiz {
 
     @PrimaryKey
