@@ -1,14 +1,21 @@
 package fr.eseo.pfe.edwin;
 
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-public class AideActivity extends AppCompatActivity {
+public class AideActivity extends Fragment {
 
-    protected void onCreate(Bundle savedInstanceState) {
+    public static AideActivity newInstance() {
+        return (new AideActivity());
+    }
 
-        //AFFICHE LA VUE DE L'AIDE
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.aide);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.aide, container, false);
     }
 }

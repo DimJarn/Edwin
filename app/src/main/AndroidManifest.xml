@@ -43,6 +43,9 @@
             android:name=".QuizDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".AccueilActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".TutorialActivity"
             android:screenOrientation="portrait" />
 

@@ -1,14 +1,21 @@
 package fr.eseo.pfe.edwin;
 
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-public class GlossaireActivity extends AppCompatActivity {
+public class GlossaireActivity extends Fragment {
 
-    protected void onCreate(Bundle savedInstanceState) {
+    public static GlossaireActivity newInstance() {
+        return (new GlossaireActivity());
+    }
 
-        //AFFICHE LA VUE DU GLOSSAIRE
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.glossaire);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.glossaire, container, false);
     }
 }

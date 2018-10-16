@@ -7,33 +7,37 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/accueil"
+            android:icon="@drawable/logo_accueil"
+            android:title="Accueil" />
+        <item
+            android:id="@+id/fiches"
             android:icon="@drawable/logo_sheets"
             android:title="Fiches Opérations" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/glossaire"
             android:icon="@drawable/logo_dico"
             android:title="Glossaire" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/quiz"
             android:icon="@drawable/logo_quiz"
             android:title="Quiz" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/aide"
             android:icon="@drawable/logo_help"
             android:title="Aide" />
+        <item
+            android:id="@+id/apropos"
+            android:icon="@drawable/logo_info"
+            android:title="Infos" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_quit"
+                android:icon="@drawable/logo_cancel"
+                android:title="Quitter l'application" />
         </menu>
     </item>
 
