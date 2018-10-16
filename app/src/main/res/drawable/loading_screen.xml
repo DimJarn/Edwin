@@ -10,12 +10,15 @@
 
     <!-- Your product logo - 144dp color version of your app icon -->
     <item
-        android:left="@android:dimen/notification_large_icon_width"
-        android:right="@android:dimen/notification_large_icon_height">
+        android:layout_width="280dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center"
+        android:scaleType="fitCenter"
+        >
         <bitmap
             android:gravity="center"
-            android:src="@drawable/logo_edwyn" />
+            android:antialias="true"
+            android:src="@drawable/logosmall" />
 
     </item>
-
 </layer-list>
