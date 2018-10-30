@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                     .setNegativeButton("Non", null)
             ;
             AlertDialog alertDialog = builder.create();
-            alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
+            //alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
             alertDialog.show();
         }
         detectFirstUseAOpenTutorialAndBox();

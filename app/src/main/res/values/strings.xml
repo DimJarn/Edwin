@@ -9,4 +9,40 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    ///Partie pour fragment A propos
+    <string name="a_propos_title">Informations</string>
+
+    <string name="a_propos_origin_project">Origine du projet</string>
+    <string name="a_propos_origin_project_text">Ce projet est réalisé dans le cadre d\'un projet de fin d\'études au sein de l\'ESEO, Grande Ecole d\'Ingénieur Généraliste.</string>
+
+    <string name="lorem_ipsum">Sugar plum sugar plum gummies donut jelly powder. Icing muffin cheesecake liquorice wafer bonbon. Bonbon tootsie roll halvah. Lollipop macaroon bear claw chocolate cake. Chocolate bar gummi bears candy cheesecake icing oat cake. Cake chocolate cake liquorice pie. Donut halvah lollipop. Bear claw lollipop sweet roll cookie dragée dragée donut candy. Cheesecake liquorice marzipan dragée muffin chocolate dessert jujubes. Cupcake ice cream tootsie roll bonbon croissant gingerbread ice cream danish. Jelly beans donut jujubes sugar plum. Tootsie roll tiramisu chupa chups dragée cheesecake brownie chocolate bar chocolate bar icing. Apple pie cake carrot cake gingerbread candy canes</string>
+    <string name="article_detail_more_info">More Info</string>
+
+    <string name="a_propos_contact">Réalisation</string>
+    <string name="a_propos_contact_text">Cette application a été développée et réalisée par l\'ensemble du groupe du projet, composé de Jules Jaunay, Nassim Messaoudi et Dimitri Jarneau.</string>
+
+
+    <string name="a_propos_condition_use">Conditions d\'utilisation</string>
+    <string name="a_propos_condition_detail">L\'utilisation de cette application vaut acceptation des conditions mentionnées ci-après. \n</string>
+    <string name="a_propos_condition_photo">Les logos et emblèmes du projet Edwin ont été créés dans un but scolaire.
+        Il convient donc de respecter ces logos et emblèmes.\n</string>
+    <string name="a_propos_condition_droits_auteurs">En application du Code francais de la propriété intellectuelle et plus généralement
+        des traités et accords internationaux comportant des dispositions relatives à la protection des droits d\'auteurs, il est
+        interdit pour un usage autre que privé ou pédagogique de reproduire, vendre, diffuser, modifier, publier intégralement ou partiellement
+        , sous quelque forme que ce soit les données, la présentation ou l\'organisation de l\'application ainsi que les oeuvres protégées par
+        les droits d\'auteurs qui y figurent, sans autorisation écrite particulière et préalable, dont la demande doit être adressée à Jules Jaunay / Nassim
+        Messaoudi / Dimitri Jarneau. \n</string>
+    <string name="a_propos_condition_donnees_perso">Lors de l\'utilisation de l\'application, aucune collecte de données personnelles
+        n\'est réalisée. \n</string>
+    <string name="a_propos_condition_decharge_utilisation">Cette application vous donne une information sur des opérations chirugicales, elle n\'a
+       pas vocation à se substituer à un médecin ou à poser un diagnostic médical. Elle ne dispense pas du suivi d\'une consultation auprès
+        de personnes compétentes. Edwin ne peut être tenue responsable directement ou indirectement d\'une mauvaise compréhension des informations
+        contenues au sein de l\'application.
+        De même, elle n\'est en aucun cas responsable de l\'infection par des virus ou de tout problème informatique ayant des effects destructeurs.
+        </string>
+
+    <string name="a_propos_dev">Développé par Jules Jaunay, Nassim Messaoudi et Dimitri Jarneau. \n \n</string>
+
+
 </resources>
