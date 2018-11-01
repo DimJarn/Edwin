@@ -10,9 +10,8 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    ///Partie pour fragment A propos
+    <!-- A Propos -->
     <string name="a_propos_title">Informations</string>
-
     <string name="a_propos_origin_project">Origine du projet</string>
     <string name="a_propos_origin_project_text">Ce projet est réalisé dans le cadre d\'un projet de fin d\'études au sein de l\'ESEO, Grande Ecole d\'Ingénieur Généraliste.</string>
 
@@ -44,5 +43,11 @@
 
     <string name="a_propos_dev">Développé par Jules Jaunay, Nassim Messaoudi et Dimitri Jarneau. \n \n</string>
 
+
+    <!-- Accueil -->
+
+    <string name="accueil_presentation"> Bienvenue sur Edwin. \n Je suis la pour t\'aider à avoir des informations sur
+    le déroulement d\'une opération.</string>
+    <string name="accueil_info"> Edwin - PFE 2018/ 2019 </string>
 
 </resources>
