@@ -88,8 +88,10 @@ public class DatabaseInitializer {
             addAPropos(db, aPropos);
         }
 
-        List<FicheInformative> ficheInformativeList = db.ficheInformativeDao().findAllFichesInformatives();
-        Log.d(DatabaseInitializer.TAG, "Rows Count: " + ficheInformativeList.size() + "nom opération :" + ficheInformativeList.get(0).getNomOperation());
+        FicheInformative ficheInformative = db.ficheInformativeDao().findFicheInformativeFromId(1);
+        ContenuFiche contenuFiche = db.contenuFicheDao().findContenuFicheFromId(1);
+        Log.d(DatabaseInitializer.TAG, "Rows Count: " + ficheInformative.getIdFiche() + "nom opération :" + ficheInformative.getNomOperation()
+        + "contenu : " + contenuFiche.getMaladie());
     }
 
     private static class PopulateDbAsync extends AsyncTask<ArrayList, Void, Void> {
