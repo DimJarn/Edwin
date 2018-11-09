@@ -203,7 +203,7 @@ public class MenuActivityy extends AppCompatActivity
         this.startTransactionFragment(this.fragmentQuiz);
     }
 
-    // Generic method that will replace and show a fragment inside the MainActivity Frame Layout
+    // Generic method that will replace and show a fragment inside the MenuActivity Frame Layout
     private void startTransactionFragment(Fragment fragment){
         if (!fragment.isVisible()){
             getSupportFragmentManager().beginTransaction()

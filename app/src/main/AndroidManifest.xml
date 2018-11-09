@@ -33,9 +33,6 @@
             android:name=".FicheDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".FichesActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".GlossaireActivity"
             android:screenOrientation="portrait" />
         <activity
