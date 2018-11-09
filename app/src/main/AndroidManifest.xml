@@ -9,8 +9,7 @@
         android:roundIcon="@mipmap/logo_resized"
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
-        <activity
-            android:name=".MainActivity"
+        <activity android:name=".SplashActivity"
             android:theme="@style/themeTest.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,10 +18,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".MainActivity"
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".AideActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".AProposActivity"
+            android:theme="@style/SplashTheme"
             android:screenOrientation="portrait" />
         <activity
             android:name=".FicheDetailsActivity"
