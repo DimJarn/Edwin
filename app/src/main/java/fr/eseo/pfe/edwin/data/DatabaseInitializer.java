@@ -90,8 +90,10 @@ public class DatabaseInitializer {
 
         FicheInformative ficheInformative = db.ficheInformativeDao().findFicheInformativeFromId(1);
         ContenuFiche contenuFiche = db.contenuFicheDao().findContenuFicheFromId(1);
-        Log.d(DatabaseInitializer.TAG, "Rows Count: " + ficheInformative.getIdFiche() + "nom opération :" + ficheInformative.getNomOperation()
+        Log.d(DatabaseInitializer.TAG, "Id Fiche informative: " + ficheInformative.getIdFiche() + "nom opération :" + ficheInformative.getNomOperation()
         + "contenu : " + contenuFiche.getMaladie());
+
+        //Fiche
     }
 
     private static class PopulateDbAsync extends AsyncTask<ArrayList, Void, Void> {
