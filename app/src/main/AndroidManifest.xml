@@ -34,9 +34,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".GlossaireActivity"
+            android:theme="@style/ListFont"
             android:screenOrientation="portrait" />
         <activity
             android:name=".GlossaireDetailsActivity"
+            android:theme="@style/ListFont"
             android:screenOrientation="portrait" />
         <activity
             android:name=".QuizActivity"
