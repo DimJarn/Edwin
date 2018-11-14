@@ -42,12 +42,10 @@ public class MenuActivityy extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
 
-        // Show First Fragment
+        //appel de methode pour éviter d'avoir un fragment vide au lancement de l'app
         this.showFirstFragment();
     }
 
-    //FOR FRAGMENTS
-    // 1 - Declare fragment handled by Navigation Drawer
     private Fragment fragmentAide;
     private Fragment fragmentAPropos;
     private Fragment fragmentFiches;
@@ -55,9 +53,6 @@ public class MenuActivityy extends AppCompatActivity
     private Fragment fragmentQuiz;
     private Fragment fragmentAccueil;
 
-
-    //FOR DATAS
-    // 2 - Identify each fragment with a number
     private static final int FRAGMENT_ACCUEIL = 0;
     private static final int FRAGMENT_AIDE = 1;
     private static final int FRAGMENT_APROPOS = 2;
@@ -85,13 +80,11 @@ public class MenuActivityy extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    // Configure Toolbar
     private void configureToolBar(){
         this.toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
         setSupportActionBar(toolbar);
     }
 
-    // Configure Drawer Layout
     private void configureDrawerLayout(){
         this.drawerLayout = (DrawerLayout) findViewById(R.id.activity_main_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -99,7 +92,6 @@ public class MenuActivityy extends AppCompatActivity
         toggle.syncState();
     }
 
-    // Configure NavigationView
     private void configureNavigationView(){
         this.navigationView = (NavigationView) findViewById(R.id.activity_main_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -108,10 +100,8 @@ public class MenuActivityy extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        // 6 - Show fragment after user clicked on a menu item
         switch (id){
             case R.id.accueil :
                 this.showFragment(FRAGMENT_ACCUEIL);
@@ -171,8 +161,6 @@ public class MenuActivityy extends AppCompatActivity
         }
     }
 
-    // Create each fragment page and show it
-
     private void showAccueilFragment(){
         if (this.fragmentAccueil == null) this.fragmentAccueil = AccueilActivity.newInstance();
         this.startTransactionFragment(this.fragmentAccueil);
@@ -215,9 +203,7 @@ public class MenuActivityy extends AppCompatActivity
     private void showFirstFragment(){
         Fragment visibleFragment = getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
         if (visibleFragment == null){
-            // 1.1 - Show News Fragment
             this.showFragment(FRAGMENT_ACCUEIL);
-            // 1.2 - Mark as selected the menu item corresponding to NewsFragment
             this.navigationView.getMenu().getItem(0).setChecked(true);
         }
     }

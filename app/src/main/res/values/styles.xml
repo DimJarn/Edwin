@@ -1,6 +1,6 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <!-- Permet de modifier le thème global de l'app -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColor</item>
@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!-- Page accueil theme. -->
+    <!-- Permet de modifier le theme de la page d'accueil -->
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColor</item>
@@ -17,7 +17,7 @@
     </style>
 
 
-    <!-- Page Test theme. -->
+    <!-- Permet de modifier l'aspect de la page de lancement -->
     <style name="themeTest.Launcher" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@drawable/loading_screen</item>
@@ -34,12 +34,17 @@
         <item name="contentScrim">?attr/colorPrimary</item>
     </style>
 
-
+    <!-- Permet de modifier l'aspect de la carte de texte dans l'accueil -->
     <style name="Widget.CardContent" parent="android:Widget">
-        <item name="android:paddingLeft">16dp</item>
-        <item name="android:paddingRight">16dp</item>
-        <item name="android:paddingTop">24dp</item>
-        <item name="android:paddingBottom">24dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
         <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- Permet d'augmenter la taille des item du menu -->
+    <style name="NavigationTheme" parent="AppTheme">
+        <item name="listPreferredItemHeightSmall">60dp</item>
     </style>
 </resources>

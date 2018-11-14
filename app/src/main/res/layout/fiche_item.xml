@@ -3,7 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="25dp"
+    android:padding="15dp"
     android:background="@color/GreyColor"
     >
 
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:layout_gravity="center_horizontal"
-        android:textSize="25dp"
+        android:textSize="15dp"
         android:layout_weight="8"
         android:textColor="@color/primaryColor" />
 

@@ -4,6 +4,7 @@ package fr.eseo.pfe.edwin;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,6 +17,10 @@ import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import fr.eseo.pfe.edwin.data.EdwinDatabase;
+import fr.eseo.pfe.edwin.data.FicheInformative;
 
 public class FichesActivity extends Fragment {
 
@@ -49,6 +54,8 @@ public class FichesActivity extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mListView = (ListView) view.findViewById(R.id.listView);
 
+        List<FicheInformative> listeFiches = EdwinDatabase.getAppDatabase(view.getContext()).ficheInformativeDao().findAllFichesInformatives();
+
         //Création de la ArrayList qui nous permettra de remplire la listView
         ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
 
@@ -65,7 +72,20 @@ public class FichesActivity extends Fragment {
         //enfin on ajoute cette hashMap dans la arrayList
         listItem.add(map);
 
+
+
+
         //On refait la manip plusieurs fois avec des données différentes pour former les items de notre ListView
+        for(FicheInformative ficheInformative : listeFiches){
+            map = new HashMap<String, String>();
+            map.put("titre", ficheInformative.getNomOperation());
+            map.put("img", String.valueOf(R.drawable.logo_cancel));
+            map.put("arrow", String.valueOf(R.drawable.logo_arrowright));
+            listItem.add(map);
+        }
+
+
+
 
         map = new HashMap<String, String>();
         map.put("titre", "Excel");
@@ -99,16 +119,9 @@ public class FichesActivity extends Fragment {
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                 //on récupère la HashMap contenant les infos de notre item (titre, description, img)
                 HashMap<String, String> map = (HashMap<String, String>) mListView.getItemAtPosition(position);
-                //on créer une boite de dialogue
-                AlertDialog.Builder adb = new AlertDialog.Builder(getContext());
-                //on attribut un titre à notre boite de dialogue
-                adb.setTitle("Sélection Item");
-                //on insère un message à notre boite de dialogue, et ici on affiche le titre de l'item cliqué
-                adb.setMessage("Votre choix : "+map.get("titre"));
-                //on indique que l'on veut le bouton ok à notre boite de dialogue
-                adb.setPositiveButton("Ok", null);
-                //on affiche la boite de dialogue
-                adb.show();
+                //on redirige vers la bonne fiche
+                Intent intent = new Intent(getContext(), FicheDetailsActivity.class);
+                startActivityForResult(intent, 0);
             }
         });
     }

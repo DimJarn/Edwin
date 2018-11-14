@@ -23,29 +23,17 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".AideActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".AProposActivity"
-            android:theme="@style/SplashTheme"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".FicheDetailsActivity"
             android:screenOrientation="portrait" />
+
         <activity
-            android:name=".GlossaireActivity"
+            android:name=".FichesActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".GlossaireDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".QuizActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".QuizDetailsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".AccueilActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".TutorialActivity"

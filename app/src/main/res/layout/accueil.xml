@@ -39,6 +39,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/accueil_presentation"
+                        android:textSize="15dp"
+                        android:textStyle="italic"
                         android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
                         android:textColor="@color/backgroundColor" />
 
@@ -48,44 +50,92 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="249dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
                 android:src="@drawable/doctors_low" />
 
-            <Button
-                android:id="@+id/buttonYourOperation"
-                style="@style/Widget.AppCompat.Button"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="78dp"
-                android:background="@color/secondaryColor"
-                android:drawableLeft="@drawable/logo_favorites"
-                android:text="Votre opération" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:background="@color/secondaryColor">
 
-            <Button
-                android:id="@+id/buttonNeedHelp"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="match_parent"
-                android:layout_height="78dp"
-                android:background="@color/tertiaryColor"
-                android:drawableLeft="@drawable/logo_help"
-                android:onClick="onButtonClicked"
-                android:text="Besoin d'aide ?" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/logo_favorites"
+                    android:layout_gravity="center"
+                    android:paddingLeft="25dp"
+                    android:background="@color/secondaryColor" />
 
-            <Button
-                android:id="@+id/buttonMoreInfo"
-                style="@style/Widget.AppCompat.Button"
+                <Button
+                    android:id="@+id/buttonYourOperation"
+                    android:layout_width="match_parent"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_height="wrap_content"
+                    android:background="@color/secondaryColor"
+                    android:padding="3dp"
+                    android:text="Votre opération" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="78dp"
-                android:background="@color/quartColor"
-                android:drawableLeft="@drawable/logo_infos_2"
-                android:text="Plus d'info" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:background="@color/tertiaryColor">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/logo_help_50"
+                    android:layout_gravity="center"
+                    android:paddingLeft="25dp"
+                    android:background="@color/tertiaryColor" />
+
+                <Button
+                    android:id="@+id/buttonNeedHelp"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/tertiaryColor"
+                    android:onClick="onButtonClicked"
+                    android:padding="3dp"
+                    android:text="Besoin d'aide ?" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:background="@color/quartColor">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/logo_info_50"
+                    android:layout_gravity="center"
+                    android:paddingLeft="25dp"
+                    android:background="@color/quartColor" />
+
+                <Button
+                    android:id="@+id/buttonMoreInfo"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:background="@color/quartColor"
+                    android:text="Plus d'info" />
+            </LinearLayout>
 
             <LinearLayout
                 style="@style/Widget.CardContent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:background="@color/LightGreyColor"
                 android:orientation="horizontal">
@@ -101,7 +151,7 @@
                 <TextView
                     android:id="@+id/dev_info"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/accueil_info"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"

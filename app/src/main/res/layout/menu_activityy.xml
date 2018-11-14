@@ -42,6 +42,7 @@
         android:background="@color/LightGreyColor"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_menu_activityy"
-        app:menu="@menu/menu_activityy_drawer" />
+        app:menu="@menu/menu_activityy_drawer"
+        android:theme="@style/NavigationTheme"/>
 
 </android.support.v4.widget.DrawerLayout>

@@ -30,15 +30,10 @@
             android:id="@+id/apropos"
             android:icon="@drawable/logo_info"
             android:title="Infos" />
+        <item
+            android:id="@+id/nav_quit"
+            android:icon="@drawable/logo_cancel"
+            android:title="Quitter l'application" />
     </group>
-
-    <item android:title="">
-        <menu>
-            <item
-                android:id="@+id/nav_quit"
-                android:icon="@drawable/logo_cancel"
-                android:title="Quitter l'application" />
-        </menu>
-    </item>
 
 </menu>
