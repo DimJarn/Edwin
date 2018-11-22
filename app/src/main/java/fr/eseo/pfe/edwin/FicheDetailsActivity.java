@@ -37,8 +37,7 @@ public class FicheDetailsActivity extends AppCompatActivity {
 
     private void initData(){
 
-        ContenuFiche listeFiches = EdwinDatabase.getAppDatabase(listView.getContext()).ficheInformativeDao().findFicheInformativeFromIdAndContent(1);
-
+        ContenuFiche listeFiches = EdwinDatabase.getAppDatabase(listView.getContext()).contenuFicheDao().findContenuFicheFromId(1);
 
         listDataheader = new ArrayList<>();
         listHash = new HashMap<>();
@@ -53,29 +52,28 @@ public class FicheDetailsActivity extends AppCompatActivity {
         listDataheader.add("Suivi post-opératoire");
 
         List<String>  rappel =  new ArrayList<>();
-        //rappel.add(ficheInformative.getNomOperation());
-        //System.out.println(listeFiches.getMaladie());
+        //rappel.add();
 
         List<String>  maladie =  new ArrayList<>();
-        //rappel.add(ficheInformative.getNomOperation());
+        maladie.add(listeFiches.getMaladie());
 
         List<String>  pourquoi =  new ArrayList<>();
-        pourquoi.add("Prends des medocs mon frere ça ira tu verras");
+        pourquoi.add(listeFiches.getRisquesMaladie());
 
         List<String>  principes =  new ArrayList<>();
-        principes.add("bah tu ne me laisses pas le choix je crois bien");
+        principes.add(listeFiches.getPrincipe());
 
         List<String>  techniques =  new ArrayList<>();
-        techniques.add("Bah ecoute bismillah la famillle et toi ?");
+        techniques.add(listeFiches.getTechnique());
 
         List<String>  suites =  new ArrayList<>();
-        suites.add("J'ai mal a mon gros orteil vois tu ");
+        suites.add(listeFiches.getSuites());
 
         List<String>  risques =  new ArrayList<>();
-        risques.add("Prends des medocs mon frere ça ira tu verras");
+        risques.add(listeFiches.getRisquesOperation());
 
         List<String>  suivi =  new ArrayList<>();
-        suivi.add("bah tu ne me laisses pas le choix je crois bien");
+        suivi.add(listeFiches.getSuivi());
 
         listHash.put(listDataheader.get(0),rappel);
         listHash.put(listDataheader.get(1),maladie);

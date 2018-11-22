@@ -28,6 +28,9 @@
 
         <activity
             android:name=".FichesActivity"
+            android:theme="@style/ListFont"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".GlossaireActivity"
             android:theme="@style/ListFont"
             android:screenOrientation="portrait" />

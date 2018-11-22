@@ -23,8 +23,6 @@ import java.util.ArrayList;
 
 import fr.eseo.pfe.edwin.data.ContenuFiche;
 import fr.eseo.pfe.edwin.data.DatabaseInitializer;
-import fr.eseo.pfe.edwin.data.EdwinDatabase;
-import fr.eseo.pfe.edwin.data.FicheInformative;
 
 
 public class MainActivity extends AppCompatActivity {

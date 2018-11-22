@@ -43,7 +43,6 @@
         android:fitsSystemWindows="true"
         android:theme="@style/toolbarDesign"
         app:headerLayout="@layout/nav_header_menu_activityy"
-        app:menu="@menu/menu_activityy_drawer"
-        android:theme="@style/NavigationTheme"/>
+        app:menu="@menu/menu_activityy_drawer"/>
 
 </android.support.v4.widget.DrawerLayout>
