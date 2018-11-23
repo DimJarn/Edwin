@@ -2,12 +2,10 @@ package fr.eseo.pfe.edwin;
 
 
 import android.app.AlertDialog;
+import android.app.Fragment;
+import android.app.ListFragment;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,10 +20,15 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eseo.pfe.edwin.data.EdwinDatabase;
+
 /**
+ * @author dimitrijarneau
  * Fragment Glossaire
+ * Affichage de la liste des mots et filtre de recherche
+ *
  */
-public class GlossaireActivity extends ListFragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener {
+public class GlossaireFragment extends ListFragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener {
     List<String> mAllValues;
     private ArrayAdapter<String> mAdapter;
     private Context mContext;
@@ -39,7 +42,7 @@ public class GlossaireActivity extends ListFragment implements SearchView.OnQuer
      * @return instance
      */
     public static Fragment newInstance() {
-        return (new GlossaireActivity());
+        return (new GlossaireFragment());
     }
 
     /**
@@ -51,6 +54,9 @@ public class GlossaireActivity extends ListFragment implements SearchView.OnQuer
         mContext = getActivity();
         setHasOptionsMenu(true);
         populateList();
+
+        String backupDBPath = EdwinDatabase.getAppDatabase(mAdapter.getContext()).getOpenHelper().getWritableDatabase().getPath();
+        System.out.println("CHEMIN DB"+backupDBPath);
 
     }
 
@@ -70,7 +76,10 @@ public class GlossaireActivity extends ListFragment implements SearchView.OnQuer
         getFragmentManager().popBackStack();
 
         //on créer une boite de dialogue
-        AlertDialog.Builder adb = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder adb = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            adb = new AlertDialog.Builder(getContext());
+        }
         //on attribut un titre à notre boite de dialogue
         adb.setTitle("Sélection Item");
         //on insère un message à notre boite de dialogue, et ici on affiche le titre de l'item cliqué
@@ -80,15 +89,18 @@ public class GlossaireActivity extends ListFragment implements SearchView.OnQuer
         //on affiche la boite de dialogue
         adb.show();
 
+
         // redirection vers GlossaireDetailsFragment
         //Intent intent = new Intent(getContext(), GlossaireDetailsFragment.class);
         //startActivityForResult(intent, 0);
-/*
-        FragmentManager frman = getFragmentManager();
-        FragmentTransaction ftran = frman.beginTransaction();
-        Fragment ffrag = GlossaireDetailsFragment.newInstance();
-        ftran.replace(R.id.activity_main_frame_layout, ffrag);
-        ftran.commit();*/
+
+        // FragmentManager frman = getFragmentManager();
+        //FragmentTransaction ftran = frman.beginTransaction();
+        ////ftran.replace(R.id.activity_main_frame_layout, ffrag);
+        // ftran.commit();
+
+        Fragment fragment =  GlossaireDetailsFragment.newInstance();
+        getFragmentManager().beginTransaction().replace(R.id.layout_fragment1, fragment).commit();
     }
 
     /**
@@ -109,7 +121,7 @@ public class GlossaireActivity extends ListFragment implements SearchView.OnQuer
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.glossaire, container, false);
+        View view = inflater.inflate(R.layout.glossaire_fragment, container, false);
         ListView listView = view.findViewById(android.R.id.list);
         TextView emptyTextView = view.findViewById(android.R.id.empty);
         listView.setEmptyView(emptyTextView);

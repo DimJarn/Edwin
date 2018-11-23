@@ -9,29 +9,36 @@
         <item
             android:id="@+id/accueil"
             android:icon="@drawable/logo_accueil"
+            app:showAsAction="always"
             android:title="Accueil" />
         <item
             android:id="@+id/fiches"
             android:icon="@drawable/logo_sheets"
+            app:showAsAction="always"
             android:title="Fiches Opérations" />
         <item
             android:id="@+id/glossaire"
             android:icon="@drawable/logo_dico"
+            app:showAsAction="ifRoom"
             android:title="Glossaire" />
         <item
             android:id="@+id/quiz"
+            app:showAsAction="always"
             android:icon="@drawable/logo_quiz"
             android:title="Quiz" />
         <item
             android:id="@+id/aide"
+            app:showAsAction="always"
             android:icon="@drawable/logo_help"
             android:title="Aide" />
         <item
             android:id="@+id/apropos"
+            app:showAsAction="always"
             android:icon="@drawable/logo_info"
             android:title="Infos" />
         <item
             android:id="@+id/nav_quit"
+            app:showAsAction="always"
             android:icon="@drawable/logo_cancel"
             android:title="Quitter l'application" />
     </group>

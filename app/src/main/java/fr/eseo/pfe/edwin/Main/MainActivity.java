@@ -1,4 +1,4 @@
-package fr.eseo.pfe.edwin;
+package fr.eseo.pfe.edwin.Main;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -7,49 +7,74 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.view.ViewPager;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.view.MenuItem;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
+import fr.eseo.pfe.edwin.AProposActivityBis;
+import fr.eseo.pfe.edwin.AccueilActivityBis;
+import fr.eseo.pfe.edwin.AideActivityBis;
+import fr.eseo.pfe.edwin.FicheActivityBis;
 import fr.eseo.pfe.edwin.FirstLaunch.TutorialActivity;
+import fr.eseo.pfe.edwin.GlossaireActivityBis;
+import fr.eseo.pfe.edwin.QuizzActivityBis;
+import fr.eseo.pfe.edwin.R;
+import fr.eseo.pfe.edwin.data.ContenuFiche;
+import fr.eseo.pfe.edwin.data.DatabaseInitializer;
+import fr.eseo.pfe.edwin.data.EdwinDatabase;
+import fr.eseo.pfe.edwin.data.FicheInformative;
 
+import static fr.eseo.pfe.edwin.Util.LogUtil.logD;
+import static fr.eseo.pfe.edwin.Util.LogUtil.makeLogTag;
 
-public class MainActivity extends AppCompatActivity {
-
-    ViewPager viewPager;
-    LinearLayout sliderDotspanel;
-    private int dotscount;
-    private ImageView[] dots;
-    private Button buttonTutorial = null;
-    private Button buttonAide = null;
+/**
+ * Classe Main qui gère :
+ * - la première utilisation
+ * - le menu
+ */
+public abstract class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String TAG = makeLogTag(MainActivity.class);
+    protected static final int NAV_DRAWER_ITEM_INVALID = -1;
+    private DrawerLayout drawerLayout;
+    private Toolbar actionBarToolbar;
+    private NavigationView navigationView;
     private SharedPreferences Prefs;
-    private String TAG;
     public static final String NAME_FILE_CGU = "file_cgu.txt";//Name of the final to read for terms and conditions use
     public static final String CONDITIONS_GENERALES_D_UTILISATION = "Conditions générales d'utilisation :";
     public static final String YOUR_OWN_APPLICATION_PACKAGENAME_COM = "YOUR.OWN.APPLICATION.PACKAGENAME.COM";
     public static final String NULL_TUTORIAL = "NullTutorial";
 
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        /**
+         * Launch the box for the tearms and conditions
+         * After, launch the Tutorial for the first time
+         */
+        termsAndConditionsDialog();
+        /**
+         * The theme correspond to the loading screen
+         */
+        setTheme(R.style.AppTheme);
+        /**
+         * The main menu
+         */
+        setupNavDrawer();
 
-/*
-        FicheInformative ficheInformative = new FicheInformative();
-
-        ficheInformative.setIdFiche(1);
-        ficheInformative.setNomOperation("pneumothorax");
-        ficheInformative.setRefContenuFiche(1);
-
-        ContenuFiche contenuFiche = new ContenuFiche();
+        //configureNavigationView();
+        /*FicheInformative ficheInformative = new FicheInformative(1,"Pneumo",null,1);
+        ContenuFiche contenuFiche = new ContenuFiche(1,null,null,null,null,null,null,null);
 
         contenuFiche.setIdContenuFiche(1);
         contenuFiche.setMaladie("Vous avez présenté un décollement de plèvre appelé pneumothorax, lié à la présence anormale d’air dans l’espace pleural.\n" +
@@ -86,87 +111,8 @@ public class MainActivity extends AppCompatActivity {
         contenuFicheArrayList.add(contenuFiche);
 
         DatabaseInitializer.populateAsync(EdwinDatabase.getAppDatabase(this), ficheInformativeArrayList, contenuFicheArrayList,
-                new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList());
-*/
+                new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList());*/
 
-        /**
-         * Launch the box for the tearms and conditions
-         * After, launch the Tutorial for the first time
-         */
-        termsAndConditionsDialog();
-        /**
-         * The theme correspond to the loading screen
-         */
-        setTheme(R.style.AppTheme);
-
-        //AFFICHE LA VUE ACCUEIL
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-        //BOUTON DE REDIRECTION VERS TUTORIAL
-        buttonTutorial = findViewById(R.id.tutorial);
-        buttonTutorial.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View actualView) {
-                Intent intent = new Intent(getBaseContext(), TutorialActivity.class);
-                startActivityForResult(intent, 0);
-            }
-        });
-
-        //BOUTON DE REDIRECTION VERS AIDE
-        buttonAide = findViewById(R.id.aide);
-        buttonAide.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View actuelView) {
-                Intent intent = new Intent(getBaseContext(), AideActivity.class);
-                startActivityForResult(intent, 0);
-            }
-        });
-
-
-        //BOUTON DE REDIRECTION VERS A PROPOS
-        Button buttonAPropos = (Button) findViewById(R.id.apropos);
-        buttonAPropos.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View actuelView) {
-                Intent intent = new Intent(MainActivity.this, AProposActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //BOUTON DE REDIRECTION VERS FICHES
-        Button buttonFiches = (Button) findViewById(R.id.fiches);
-        buttonFiches.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View actuelView) {
-                Intent intent = new Intent(MainActivity.this, FicheDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //BOUTON DE REDIRECTION VERS GLOSSAIRE
-        Button buttonGlossaire = (Button) findViewById(R.id.glossaire);
-        buttonGlossaire.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View actuelView) {
-                Intent intent = new Intent(MainActivity.this, GlossaireActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //BOUTON DE REDIRECTION VERS MENU
-        Button buttonMenu = (Button) findViewById(R.id.menu);
-        buttonMenu.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View actuelView) {
-                Intent intent = new Intent(MainActivity.this, MenuActivityy.class);
-                startActivity(intent);
-            }
-        });
-
-        //BOUTON DE REDIRECTION VERS QUIZ
-        Button buttonQuiz = (Button) findViewById(R.id.quiz);
-        buttonQuiz.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View actuelView) {
-                Intent intent = new Intent(MainActivity.this, QuizActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     /**
@@ -200,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
         detectFirstUseAOpenTutorialAndBox();
     }
 
+
     /**
      * Launch the tutorial for the first use of the app
      */
@@ -218,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-
 
     /**
      * Implement promptTutorial() which is called to decide if the dialog window needs to be prompted.
@@ -283,4 +229,154 @@ public class MainActivity extends AppCompatActivity {
         return text;
     }
 
+    /**
+     * Sets up the navigation drawer.
+     */
+    private void setupNavDrawer() {
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawerLayout == null) {
+            // current activity does not have a drawer.
+            return;
+        }
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        if (navigationView != null) {
+            setupDrawerSelectListener(navigationView);
+            setSelectedItem(navigationView);
+        }
+
+        logD(TAG, "navigation drawer setup finished");
+    }
+
+    private void configureNavigationView() {
+        this.navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    /**
+     * Updated the checked item in the navigation drawer
+     *
+     * @param navigationView the navigation view
+     */
+    private void setSelectedItem(NavigationView navigationView) {
+        // Which navigation item should be selected?
+        int selectedItem = getSelfNavDrawerItem(); // subclass has to override this method
+        navigationView.setCheckedItem(selectedItem);
+    }
+
+
+    /**
+     * Creates the item click listener.
+     *
+     * @param navigationView the navigation view
+     */
+    private void setupDrawerSelectListener(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        drawerLayout.closeDrawers();
+                        onNavigationItemClicked(menuItem.getItemId());
+                        return true;
+                    }
+                });
+        navigationView.setItemIconTintList(null); // Very important --> to show the icon and not only the main line
+    }
+
+    /**
+     * Handles the navigation item click.
+     *
+     * @param itemId the clicked item
+     */
+    private void onNavigationItemClicked(final int itemId) {
+        if (itemId == getSelfNavDrawerItem()) {
+            // Already selected
+            closeDrawer();
+            return;
+        }
+
+        goToNavDrawerItem(itemId);
+    }
+
+    /**
+     * Handles the navigation item click and starts the corresponding activity.
+     *
+     * @param item the selected navigation item
+     */
+    private void goToNavDrawerItem(int item) {
+        switch (item) {
+            case R.id.accueil:
+                startActivity(new Intent(this, AccueilActivityBis.class));
+                finish();
+                break;
+            case R.id.fiches:
+                startActivity(new Intent(this, FicheActivityBis.class));
+                break;
+            case R.id.glossaire:
+                startActivity(new Intent(this, GlossaireActivityBis.class));
+                break;
+            case R.id.quiz:
+                startActivity(new Intent(this, QuizzActivityBis.class));
+                break;
+            case R.id.aide:
+                startActivity(new Intent(this, AideActivityBis.class));
+                break;
+            case R.id.apropos:
+                startActivity(new Intent(this, AProposActivityBis.class));
+                break;
+            case R.id.nav_quit:
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                this.startActivity(intent);
+                break;
+        }
+    }
+
+    /**
+     * Provides the action bar instance.
+     *
+     * @return the action bar.
+     */
+    protected ActionBar getActionBarToolbar() {
+        if (actionBarToolbar == null) {
+            actionBarToolbar = (Toolbar) findViewById(R.id.toolbar_real);
+
+            if (actionBarToolbar != null) {
+                setSupportActionBar(actionBarToolbar);
+
+            }
+        }
+        return getSupportActionBar();
+    }
+
+
+    /**
+     * Returns the navigation drawer item that corresponds to this Activity. Subclasses
+     * have to override this method.
+     */
+    protected int getSelfNavDrawerItem() {
+        return NAV_DRAWER_ITEM_INVALID;
+    }
+
+    protected void openDrawer() {
+        if (drawerLayout == null)
+            return;
+
+        drawerLayout.openDrawer(GravityCompat.START);
+    }
+
+    protected void closeDrawer() {
+        if (drawerLayout == null)
+            return;
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+    }
+
+    public abstract boolean providesActivityToolbar();
+
+    public void setToolbar(Toolbar toolbar) {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 }

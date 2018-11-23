@@ -1,7 +1,10 @@
 package fr.eseo.pfe.edwin;
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
 import java.util.ArrayList;
@@ -12,25 +15,60 @@ import fr.eseo.pfe.edwin.Util.ExpandableAdapter;
 import fr.eseo.pfe.edwin.data.ContenuFiche;
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
 
-public class FicheDetailsActivity extends AppCompatActivity {
-
+public class FicheDetailsFragment extends Fragment {
     private ExpandableListView listView;
     private ExpandableAdapter listAdapter;
     private List<String> listDataheader;
     private HashMap<String, List<String>> listHash;
 
-    protected void onCreate(Bundle savedInstanceState) {
 
-        //AFFICHE LA VUE DU DETAIL DE FICHE
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fiche_details_fragment);
-
-        listView = (ExpandableListView)findViewById(R.id.expand);
-        initData();
-        listAdapter = new ExpandableAdapter(this,listDataheader,listHash);
-        listView.setAdapter(listAdapter);
-
+    /**
+     * Methode newInstance()
+     *
+     * @return instance
+     */
+    public static Fragment newInstance() {
+        return (new FicheDetailsFragment());
     }
+
+    /**
+     * Creation
+     * @param savedInstanceState
+     */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        //AFFICHE LA VUE DU DETAIL DE GLOSSAIRE
+        super.onCreate(savedInstanceState);
+    }
+
+    /**
+     * Création de la vue
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fiche_details_fragment, container, false);
+        return view;
+    }
+
+    /**
+     * creation après
+     *
+     * @param savedInstanceState
+     */
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        listView = (ExpandableListView) getView().findViewById(R.id.expand);
+        initData();
+        listAdapter = new ExpandableAdapter(getContext(),listDataheader,listHash);
+        listView.setAdapter(listAdapter);
+    }
+
 
     private void initData(){
 
@@ -48,7 +86,7 @@ public class FicheDetailsActivity extends AppCompatActivity {
         listDataheader.add("Risques liés");
         listDataheader.add("Suivi post-opératoire");
 
-        List<String>  rappel =  new ArrayList<>();
+        List<String> rappel =  new ArrayList<>();
         //rappel.add();
 
         List<String>  maladie =  new ArrayList<>();
@@ -80,6 +118,5 @@ public class FicheDetailsActivity extends AppCompatActivity {
         listHash.put(listDataheader.get(5),suites);
         listHash.put(listDataheader.get(6),risques);
         listHash.put(listDataheader.get(7),suivi);
-        }
-
+    }
 }

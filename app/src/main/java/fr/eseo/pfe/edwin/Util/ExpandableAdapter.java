@@ -1,4 +1,4 @@
-package fr.eseo.pfe.edwin;
+package fr.eseo.pfe.edwin.Util;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.List;
+
+import fr.eseo.pfe.edwin.R;
 
 public class ExpandableAdapter extends BaseExpandableListAdapter {
 

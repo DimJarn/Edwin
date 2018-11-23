@@ -9,22 +9,63 @@
         android:roundIcon="@mipmap/logo_resized"
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
-        <activity android:name=".SplashActivity"
-            android:theme="@style/themeTest.Launcher">
+
+
+        <activity android:name=".AccueilActivityBis"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:theme="@style/SplashTheme"
-            android:screenOrientation="portrait">
-        </activity>
+            android:name=".AProposActivityBis"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"></activity>
         <activity
-            android:name=".FicheDetailsActivity"
+            android:name=".AideActivityBis"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"></activity>
+        <activity
+            android:name=".GlossaireActivityBis"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"></activity>
+        <activity
+            android:name=".QuizzActivityBis"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"></activity>
+        <activity
+            android:name=".FicheActivityBis"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"></activity>
+        <activity
+            android:name=".FirstLaunch.TutorialActivity"
             android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <!--
+       <activity android:name=".SplashActivity"
+           android:theme="@style/themeTest.Launcher">
+           <intent-filter>
+               <action android:name="android.intent.action.MAIN" />
+
+               <category android:name="android.intent.category.LAUNCHER" />
+           </intent-filter>
+       </activity>
+       <activity
+           android:name=".MainActivity"
+           android:theme="@style/SplashTheme"
+           android:screenOrientation="portrait">
+       </activity>
+       <activity
+           android:name=".FicheDetailsActivity"
+           android:screenOrientation="portrait" />
 
         <activity
             android:name=".FichesActivity"
@@ -48,14 +89,14 @@
             android:name=".TutorialActivity"
             android:screenOrientation="portrait" />
 
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
+       <meta-data
+           android:name="preloaded_fonts"
+           android:resource="@array/preloaded_fonts" />
 
-        <activity
-            android:name=".MenuActivityy"
-            android:label="@string/title_activity_menu_activityy"
-            android:theme="@style/SplashTheme"></activity>
+       <activity
+           android:name=".MenuActivityy"
+           android:label="@string/title_activity_menu_activityy"
+           android:theme="@style/SplashTheme"></activity>-->
     </application>
 
 </manifest>

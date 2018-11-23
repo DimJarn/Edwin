@@ -46,6 +46,10 @@
     <!-- Permet d'augmenter la taille des item du menu -->
     <style name="NavigationTheme" parent="AppTheme">
         <item name="listPreferredItemHeightSmall">60dp</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="android:listDivider">@color/DarkGrey</item>
+        <item name="android:textColorSecondary">@color/primaryColor</item>
+        <item name="colorControlHighlight">@color/DarkGrey</item>
     </style>
 
     <style name="ListFont" parent="@android:style/Widget.ListView">
@@ -59,7 +63,16 @@
         <item name="android:listDivider">@color/DarkGrey</item>
         <item name="android:textColorSecondary">@color/primaryColor</item>
         <item name="colorControlHighlight">@color/DarkGrey</item>
-
-
     </style>
+
+
+    <!--Toolbar design -->
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <style name="ToolbarPopUp" parent ="ThemeOverlay.AppCompat.Light">
+        <item name="android:background">@color/DarkGrey</item>
+    </style>
+
 </resources>
