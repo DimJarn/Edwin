@@ -51,12 +51,13 @@ public class FicheFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mListView = (ListView) view.findViewById(R.id.listView);
 
-        List<FicheInformative> listeFiches = EdwinDatabase.getAppDatabase(view.getContext()).ficheInformativeDao().findAllFichesInformatives();
+        final List<FicheInformative> listeFiches = EdwinDatabase.getAppDatabase(view.getContext()).ficheInformativeDao().findAllFichesInformatives();
 
         //Création de la ArrayList qui nous permettra de remplire la listView
         ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
         //On déclare la HashMap qui contiendra les informations pour un item
         HashMap<String, String> map;
+        /*
         //Création d'une HashMap pour insérer les informations du premier item de notre listView
         map = new HashMap<String, String>();
         //on insère un élément titre que l'on récupérera dans le textView titre créé dans le fichier affichageitem.xml
@@ -66,7 +67,7 @@ public class FicheFragment extends Fragment {
         map.put("arrow", String.valueOf(R.drawable.logo_arrowright));
         //enfin on ajoute cette hashMap dans la arrayList
         listItem.add(map);
-
+*/
 
         //On refait la manip plusieurs fois avec des données différentes pour former les items de notre ListView
         for (FicheInformative ficheInformative : listeFiches) {
@@ -77,7 +78,7 @@ public class FicheFragment extends Fragment {
             listItem.add(map);
         }
 
-
+/*
         map = new HashMap<String, String>();
         map.put("titre", "Excel");
         map.put("img", String.valueOf(R.drawable.logo_cancel));
@@ -95,7 +96,7 @@ public class FicheFragment extends Fragment {
         map.put("img", String.valueOf(R.drawable.logo_info));
         map.put("arrow", String.valueOf(R.drawable.logo_arrowright));
         listItem.add(map);
-
+*/
         //Création d'un SimpleAdapter qui se chargera de mettre les items présent dans notre list (listItem) dans la vue affichageitem
         SimpleAdapter mSchedule = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
@@ -112,12 +113,12 @@ public class FicheFragment extends Fragment {
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                 //on récupère la HashMap contenant les infos de notre item (titre, description, img)
                 HashMap<String, String> map = (HashMap<String, String>) mListView.getItemAtPosition(position);
-                //on redirige vers la bonne fiche
-                /**
-                Intent intent = new Intent(getContext(), FicheDetailsActivity.class);
-                startActivityForResult(intent, 0);
-**/
+
+                int idFiche = listeFiches.get(position).getIdFiche();
+                Bundle bundle = new Bundle();
+                bundle.putInt("idFiche", idFiche);
                 Fragment fragment =  FicheDetailsFragment.newInstance();
+                fragment.setArguments(bundle);
                 getFragmentManager().beginTransaction().replace(R.id.layout_fragment_fiche_1, fragment).commit();
             }
         });

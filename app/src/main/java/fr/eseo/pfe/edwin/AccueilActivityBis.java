@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 
 import fr.eseo.pfe.edwin.Main.MainActivity;
+import fr.eseo.pfe.edwin.data.ContenuFiche;
+import fr.eseo.pfe.edwin.data.EdwinDatabase;
+import fr.eseo.pfe.edwin.data.FicheInformative;
 
 /**
  * @author dimitrijarneau
@@ -30,6 +33,44 @@ public class AccueilActivityBis extends MainActivity implements View.OnClickList
         setContentView(R.layout.accueil_activity);
         setupToolbar();
         setUpButton();
+/*
+        FicheInformative ficheInformative = new FicheInformative();
+
+        ficheInformative.setNomOperation("gastro");
+        ficheInformative.setRefContenuFiche(1);
+
+        ContenuFiche contenuFiche = new ContenuFiche();
+
+        contenuFiche.setMaladie("MALADIE MALADIE");
+        contenuFiche.setRisquesMaladie("RISQUES");
+        contenuFiche.setPrincipe("Principe");
+        contenuFiche.setTechnique("Technique");
+        contenuFiche.setSuites("Suites");
+        contenuFiche.setRisquesOperation("Risques op");
+        contenuFiche.setSuivi("Suivi");
+
+        FicheInformative ficheInformative2 = new FicheInformative();
+
+        ficheInformative2.setNomOperation("pneumo");
+        ficheInformative2.setRefContenuFiche(2);
+        ficheInformative2.setIdFiche(2);
+*/
+        ContenuFiche contenuFiche2 = new ContenuFiche();
+        contenuFiche2.setIdContenuFiche(2);
+
+        contenuFiche2.setMaladie("PNEUMO MALADIE");
+        contenuFiche2.setRisquesMaladie("PNEUMO RISQUES");
+        contenuFiche2.setPrincipe("PNEUMO Principe");
+        contenuFiche2.setTechnique("PNEUMO Technique");
+        contenuFiche2.setSuites("PNEUMO Suites");
+        contenuFiche2.setRisquesOperation("PNEUMO Risques op");
+        contenuFiche2.setSuivi("PNEUMO Suivi");
+
+        //EdwinDatabase.getAppDatabase(this).ficheInformativeDao().insertFicheInformative(ficheInformative);
+        //EdwinDatabase.getAppDatabase(this).contenuFicheDao().insertContenuFiche(contenuFiche);
+
+        //EdwinDatabase.getAppDatabase(this).ficheInformativeDao().insertFicheInformative(ficheInformative2);
+        EdwinDatabase.getAppDatabase(this).contenuFicheDao().insertContenuFiche(contenuFiche2);
 
     }
 

@@ -10,6 +10,9 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,10 +34,15 @@ public class FichesActivity extends Fragment {
     FragmentActivity listener;
     private ListView mListView;
 
+    RecyclerView mRecyclerView;
+    RecyclerView.LayoutManager mLayoutManager;
+    RecyclerView.Adapter mAdapter;
+
+
     public static FichesActivity newInstance() {
         return (new FichesActivity());
     }
-
+/*
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -42,10 +50,32 @@ public class FichesActivity extends Fragment {
             this.listener = (FragmentActivity) context;
         }
     }
-
+*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getActivity().setContentView(R.layout.fiches);
+
+
+        mRecyclerView = getActivity().findViewById(R.id.reclycler_view_fiches);
+
+        List<FicheInformative> ficheInformativeList = EdwinDatabase.getAppDatabase(getActivity()).ficheInformativeDao().findAllFichesInformatives();
+
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mAdapter = new FichesAdapter(this, ficheInformativeList);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    public void clickFicheInformativeCard(FicheInformative ficheInformative) {
+
+        Intent intent = new Intent(getActivity(), FicheDetailsActivity.class);
+
+        intent.putExtra("fiche", ficheInformative);
+
+        startActivity(intent);
     }
 
     @Override

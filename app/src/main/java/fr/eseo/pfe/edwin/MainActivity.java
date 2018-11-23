@@ -19,6 +19,10 @@ import android.widget.LinearLayout;
 import java.io.IOException;
 import java.io.InputStream;
 
+import fr.eseo.pfe.edwin.data.ContenuFiche;
+import fr.eseo.pfe.edwin.data.DatabaseInitializer;
+import fr.eseo.pfe.edwin.data.EdwinDatabase;
+import fr.eseo.pfe.edwin.data.FicheInformative;
 import fr.eseo.pfe.edwin.FirstLaunch.TutorialActivity;
 
 
@@ -45,49 +49,41 @@ public class MainActivity extends AppCompatActivity {
 /*
         FicheInformative ficheInformative = new FicheInformative();
 
-        ficheInformative.setIdFiche(1);
-        ficheInformative.setNomOperation("pneumothorax");
+        ficheInformative.setNomOperation("gastro");
         ficheInformative.setRefContenuFiche(1);
 
         ContenuFiche contenuFiche = new ContenuFiche();
 
-        contenuFiche.setIdContenuFiche(1);
-        contenuFiche.setMaladie("Vous avez présenté un décollement de plèvre appelé pneumothorax, lié à la présence anormale d’air dans l’espace pleural.\n" +
-                "Ce pneumothorax est le plus fréquemment dû à la rupture de petites bulles présentes à la surface du poumon. Parfois une maladie pulmonaire est retrouvée, comme la BronchoPneumopathie Chronique Obstructive ou BPCO. Enfin, chez la femme jeune, il peut y avoir un lien avec les périodes de menstruation.\n");
-        contenuFiche.setRisquesMaladie("Le risque principal du pneumothorax est la suffocation et l’arrêt cardiorespiratoire. Le passage massif d’air dans l’espace pleural peut empêcher la ventilation normale du poumon décollé, mais aussi celle de l’autre poumon.\n" +
-                "Lors du premier épisode de pneumothorax chez un sujet sain par ailleurs, un simple drainage peut être proposé. Cependant, en cas de récidive, il est admis d’opérer afin d’éviter une nouvelle récidive.\n");
-        contenuFiche.setPrincipe("Les buts de l’intervention sont d’éviter toute récidive, en optenant une réexpansion complète et un accolement du poumon à la paroi. La chirurgie pourra également permettre d’obtenir un diagnostic plus précis et de traiter la cause du pneumothorax.\n" +
-                "-\tExploration de la cavité thoracique\n" +
-                "-\tTraitement de la cause = traitement des lésions bulleuses\n" +
-                "-\tSymphyse pleurale = accolement du poumon à la paroi\n" +
-                "Pour réaliser cet accolement, plusieurs techniques sont envisageables et utilisables en même temps :\n" +
-                "-\tirritation de la plèvre pariétale soit chimiquement par un produit irritant (talc par exemple), soit mécaniquement en frottant fort la plèvre\n" +
-                "-\t« arrachage » de la plèvre pariétale, sur plusieurs cm = pleurectomie.\n" +
-                "Le principe de ces 2 techniques est de déclencher une réaction inflammatoire qui permettra l’accolement du poumon à la paroi.\n");
-        contenuFiche.setTechnique("De nos jours, l’utilisation d’une caméra pour visualiser l’intérieur du thorax – vidéothoracoscopie - est répandue et permet de vous opérer en évitant la thoracotomie c’est-à-dire l’ouverture plus large et l’écartement des côtes, source de douleurs post-opératoires .\n" +
-                "Cependant, seul le résultat final compte et la technique utilisée sera celle qui permettra le meilleur résultat.\n");
-        contenuFiche.setSuites("Vous sortirez de la salle d’opération avec un ou deux drains thoraciques. Ce sont des tuyaux qui permettront d’aspirer l’air ou les liquides produit par le thorax pendant ou après l’intervention. Ils seront retirés le plus souvent dans les 4 jours suivants l’intervention, mais il est parfois nécessaire de les laisser plus longtemps.\n" +
-                "Certains poumons étant plus fragiles que d’autres, il est parfois nécessaire d’intervenir une seconde fois pour stopper les éventuelles fuites d’air persistantes.\n");
-        contenuFiche.setRisquesOperation("Comme toute intervention chirurgicale, il existe des risques de douleurs post-opératoires, de saignement et d’infections. L’hospitalisation peut être prolongée de quelques jours voire une réintervention peut être nécessaire.\n" +
-                "Plus spécifiquement pour cette chirurgie thoracique, un bullage du drain pendant plusieurs jours, ou un accolement incomplet du poumon peuvent apparaître. \n" +
-                "Plus rarement, un écoulement de lymphe dans le drain ou des troubles au niveau de l’œil du côté opéré peuvent être retrouvés.\n");
-        contenuFiche.setSuivi("Un arrêt de travail et d’activités physique d’un mois est classique.\n" +
-                "Les sports tels que la plongée sous-marine, ainsi que les instruments de musique à vent (trompette, saxophone…) seront contre-indiqués à vie.\n" +
-                "Il faudra attendre la consultation de contrôle avec le chirurgien pour savoir si vous pourrez reprendre l’avion.\n" +
-                "Une consultation avec votre chirurgien avec radiographie des poumons à un mois est prévue.\n" +
-                "Vous serez également revu par votre pneumologue afin de faire le point sur vos capacités pulmonaires.\n");
+        contenuFiche.setMaladie("MALADIE MALADIE");
+        contenuFiche.setRisquesMaladie("RISQUES");
+        contenuFiche.setPrincipe("Principe");
+        contenuFiche.setTechnique("Technique");
+        contenuFiche.setSuites("Suites");
+        contenuFiche.setRisquesOperation("Risques op");
+        contenuFiche.setSuivi("Suivi");
 
-        ArrayList<FicheInformative> ficheInformativeArrayList = new ArrayList<FicheInformative>();
+        FicheInformative ficheInformative2 = new FicheInformative();
 
-        ficheInformativeArrayList.add(ficheInformative);
+        ficheInformative2.setNomOperation("pneumo");
+        ficheInformative2.setRefContenuFiche(2);
 
-        ArrayList<ContenuFiche> contenuFicheArrayList = new ArrayList<ContenuFiche>();
+        ContenuFiche contenuFiche2 = new ContenuFiche();
 
-        contenuFicheArrayList.add(contenuFiche);
+        contenuFiche2.setMaladie("PNEUMO MALADIE");
+        contenuFiche2.setRisquesMaladie("PNEUMO RISQUES");
+        contenuFiche2.setPrincipe("PNEUMO Principe");
+        contenuFiche2.setTechnique("PNEUMO Technique");
+        contenuFiche2.setSuites("PNEUMO Suites");
+        contenuFiche2.setRisquesOperation("PNEUMO Risques op");
+        contenuFiche2.setSuivi("PNEUMO Suivi");
 
-        DatabaseInitializer.populateAsync(EdwinDatabase.getAppDatabase(this), ficheInformativeArrayList, contenuFicheArrayList,
-                new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList());
+        EdwinDatabase.getAppDatabase(this).ficheInformativeDao().insertFicheInformative(ficheInformative);
+        EdwinDatabase.getAppDatabase(this).contenuFicheDao().insertContenuFiche(contenuFiche);
+
+        EdwinDatabase.getAppDatabase(this).ficheInformativeDao().insertFicheInformative(ficheInformative2);
+        EdwinDatabase.getAppDatabase(this).contenuFicheDao().insertContenuFiche(contenuFiche2);
 */
+
 
         /**
          * Launch the box for the tearms and conditions

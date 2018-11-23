@@ -11,6 +11,7 @@ import java.util.List;
 import fr.eseo.pfe.edwin.Util.ExpandableAdapter;
 import fr.eseo.pfe.edwin.data.ContenuFiche;
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
+import fr.eseo.pfe.edwin.data.FicheInformative;
 
 public class FicheDetailsActivity extends AppCompatActivity {
 
@@ -25,16 +26,17 @@ public class FicheDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fiche_details_fragment);
 
+        final FicheInformative ficheInformative = (FicheInformative) getIntent().getSerializableExtra("fiche");
+
         listView = (ExpandableListView)findViewById(R.id.expand);
-        initData();
+        initData(ficheInformative.getIdFiche());
         listAdapter = new ExpandableAdapter(this,listDataheader,listHash);
         listView.setAdapter(listAdapter);
-
     }
 
-    private void initData(){
+    private void initData(int idFiche){
 
-        ContenuFiche listeFiches = EdwinDatabase.getAppDatabase(listView.getContext()).contenuFicheDao().findContenuFicheFromId(1);
+        ContenuFiche listeFiches = EdwinDatabase.getAppDatabase(listView.getContext()).contenuFicheDao().findContenuFicheFromId(idFiche);
 
         listDataheader = new ArrayList<>();
         listHash = new HashMap<>();

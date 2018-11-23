@@ -64,15 +64,19 @@ public class FicheDetailsFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         listView = (ExpandableListView) getView().findViewById(R.id.expand);
-        initData();
+
+        Bundle bundle = this.getArguments();
+        int myInt = bundle.getInt("idFiche");
+
+        initData(myInt);
         listAdapter = new ExpandableAdapter(getContext(),listDataheader,listHash);
         listView.setAdapter(listAdapter);
     }
 
 
-    private void initData(){
+    private void initData(int idFiche){
 
-        ContenuFiche listeFiches = EdwinDatabase.getAppDatabase(listView.getContext()).contenuFicheDao().findContenuFicheFromId(1);
+        ContenuFiche listeFiches = EdwinDatabase.getAppDatabase(listView.getContext()).contenuFicheDao().findContenuFicheFromId(idFiche);
 
         listDataheader = new ArrayList<>();
         listHash = new HashMap<>();
