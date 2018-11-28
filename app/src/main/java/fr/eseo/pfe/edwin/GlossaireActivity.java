@@ -19,7 +19,7 @@ import fr.eseo.pfe.edwin.Main.MainActivity;
  * Activité glossaire, intégration du menu
  * Affichage d'un fragment en premier lieu
  */
-public class GlossaireActivityBis extends MainActivity {
+public class GlossaireActivity extends MainActivity {
     List<String> mAllValues;
     private ArrayAdapter<String> mAdapter;
     private Context mContext;

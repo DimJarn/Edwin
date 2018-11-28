@@ -2,7 +2,6 @@ package fr.eseo.pfe.edwin.Util;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -11,10 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import fr.eseo.pfe.edwin.AccueilActivityBis;
-import fr.eseo.pfe.edwin.MenuActivityy;
+import fr.eseo.pfe.edwin.AccueilActivity;
 import fr.eseo.pfe.edwin.R;
 
 
@@ -72,7 +69,7 @@ public class ViewPagerAdapter extends PagerAdapter {
             buttonMenu.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     // Perform action on click
-                    Intent i = new Intent(context,AccueilActivityBis.class);
+                    Intent i = new Intent(context,AccueilActivity.class);
                     context.startActivity(i);
 
                 }

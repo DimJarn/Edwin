@@ -2,25 +2,16 @@ package fr.eseo.pfe.edwin;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import fr.eseo.pfe.edwin.Main.MainActivity;
 
-/**
- * Acitivté A Propos, extends de la Main Activité
- * Affichage de la page A propos et intégration du menu
- * Pas de boutons sur cette activité
- * Pas de fragments liés a cette activité
- * @author dimitrijarneau
- */
-public class AProposActivityBis extends MainActivity {
-
+public class QuizzActivity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.a_propos_activity);
+        setContentView(R.layout.quizz_activity);
         setupToolbar(); // to integrate the menu
     }
 
@@ -31,44 +22,16 @@ public class AProposActivityBis extends MainActivity {
         final ActionBar ab = getActionBarToolbar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Informations");
+        getSupportActionBar().setTitle("Quizz");
 
     }
-    /**
-     * Updated the checked item in the navigation drawer
-     *
-     * @param navigationView the navigation view
-     */
-    private void setSelectedItem(NavigationView navigationView) {
-        // Which navigation item should be selected?
-        int selectedItem = getSelfNavDrawerItem(); // subclass has to override this method
-        navigationView.setCheckedItem(selectedItem);
-    }
-
-    /** Overrided Methods **/
-
-    @Override
-    public boolean providesActivityToolbar() {
-        return true;
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
-
     /**
      * Method to change the item selected in the menu
      * @return id of selected item
      */
     @Override
     protected int getSelfNavDrawerItem() {
-        return R.id.apropos;
+        return R.id.quiz;
     }
     /**
      * @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -85,5 +48,18 @@ public class AProposActivityBis extends MainActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public boolean providesActivityToolbar() {
+        return false;
+    }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 }

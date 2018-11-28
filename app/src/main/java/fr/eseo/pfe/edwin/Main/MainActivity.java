@@ -19,20 +19,15 @@ import android.view.MenuItem;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 
-import fr.eseo.pfe.edwin.AProposActivityBis;
-import fr.eseo.pfe.edwin.AccueilActivityBis;
-import fr.eseo.pfe.edwin.AideActivityBis;
-import fr.eseo.pfe.edwin.FicheActivityBis;
+import fr.eseo.pfe.edwin.AProposActivity;
+import fr.eseo.pfe.edwin.AccueilActivity;
+import fr.eseo.pfe.edwin.AideActivity;
+import fr.eseo.pfe.edwin.FicheActivity;
 import fr.eseo.pfe.edwin.FirstLaunch.TutorialActivity;
-import fr.eseo.pfe.edwin.GlossaireActivityBis;
-import fr.eseo.pfe.edwin.QuizzActivityBis;
+import fr.eseo.pfe.edwin.GlossaireActivity;
+import fr.eseo.pfe.edwin.QuizzActivity;
 import fr.eseo.pfe.edwin.R;
-import fr.eseo.pfe.edwin.data.ContenuFiche;
-import fr.eseo.pfe.edwin.data.DatabaseInitializer;
-import fr.eseo.pfe.edwin.data.EdwinDatabase;
-import fr.eseo.pfe.edwin.data.FicheInformative;
 
 import static fr.eseo.pfe.edwin.Util.LogUtil.logD;
 import static fr.eseo.pfe.edwin.Util.LogUtil.makeLogTag;
@@ -306,23 +301,23 @@ public abstract class MainActivity extends AppCompatActivity implements Navigati
     private void goToNavDrawerItem(int item) {
         switch (item) {
             case R.id.accueil:
-                startActivity(new Intent(this, AccueilActivityBis.class));
+                startActivity(new Intent(this, AccueilActivity.class));
                 finish();
                 break;
             case R.id.fiches:
-                startActivity(new Intent(this, FicheActivityBis.class));
+                startActivity(new Intent(this, FicheActivity.class));
                 break;
             case R.id.glossaire:
-                startActivity(new Intent(this, GlossaireActivityBis.class));
+                startActivity(new Intent(this, GlossaireActivity.class));
                 break;
             case R.id.quiz:
-                startActivity(new Intent(this, QuizzActivityBis.class));
+                startActivity(new Intent(this, QuizzActivity.class));
                 break;
             case R.id.aide:
-                startActivity(new Intent(this, AideActivityBis.class));
+                startActivity(new Intent(this, AideActivity.class));
                 break;
             case R.id.apropos:
-                startActivity(new Intent(this, AProposActivityBis.class));
+                startActivity(new Intent(this, AProposActivity.class));
                 break;
             case R.id.nav_quit:
                 Intent intent = new Intent();

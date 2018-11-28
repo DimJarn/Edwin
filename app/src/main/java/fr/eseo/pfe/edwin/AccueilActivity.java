@@ -12,7 +12,6 @@ import android.widget.Button;
 
 import fr.eseo.pfe.edwin.Main.MainActivity;
 import fr.eseo.pfe.edwin.data.ContenuFiche;
-import fr.eseo.pfe.edwin.data.EdwinDatabase;
 import fr.eseo.pfe.edwin.data.FicheInformative;
 
 /**
@@ -22,7 +21,7 @@ import fr.eseo.pfe.edwin.data.FicheInformative;
  * Extends MainActivity qui integre le menu
  * Possibilité d'ajouter des fragments a partir de cette activité
  */
-public class AccueilActivityBis extends MainActivity implements View.OnClickListener {
+public class AccueilActivity extends MainActivity implements View.OnClickListener {
     private Fragment fragmentAide;
     private Fragment fragmentAPropos;
     private Fragment fragmentFiches;
@@ -111,10 +110,10 @@ public class AccueilActivityBis extends MainActivity implements View.OnClickList
                 //this.showFichesFragment();
                 break;
             case R.id.buttonNeedHelp:
-                startActivity(new Intent(this, AideActivityBis.class));
+                startActivity(new Intent(this, AideActivity.class));
                 break;
             case R.id.buttonMoreInfo:
-                startActivity(new Intent(this, AProposActivityBis.class));
+                startActivity(new Intent(this, AProposActivity.class));
                 break;
         }
     }
@@ -170,7 +169,7 @@ public class AccueilActivityBis extends MainActivity implements View.OnClickList
     }
 /**
  private void showAProposFragment(){
- if (this.fragmentAPropos == null) this.fragmentAPropos = AProposActivityBis.newInstance();
+ if (this.fragmentAPropos == null) this.fragmentAPropos = AProposActivity.newInstance();
  this.startTransactionFragment(this.fragmentAPropos);
  }
 
