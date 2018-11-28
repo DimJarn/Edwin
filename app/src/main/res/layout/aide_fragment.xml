@@ -37,7 +37,7 @@
                         android:id="@+id/author"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/a_propos_origin_project"
+                        android:text="Aide"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         android:textColor="@color/colorPrimaryDark" />
 
@@ -45,7 +45,7 @@
                         android:id="@+id/quote"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/a_propos_origin_project_text"
+                        android:text="Ceci sera l'aide"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/colorPrimaryDark" />
 
