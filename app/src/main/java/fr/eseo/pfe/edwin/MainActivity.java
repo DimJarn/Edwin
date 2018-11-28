@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+/*
         //BOUTON DE REDIRECTION VERS TUTORIAL
         buttonTutorial = findViewById(R.id.tutorial);
         buttonTutorial.setOnClickListener(new View.OnClickListener() {
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, QuizActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
     /**

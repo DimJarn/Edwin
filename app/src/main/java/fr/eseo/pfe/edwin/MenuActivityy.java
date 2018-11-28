@@ -43,7 +43,7 @@ public class MenuActivityy extends AppCompatActivity
         navigationView.setItemIconTintList(null);
 
         //appel de methode pour éviter d'avoir un fragment vide au lancement de l'app
-        this.showFirstFragment();
+       // this.showFirstFragment();
     }
 
     private Fragment fragmentAide;
@@ -104,22 +104,22 @@ public class MenuActivityy extends AppCompatActivity
 
         switch (id){
             case R.id.accueil :
-                this.showFragment(FRAGMENT_ACCUEIL);
+                //this.showFragment(FRAGMENT_ACCUEIL);
                 break;
             case R.id.aide :
-                this.showFragment(FRAGMENT_AIDE);
+               // this.showFragment(FRAGMENT_AIDE);
                 break;
             case R.id.apropos:
-                this.showFragment(FRAGMENT_APROPOS);
+                //this.showFragment(FRAGMENT_APROPOS);
                 break;
             case R.id.fiches:
-                this.showFragment(FRAGMENT_FICHES);
+                //this.showFragment(FRAGMENT_FICHES);
                 break;
             case R.id.glossaire:
-                this.showFragment(FRAGMENT_GLOSSAIRE);
+                //this.showFragment(FRAGMENT_GLOSSAIRE);
                 break;
             case R.id.quiz:
-                this.showFragment(FRAGMENT_QUIZ);
+                //this.showFragment(FRAGMENT_QUIZ);
                 break;
             case R.id.nav_quit:
                 Intent intent = new Intent();
@@ -135,7 +135,7 @@ public class MenuActivityy extends AppCompatActivity
 
         return true;
     }
-
+/*
     private void showFragment(int fragmentIdentifier){
         switch (fragmentIdentifier){
             case FRAGMENT_ACCUEIL :
@@ -160,6 +160,7 @@ public class MenuActivityy extends AppCompatActivity
                 break;
         }
     }
+
 
     private void showAccueilFragment(){
         if (this.fragmentAccueil == null) this.fragmentAccueil = AccueilActivity.newInstance();
@@ -190,7 +191,7 @@ public class MenuActivityy extends AppCompatActivity
         if (this.fragmentQuiz == null) this.fragmentQuiz = QuizActivity.newInstance();
         this.startTransactionFragment(this.fragmentQuiz);
     }
-
+*/
     // Generic method that will replace and show a fragment inside the MenuActivity Frame Layout
     private void startTransactionFragment(Fragment fragment){
         if (!fragment.isVisible()){
@@ -198,7 +199,7 @@ public class MenuActivityy extends AppCompatActivity
                     .replace(R.id.activity_main_frame_layout, fragment).commit();
         }
     }
-
+/*
     // Show first fragment when activity is created
     private void showFirstFragment(){
         Fragment visibleFragment = getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
@@ -207,4 +208,5 @@ public class MenuActivityy extends AppCompatActivity
             this.navigationView.getMenu().getItem(0).setChecked(true);
         }
     }
+    */
 }
