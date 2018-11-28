@@ -119,7 +119,9 @@ public class FicheFragment extends Fragment {
                 bundle.putInt("idFiche", idFiche);
                 Fragment fragment =  FicheDetailsFragment.newInstance();
                 fragment.setArguments(bundle);
-                getFragmentManager().beginTransaction().replace(R.id.layout_fragment_fiche_1, fragment).commit();
+                // Très important !!
+                //la méthode .addToBackStack permet d'utiliser le bouton retour dans le fragment
+                getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.layout_fragment_fiche_1, fragment).commit();
             }
         });
     }

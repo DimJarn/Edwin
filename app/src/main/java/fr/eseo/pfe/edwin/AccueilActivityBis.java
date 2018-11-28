@@ -33,7 +33,7 @@ public class AccueilActivityBis extends MainActivity implements View.OnClickList
         setContentView(R.layout.accueil_activity);
         setupToolbar();
         setUpButton();
-/*
+
         FicheInformative ficheInformative = new FicheInformative();
 
         ficheInformative.setNomOperation("gastro");
@@ -54,7 +54,7 @@ public class AccueilActivityBis extends MainActivity implements View.OnClickList
         ficheInformative2.setNomOperation("pneumo");
         ficheInformative2.setRefContenuFiche(2);
         ficheInformative2.setIdFiche(2);
-*/
+
         ContenuFiche contenuFiche2 = new ContenuFiche();
         contenuFiche2.setIdContenuFiche(2);
 
@@ -70,7 +70,7 @@ public class AccueilActivityBis extends MainActivity implements View.OnClickList
         //EdwinDatabase.getAppDatabase(this).contenuFicheDao().insertContenuFiche(contenuFiche);
 
         //EdwinDatabase.getAppDatabase(this).ficheInformativeDao().insertFicheInformative(ficheInformative2);
-        EdwinDatabase.getAppDatabase(this).contenuFicheDao().insertContenuFiche(contenuFiche2);
+        //EdwinDatabase.getAppDatabase(this).contenuFicheDao().insertContenuFiche(contenuFiche2);
 
     }
 
