@@ -70,7 +70,6 @@ public class AccueilActivity extends MainActivity implements View.OnClickListene
 
         //EdwinDatabase.getAppDatabase(this).ficheInformativeDao().insertFicheInformative(ficheInformative2);
         //EdwinDatabase.getAppDatabase(this).contenuFicheDao().insertContenuFiche(contenuFiche2);
-
     }
 
     /**

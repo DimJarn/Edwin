@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,13 +15,14 @@ import java.util.List;
 import fr.eseo.pfe.edwin.Util.ExpandableAdapter;
 import fr.eseo.pfe.edwin.data.ContenuFiche;
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
+import fr.eseo.pfe.edwin.data.FicheInformative;
 
 public class FicheDetailsFragment extends Fragment {
     private ExpandableListView listView;
     private ExpandableAdapter listAdapter;
     private List<String> listDataheader;
     private HashMap<String, List<String>> listHash;
-
+    private TextView textViewTitre;
 
     /**
      * Methode newInstance()
@@ -77,6 +79,10 @@ public class FicheDetailsFragment extends Fragment {
     private void initData(int idFiche){
 
         ContenuFiche listeFiches = EdwinDatabase.getAppDatabase(listView.getContext()).contenuFicheDao().findContenuFicheFromId(idFiche);
+        FicheInformative listeFichesTitre = EdwinDatabase.getAppDatabase(listView.getContext()).ficheInformativeDao().findFicheInformativeFromId(idFiche);
+
+        textViewTitre = (TextView) getView().findViewById(R.id.nom_operation);
+        textViewTitre.setText(listeFichesTitre.getNomOperation());
 
         listDataheader = new ArrayList<>();
         listHash = new HashMap<>();
@@ -91,7 +97,7 @@ public class FicheDetailsFragment extends Fragment {
         listDataheader.add("Suivi post-opératoire");
 
         List<String> rappel =  new ArrayList<>();
-        //rappel.add();
+        //rappel.add(titre.getNomOperation());
 
         List<String>  maladie =  new ArrayList<>();
         maladie.add(listeFiches.getMaladie());

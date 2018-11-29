@@ -13,7 +13,7 @@ import fr.eseo.pfe.edwin.data.ContenuFiche;
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
 import fr.eseo.pfe.edwin.data.FicheInformative;
 
-public class FicheDetailsActivity extends AppCompatActivity {
+public class FicheDetailsActivityNotUsed extends AppCompatActivity {
 
     private ExpandableListView listView;
     private ExpandableAdapter listAdapter;
@@ -35,8 +35,11 @@ public class FicheDetailsActivity extends AppCompatActivity {
     }
 
     private void initData(int idFiche){
+        System.out.println("TESSSSST");
 
         ContenuFiche listeFiches = EdwinDatabase.getAppDatabase(listView.getContext()).contenuFicheDao().findContenuFicheFromId(idFiche);
+        FicheInformative titre = EdwinDatabase.getAppDatabase(listView.getContext()).ficheInformativeDao().findFicheInformativeFromId(idFiche);
+        System.out.println("Titre" + titre.getNomOperation());
 
         listDataheader = new ArrayList<>();
         listHash = new HashMap<>();
@@ -51,7 +54,7 @@ public class FicheDetailsActivity extends AppCompatActivity {
         listDataheader.add("Suivi post-opératoire");
 
         List<String>  rappel =  new ArrayList<>();
-        //rappel.add();
+        rappel.add(titre.getNomOperation());
 
         List<String>  maladie =  new ArrayList<>();
         maladie.add(listeFiches.getMaladie());

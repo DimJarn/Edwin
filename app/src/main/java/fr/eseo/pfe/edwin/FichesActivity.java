@@ -1,26 +1,18 @@
 package fr.eseo.pfe.edwin;
 
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.CursorLoader;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,7 +63,7 @@ public class FichesActivity extends Fragment {
 
     public void clickFicheInformativeCard(FicheInformative ficheInformative) {
 
-        Intent intent = new Intent(getActivity(), FicheDetailsActivity.class);
+        Intent intent = new Intent(getActivity(), FicheDetailsActivityNotUsed.class);
 
         intent.putExtra("fiche", ficheInformative);
 
@@ -152,7 +144,7 @@ public class FichesActivity extends Fragment {
                 //on récupère la HashMap contenant les infos de notre item (titre, description, img)
                 HashMap<String, String> map = (HashMap<String, String>) mListView.getItemAtPosition(position);
                 //on redirige vers la bonne fiche
-                Intent intent = new Intent(getContext(), FicheDetailsActivity.class);
+                Intent intent = new Intent(getContext(), FicheDetailsActivityNotUsed.class);
                 startActivityForResult(intent, 0);
             }
         });

@@ -64,7 +64,7 @@
            android:screenOrientation="portrait">
        </activity>
        <activity
-           android:name=".FicheDetailsActivity"
+           android:name=".FicheDetailsActivityNotUsed"
            android:screenOrientation="portrait" />
 
         <activity

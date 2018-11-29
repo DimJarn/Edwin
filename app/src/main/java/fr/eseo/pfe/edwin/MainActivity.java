@@ -11,7 +11,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,10 +18,6 @@ import android.widget.LinearLayout;
 import java.io.IOException;
 import java.io.InputStream;
 
-import fr.eseo.pfe.edwin.data.ContenuFiche;
-import fr.eseo.pfe.edwin.data.DatabaseInitializer;
-import fr.eseo.pfe.edwin.data.EdwinDatabase;
-import fr.eseo.pfe.edwin.data.FicheInformative;
 import fr.eseo.pfe.edwin.FirstLaunch.TutorialActivity;
 
 
@@ -132,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonFiches = (Button) findViewById(R.id.fiches);
         buttonFiches.setOnClickListener(new View.OnClickListener() {
             public void onClick(View actuelView) {
-                Intent intent = new Intent(MainActivity.this, FicheDetailsActivity.class);
+                Intent intent = new Intent(MainActivity.this, FicheDetailsActivityNotUsed.class);
                 startActivity(intent);
             }
         });
