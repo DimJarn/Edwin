@@ -15,6 +15,12 @@ public class ContenuFiche {
     private int idContenuFiche;
 
     @NonNull
+    private String intro;
+
+    @NonNull
+    private String rappelAnatomique;
+
+    @NonNull
     private String maladie;
 
     @NonNull
@@ -61,6 +67,24 @@ public class ContenuFiche {
 
     public void setIdContenuFiche(@NonNull int idContenuFiche) {
         this.idContenuFiche = idContenuFiche;
+    }
+
+    @NonNull
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(@NonNull String intro) {
+        this.intro = intro;
+    }
+
+    @NonNull
+    public String getRappelAnatomique() {
+        return rappelAnatomique;
+    }
+
+    public void setRappelAnatomique(@NonNull String rappelAnatomique) {
+        this.rappelAnatomique = rappelAnatomique;
     }
 
     @NonNull
