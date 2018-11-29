@@ -1,16 +1,16 @@
 package fr.eseo.pfe.edwin;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.SearchView;
+import android.widget.TextView;
+
+import fr.eseo.pfe.edwin.data.EdwinDatabase;
+import fr.eseo.pfe.edwin.data.Glossaire;
 
 /**
  * @author dimitrijarneau
@@ -19,6 +19,8 @@ import android.widget.SearchView;
  */
 public class GlossaireDetailsFragment extends Fragment {
 
+    private TextView textView;
+    private TextView textView2;
     /**
      * Methode newInstance()
      *
@@ -88,5 +90,19 @@ public class GlossaireDetailsFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        textView = (TextView) getView().findViewById(R.id.nom_mot_glossaire);
+        textView2 = (TextView) getView().findViewById(R.id.definition_mot_glossaire);
+
+        Bundle bundle = this.getArguments();
+        int myInt = bundle.getInt("idTerme");
+        initData(myInt);
+    }
+
+    private void initData(int idTerme) {
+        Glossaire motGlossaire = EdwinDatabase.getAppDatabase(textView.getContext()).glossaireDao().findGlossaireFromId(idTerme);
+
+        textView.setText(motGlossaire.getNomTerme());
+        textView2.setText(motGlossaire.getDefinition());
+
     }
 }

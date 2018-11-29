@@ -38,6 +38,10 @@ public class Glossaire {
         this.refFiche = refFiche;
     }
 
+    public Glossaire() {
+
+    }
+
     @NonNull
     public int getIdTerme() {
         return idTerme;

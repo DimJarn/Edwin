@@ -1,16 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gris"
-    android:orientation="vertical">
+    android:id="@+id/layoutGlossaireDetailFragment"
+    android:background="@color/bglayerwhite">
 
-
-    <TextView
-        android:id="@android:id/empty"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Test"
-        android:textColor="@color/colorPrimaryDark" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nom_mot_glossaire"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Pneumothorax"
+            android:textColor="@color/primaryColor"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/definition_mot_glossaire"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="L’intervention qui vous est proposée s’appelle la symphyse pleurale "
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20dp"
+            android:textStyle="italic" />
+
+    </LinearLayout>
 
 </RelativeLayout>

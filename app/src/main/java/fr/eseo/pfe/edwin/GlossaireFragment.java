@@ -1,7 +1,6 @@
 package fr.eseo.pfe.edwin;
 
 
-import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.ListFragment;
 import android.content.Context;
@@ -21,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
+import fr.eseo.pfe.edwin.data.Glossaire;
 
 /**
  * @author dimitrijarneau
@@ -34,6 +34,7 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
     private Context mContext;
     private ListView mListView;
 
+    private List<Glossaire> listeMotsGlossaire;
     private Fragment fragmentGlossaireDetails;
 
     /**
@@ -53,11 +54,6 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
         super.onCreate(savedInstanceState);
         mContext = getActivity();
         setHasOptionsMenu(true);
-        populateList();
-
-        String backupDBPath = EdwinDatabase.getAppDatabase(mAdapter.getContext()).getOpenHelper().getWritableDatabase().getPath();
-        System.out.println("CHEMIN DB"+backupDBPath);
-
     }
 
     /**
@@ -75,32 +71,13 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
         }
         getFragmentManager().popBackStack();
 
-        //on créer une boite de dialogue
-        AlertDialog.Builder adb = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            adb = new AlertDialog.Builder(getContext());
-        }
-        //on attribut un titre à notre boite de dialogue
-        adb.setTitle("Sélection Item");
-        //on insère un message à notre boite de dialogue, et ici on affiche le titre de l'item cliqué
-        adb.setMessage("Votre choix : " + item);
-        //on indique que l'on veut le bouton ok à notre boite de dialogue
-        adb.setPositiveButton("Ok", null);
-        //on affiche la boite de dialogue
-        adb.show();
-
-
-        // redirection vers GlossaireDetailsFragment
-        //Intent intent = new Intent(getContext(), GlossaireDetailsFragment.class);
-        //startActivityForResult(intent, 0);
-
-        // FragmentManager frman = getFragmentManager();
-        //FragmentTransaction ftran = frman.beginTransaction();
-        ////ftran.replace(R.id.activity_main_frame_layout, ffrag);
-        // ftran.commit();
+        int idTerme = listeMotsGlossaire.get(position).getIdTerme();
+        Bundle bundle = new Bundle();
+        bundle.putInt("idTerme", idTerme);
 
         Fragment fragment =  GlossaireDetailsFragment.newInstance();
-        getFragmentManager().beginTransaction().replace(R.id.layout_fragment1, fragment).commit();
+        fragment.setArguments(bundle);
+        getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.layout_fragment1, fragment).commit();
     }
 
     /**
@@ -125,6 +102,9 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
         ListView listView = view.findViewById(android.R.id.list);
         TextView emptyTextView = view.findViewById(android.R.id.empty);
         listView.setEmptyView(emptyTextView);
+
+        populateList(view);
+
         return view;
     }
 
@@ -222,11 +202,17 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
     /**
      * Affectation de la liste de mot
      */
-    private void populateList() {
+    private void populateList(View view) {
 
+        listeMotsGlossaire = EdwinDatabase.getAppDatabase(view.getContext()).glossaireDao().findAllGlossaires();
+        System.out.println("listemot" + listeMotsGlossaire.toString());
         mAllValues = new ArrayList<>();
+        for (Glossaire motGlossaire : listeMotsGlossaire) {
+            System.out.println("mot" + motGlossaire.getNomTerme());
 
-        mAllValues.add("Afghanistan");
+            mAllValues.add(motGlossaire.getNomTerme());
+        }
+   /*     mAllValues.add("Afghanistan");
         mAllValues.add("Åland Islands");
         mAllValues.add("Albania");
         mAllValues.add("Algeria");
@@ -468,7 +454,7 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
         mAllValues.add("Western Sahara");
         mAllValues.add("Yemen");
         mAllValues.add("Zambia");
-        mAllValues.add("Zimbabwe");
+        mAllValues.add("Zimbabwe");*/
 
         mAdapter = new ArrayAdapter<>(mContext, R.layout.textview_glossaire, mAllValues);
         setListAdapter(mAdapter);
