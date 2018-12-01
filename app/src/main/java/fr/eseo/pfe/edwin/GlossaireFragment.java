@@ -17,6 +17,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
@@ -65,15 +66,22 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
      * @param id
      */
     public void onListItemClick(ListView listView, View v, int position, long id) {
+
         String item = (String) listView.getAdapter().getItem(position);
         if (getActivity() instanceof OnItem1SelectedListener) {
             ((OnItem1SelectedListener) getActivity()).OnItem1SelectedListener(item);
         }
         getFragmentManager().popBackStack();
 
-        int idTerme = listeMotsGlossaire.get(position).getIdTerme();
+        //On récupére le mot selectionné en recherchant si le string récupéré est bien dans la db
+        Glossaire termeMotSelect = EdwinDatabase.getAppDatabase(v.getContext()).glossaireDao().findItemGlossaireFromName(item);
+        // On récupére son id dans la liste initiale et on transmet
+        int idTermeMotSelect = termeMotSelect.getIdTerme();
+
+
+        //int idTerme = listeMotsGlossaire.get(position).getIdTerme();
         Bundle bundle = new Bundle();
-        bundle.putInt("idTerme", idTerme);
+        bundle.putInt("idTerme", idTermeMotSelect);
 
         Fragment fragment =  GlossaireDetailsFragment.newInstance();
         fragment.setArguments(bundle);
@@ -153,6 +161,7 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
         for (String value : mAllValues) {
             if (!value.toLowerCase().contains(newText.toLowerCase())) {
                 filteredValues.remove(value);
+                mAdapter.notifyDataSetChanged();
             }
         }
 
@@ -203,15 +212,17 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
      * Affectation de la liste de mot
      */
     private void populateList(View view) {
-
+        //on recupere la liste de mots du glossaire
         listeMotsGlossaire = EdwinDatabase.getAppDatabase(view.getContext()).glossaireDao().findAllGlossaires();
-        System.out.println("listemot" + listeMotsGlossaire.toString());
+
         mAllValues = new ArrayList<>();
         for (Glossaire motGlossaire : listeMotsGlossaire) {
-            System.out.println("mot" + motGlossaire.getNomTerme());
-
             mAllValues.add(motGlossaire.getNomTerme());
         }
+        //On trie par ordre alpha
+        Collections.sort(mAllValues, String.CASE_INSENSITIVE_ORDER);
+
+
    /*     mAllValues.add("Afghanistan");
         mAllValues.add("Åland Islands");
         mAllValues.add("Albania");

@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
@@ -17,10 +18,12 @@ import fr.eseo.pfe.edwin.data.Glossaire;
  * Fragment de detail du glossaire
  * Affichage des infos d'un terme choisi
  */
-public class GlossaireDetailsFragment extends Fragment {
+public class GlossaireDetailsFragment extends Fragment implements View.OnClickListener {
 
     private TextView textView;
     private TextView textView2;
+    private int idFiche;
+
     /**
      * Methode newInstance()
      *
@@ -33,6 +36,7 @@ public class GlossaireDetailsFragment extends Fragment {
 
     /**
      * Creation
+     *
      * @param savedInstanceState
      */
     @Override
@@ -41,29 +45,15 @@ public class GlossaireDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
-/*
-    *//**
-     * Methode de creation barre de recherche
-     *
-     * @param menu
-     * @param inflater
-     *//*
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.search_menu, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        searchItem.setVisible(false);
-
-        super.onCreateOptionsMenu(menu, inflater);
-    }*/
 
     /**
      * Methode pour cacher le bouton de recherche issu du fragment précédent
+     *
      * @param menu
      */
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        MenuItem item=menu.findItem(R.id.action_search);
+        MenuItem item = menu.findItem(R.id.action_search);
         item.setVisible(false);
     }
 
@@ -83,7 +73,7 @@ public class GlossaireDetailsFragment extends Fragment {
     }
 
     /**
-     * creation après
+     * Methode de creation apres avoir créer l'activité
      *
      * @param savedInstanceState
      */
@@ -92,17 +82,49 @@ public class GlossaireDetailsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         textView = (TextView) getView().findViewById(R.id.nom_mot_glossaire);
         textView2 = (TextView) getView().findViewById(R.id.definition_mot_glossaire);
+        setUpButton();
 
         Bundle bundle = this.getArguments();
         int myInt = bundle.getInt("idTerme");
         initData(myInt);
     }
 
+    /**
+     * Methode où l'on va initialiser les données pour le fragment
+     *
+     * @param idTerme
+     */
     private void initData(int idTerme) {
-        Glossaire motGlossaire = EdwinDatabase.getAppDatabase(textView.getContext()).glossaireDao().findGlossaireFromId(idTerme);
+        final Glossaire motGlossaire = EdwinDatabase.getAppDatabase(textView.getContext()).glossaireDao().findGlossaireFromId(idTerme);
 
         textView.setText(motGlossaire.getNomTerme());
         textView2.setText(motGlossaire.getDefinition());
+        idFiche = motGlossaire.getRefFiche();
+
+    }
+
+    /**
+     * Methode pour initialiser les boutons de la page d'accueil
+     */
+    private void setUpButton() {
+        Button buttonView = (Button) getView().findViewById(R.id.buttonView);
+        buttonView.setOnClickListener(this);
+    }
+
+    /**
+     * Methode onClick
+     *
+     * @param view
+     */
+    @Override
+    public void onClick(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("idFiche", idFiche);
+        Fragment fragment = FicheDetailsFragment.newInstance();
+        fragment.setArguments(bundle);
+        // Très important !!
+        //la méthode .addToBackStack permet d'utiliser le bouton retour dans le fragment
+        getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.layout_fragment_glossaire_detail, fragment).commit();
 
     }
 }

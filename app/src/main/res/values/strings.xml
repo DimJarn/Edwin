@@ -50,4 +50,10 @@
     le déroulement d\'une opération.</string>
     <string name="accueil_info"> Edwin - PFE 2018/ 2019 </string>
 
+
+    <!-- Glossaire -->
+
+    <string name="titre_def"> Définition :</string>
+    <string name="glossaire_source"> Définition issue de Larousse.</string>
+
 </resources>

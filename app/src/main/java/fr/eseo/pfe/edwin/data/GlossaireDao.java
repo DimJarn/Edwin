@@ -26,4 +26,8 @@ public interface GlossaireDao {
     @Query("SELECT * FROM glossaire WHERE id_terme = :idTerme")
     public Glossaire findGlossaireFromId(int idTerme);
 
+
+    @Query("SELECT * FROM glossaire WHERE nom_terme = :nomTerme")
+    public Glossaire findItemGlossaireFromName(String nomTerme);
+
 }
