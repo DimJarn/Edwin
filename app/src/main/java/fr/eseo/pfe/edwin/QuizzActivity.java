@@ -1,5 +1,6 @@
 package fr.eseo.pfe.edwin;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -11,8 +12,11 @@ public class QuizzActivity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // On set un fragment avevc rien dedans
         setContentView(R.layout.quizz_activity);
         setupToolbar(); // to integrate the menu
+        Fragment fragment = QuizFragment.newInstance();
+        getFragmentManager().beginTransaction().replace(R.id.article_detail_container, fragment).commit();
     }
 
     /**

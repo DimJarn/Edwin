@@ -18,6 +18,8 @@ import fr.eseo.pfe.edwin.data.ContenuFiche;
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
 import fr.eseo.pfe.edwin.data.FicheInformative;
 import fr.eseo.pfe.edwin.data.Glossaire;
+import fr.eseo.pfe.edwin.data.Question;
+import fr.eseo.pfe.edwin.data.Quiz;
 
 /**
  * @author dimitrijarneau
@@ -74,13 +76,35 @@ public class AccueilActivity extends MainActivity implements View.OnClickListene
         contenuFiche2.setRisquesOperation("PNEUMO Risques op");
         contenuFiche2.setSuivi("PNEUMO Suivi");
 
-        //EdwinDatabase.getAppDatabase(this).ficheInformativeDao().insertFicheInformative(ficheInformative);
-        //EdwinDatabase.getAppDatabase(this).contenuFicheDao().insertContenuFiche(contenuFiche);
+//        EdwinDatabase.getAppDatabase(this).ficheInformativeDao().insertFicheInformative(ficheInformative);
+        //      EdwinDatabase.getAppDatabase(this).contenuFicheDao().insertContenuFiche(contenuFiche);
 
         //EdwinDatabase.getAppDatabase(this).ficheInformativeDao().insertFicheInformative(ficheInformative2);
         //EdwinDatabase.getAppDatabase(this).contenuFicheDao().insertContenuFiche(contenuFiche2);
 
         //populateDBGlossaire();
+        //populateDBQuiz();
+    }
+
+    private void populateDBQuiz() {
+        Quiz quiz = new Quiz(1, "Test", 1);
+        EdwinDatabase.getAppDatabase(this).quizDao().insertQuiz(quiz);
+
+        Question question = new Question(1, "Tests question", "A", "B", "C", "C", 1);
+        EdwinDatabase.getAppDatabase(this).questionDao().insertQuestion(question);
+
+        Question question2 = new Question(1, "Tests question2", "A", "B", "C", "C", 1);
+        EdwinDatabase.getAppDatabase(this).questionDao().insertQuestion(question2);
+
+        Question question3 = new Question(1, "Tests question3", "A", "B", "C", "C", 1);
+        EdwinDatabase.getAppDatabase(this).questionDao().insertQuestion(question3);
+
+        Question question4 = new Question(1, "Tests question4", "A", "B", "C", "C", 1);
+        EdwinDatabase.getAppDatabase(this).questionDao().insertQuestion(question4);
+
+        Question question5 = new Question(1, "Tests question5", "A", "B", "C", "C", 1);
+        EdwinDatabase.getAppDatabase(this).questionDao().insertQuestion(question5);
+
     }
 
     private void populateDBGlossaire() {
