@@ -30,6 +30,10 @@ public class Glossaire {
     @ColumnInfo(name="ref_fiche")
     private int refFiche;
 
+    public Glossaire(){
+
+    }
+
     public Glossaire(@NonNull int idTerme, @NonNull String nomTerme, @NonNull String definition, String image, int refFiche){
         this.idTerme = idTerme;
         this.nomTerme = nomTerme;
