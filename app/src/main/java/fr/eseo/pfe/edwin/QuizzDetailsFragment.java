@@ -1,6 +1,7 @@
 package fr.eseo.pfe.edwin;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -26,7 +28,8 @@ public class QuizzDetailsFragment extends Fragment {
     private RadioGroup radioGroup;
     Button buttonSuivant;
     private List<Question> listQuestions;
-
+    private TextView numeroQuestionTextView;
+    private TextView nomQuiz;
 
     /**
      * Methode newInstance()
@@ -40,81 +43,84 @@ public class QuizzDetailsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         textViewQuiz = (TextView) view.findViewById(R.id.nom_quiz);
+        numeroQuestionTextView = (TextView) view.findViewById(R.id.quiz_question_numero);
+        nomQuiz = (TextView) view.findViewById(R.id.nom_du_quiz);
+
+        Bundle bundleIdQuiz = this.getArguments();
+        int idQuiz = bundleIdQuiz.getInt("idQuiz");
+
+        String titreQuiz = EdwinDatabase.getAppDatabase(textViewQuiz.getContext()).quizDao()
+                .findQuizFromId(idQuiz).getNomQuiz();
+        nomQuiz.setText(titreQuiz);
+
+        listQuestions = EdwinDatabase.getAppDatabase(textViewQuiz.getContext()).questionDao()
+                .findQuestionFromIdQuiz(idQuiz);
+        currentQuestion = listQuestions.get(questionId);
+
         radioButton1 = (RadioButton) view.findViewById(R.id.radioBtn1);
         radioButton2 = (RadioButton) view.findViewById(R.id.radioBtn2);
         radioButton3 = (RadioButton) view.findViewById(R.id.radioBtn3);
-        radioGroup = (RadioGroup) view.findViewById(R.id.radioGp1);
-        System.out.println(radioGroup.toString());
         buttonSuivant = (Button) view.findViewById(R.id.buttonNext);
 
-        Bundle bundle = this.getArguments();
-        final int myInt = bundle.getInt("idQuiz");
-
-        setQuestionView(myInt);
+        setQuestionView();
 
         //Enfin on met un écouteur d'évènement sur notre listView
         buttonSuivant.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                System.out.println("Radio selectionné" + radioGroup.getCheckedRadioButtonId());
 
-                RadioButton answer = (RadioButton) view.findViewById(radioGroup.getCheckedRadioButtonId());
+                RadioButton answer = (RadioButton) getActivity().findViewById(radioGroup
+                        .getCheckedRadioButtonId());
+                System.out.println("answer" + radioGroup.getCheckedRadioButtonId());
+
+                int idRadioGroup = radioGroup.getCheckedRadioButtonId();
                 radioGroup.clearCheck();
-                Log.d("TestRadio", currentQuestion.getReponse() + answer.getText());
-                if (currentQuestion.getReponse().equals(answer.getText())) {
-                    score++;
-                    Log.d("Your score", "Your score" + score);
-                    System.out.println("Your score" + score);
-                }
-                if (questionId < 5) {
-                    currentQuestion = listQuestions.get(questionId);
-                    setQuestionView(myInt);
-                } else {
-                    Bundle bundle1 = new Bundle();
-                    bundle1.putInt("score", score);
-                    Fragment fragment = QuizzResultatFragment.newInstance();
-                    fragment.setArguments(bundle1);
-                    getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.layoutFicheDetail, fragment).commit();
 
+                if (idRadioGroup == -1) {
+                    // no radio buttons are checked
+                    Context context = getContext();
+                    CharSequence text = "Erreur: aucune réponse de selectionnée.";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                } else {
+                    // one of the radio buttons is checked
+
+
+               /* if (answer == (null)) {
+                    Context context = getContext();
+                    CharSequence text = "Pas de radio selectionné";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                } else {*/
+                    if (currentQuestion.getReponse().equals(answer.getText())) {
+                        score++;
+                        Log.d("Your score", "Your score" + score);
+                        System.out.println("Your score" + score);
+                    }
+                    if (questionId < 5) {
+                        currentQuestion = listQuestions.get(questionId);
+                        setQuestionView();
+                    } else {
+                        Bundle bundle1 = new Bundle();
+                        bundle1.putInt("score", score);
+                        Fragment fragment = QuizzResultatFragment.newInstance();
+                        fragment.setArguments(bundle1);
+                        getFragmentManager().beginTransaction().replace(R.id.layoutFicheDetail,
+                                fragment).commit();
+
+                    }
                 }
             }
+
         });
     }
 
-    /**
-     * Methode onClick
-     *
-     * @param view
-     */
-    public void onClick(View view) {
-        Bundle bundle = this.getArguments();
-        final int myInt = bundle.getInt("idQuiz");
-
-        System.out.println("Radio selectionné" + radioGroup.getCheckedRadioButtonId());
-
-        RadioButton answer = (RadioButton) view.findViewById(radioGroup.getCheckedRadioButtonId());
-        radioGroup.clearCheck();
-        Log.d("TestRadio", currentQuestion.getReponse() + answer.getText());
-        if (currentQuestion.getReponse().equals(answer.getText())) {
-            score++;
-            Log.d("Your score", "Your score" + score);
-            System.out.println("Your score" + score);
-        }
-        if (questionId < 5) {
-            currentQuestion = listQuestions.get(questionId);
-            setQuestionView(myInt);
-        } else {
-            Bundle bundle1 = new Bundle();
-            bundle1.putInt("score", score);
-            Fragment fragment = QuizzResultatFragment.newInstance();
-            fragment.setArguments(bundle1);
-            getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.layoutFicheDetail, fragment).commit();
-
-        }
-    }
 
     /**
      * Creation
@@ -150,17 +156,20 @@ public class QuizzDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.quizz_details_fragment, container, false);
+        radioGroup = (RadioGroup) view.findViewById(R.id.radioGp1);
         return view;
     }
 
-    private void setQuestionView(int idQuestion) {
-        listQuestions = EdwinDatabase.getAppDatabase(textViewQuiz.getContext()).questionDao().findAllQuestions();
-        currentQuestion = listQuestions.get(questionId);
+    private void setQuestionView() {
+
 
         textViewQuiz.setText(currentQuestion.getIntitule());
+        numeroQuestionTextView.setText("Question n°" + (questionId + 1) + " :");
         radioButton1.setText(currentQuestion.getChoix1());
         radioButton2.setText(currentQuestion.getChoix2());
         radioButton3.setText(currentQuestion.getChoix3());
+
         questionId++;
     }
+
 }

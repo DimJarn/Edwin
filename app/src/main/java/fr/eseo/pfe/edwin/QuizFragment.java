@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +43,11 @@ public class QuizFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.quiz, container, false);
+        View view = inflater.inflate(R.layout.quiz, container, false);
+        ListView listView = view.findViewById(R.id.listView);
+        TextView emptyTextView = view.findViewById(android.R.id.empty);
+        listView.setEmptyView(emptyTextView);
+        return view;
     }
 
     @Override

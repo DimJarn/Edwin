@@ -31,7 +31,6 @@ public class Glossaire {
     private int refFiche;
 
     public Glossaire(){
-
     }
 
     public Glossaire(@NonNull int idTerme, @NonNull String nomTerme, @NonNull String definition, String image, int refFiche){
@@ -40,10 +39,6 @@ public class Glossaire {
         this.definition = definition;
         this.image = image;
         this.refFiche = refFiche;
-    }
-
-    public Glossaire() {
-
     }
 
     @NonNull

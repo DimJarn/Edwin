@@ -25,4 +25,7 @@ public interface QuestionDao {
 
     @Query("SELECT * FROM question WHERE id_question = :idQuestion")
     public Question findQuestionFromId(int idQuestion);
+
+    @Query("SELECT * FROM question WHERE ref_quiz = :refQuiz")
+    public List<Question> findQuestionFromIdQuiz(int refQuiz);
 }
