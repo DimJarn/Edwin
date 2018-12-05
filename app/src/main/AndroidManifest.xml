@@ -44,6 +44,9 @@
         <activity
             android:name=".FirstLaunch.TutorialActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".VosFichesActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"

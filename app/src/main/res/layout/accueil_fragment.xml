@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/secondaryColor"
                     android:padding="3dp"
-                    android:text="Votre opération" />
+                    android:text="Vos fiches" />
             </LinearLayout>
 
             <LinearLayout

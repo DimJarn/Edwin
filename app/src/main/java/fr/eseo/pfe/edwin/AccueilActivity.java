@@ -313,8 +313,7 @@ public class AccueilActivity extends MainActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonYourOperation:
-                System.out.println("Test");
-                //this.showFichesFragment();
+                startActivity(new Intent(this, VosFichesActivity.class));
                 break;
             case R.id.buttonNeedHelp:
                 startActivity(new Intent(this, AideActivity.class));
