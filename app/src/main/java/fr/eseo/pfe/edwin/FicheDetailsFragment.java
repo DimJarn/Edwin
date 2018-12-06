@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +28,7 @@ import fr.eseo.pfe.edwin.data.EdwinDatabase;
 import fr.eseo.pfe.edwin.data.FicheInformative;
 
 public class FicheDetailsFragment extends Fragment {
+    public static final String LISTE_FICHE_INFORMATIVE_ID_FICHE = "listeFicheInformativeIdFiche";
     private ExpandableListView listView;
     private ExpandableAdapter listAdapter;
     private List<String> listDataheader;
@@ -158,7 +160,7 @@ public class FicheDetailsFragment extends Fragment {
         super.onPrepareOptionsMenu(menu);
 
         TinyDB tinydb = new TinyDB(getContext());
-        List<Integer> listeIdsFichesFavorites = tinydb.getListInt("listeFicheInformativeIdFiche");
+        List<Integer> listeIdsFichesFavorites = tinydb.getListInt(LISTE_FICHE_INFORMATIVE_ID_FICHE);
         if (listeIdsFichesFavorites.contains(ficheInformative.getIdFiche())) {
             menu.findItem(R.id.item1).getIcon().mutate().setColorFilter(getResources().getColor
                     (R.color.Gold), PorterDuff.Mode.SRC_IN);
@@ -179,12 +181,11 @@ public class FicheDetailsFragment extends Fragment {
                                 .LENGTH_LONG).show();
 
                 TinyDB tinydb = new TinyDB(getContext());
-                // tinydb.remove("listeFicheInformativeIdFiche");
                 ArrayList<Integer> allIdFicheStocked = tinydb.getListInt
-                        ("listeFicheInformativeIdFiche");
+                        (LISTE_FICHE_INFORMATIVE_ID_FICHE);
                 if (allIdFicheStocked.contains(ficheInformative.getIdFiche())) {
                     allIdFicheStocked.remove(new Integer(ficheInformative.getIdFiche()));
-                    tinydb.putListInt("listeFicheInformativeIdFiche", allIdFicheStocked);
+                    tinydb.putListInt(LISTE_FICHE_INFORMATIVE_ID_FICHE, allIdFicheStocked);
                     Toast.makeText(getContext(), "La fiche " + ficheInformative.getNomOperation()
                             + " a été supprimée des favs", Toast
                             .LENGTH_LONG).show();
@@ -200,7 +201,7 @@ public class FicheDetailsFragment extends Fragment {
             case R.id.item1:
                 TinyDB tinydb2 = new TinyDB(getContext());
                 ArrayList<Integer> allIdFicheStocked2 = tinydb2.getListInt
-                        ("listeFicheInformativeIdFiche");
+                        (LISTE_FICHE_INFORMATIVE_ID_FICHE);
                 if (allIdFicheStocked2.contains(ficheInformative.getIdFiche())) {
                     Toast.makeText(getContext(), "La fiche " + ficheInformative.getNomOperation()
                             + " est déjà dans les favoris !", Toast
@@ -211,7 +212,7 @@ public class FicheDetailsFragment extends Fragment {
                     Set set2 = new HashSet();
                     set2.addAll(allIdFicheStocked2);
                     ArrayList<Integer> uniqueIdStocked2 = new ArrayList<Integer>(set2);
-                    tinydb2.putListInt("listeFicheInformativeIdFiche", uniqueIdStocked2);
+                    tinydb2.putListInt(LISTE_FICHE_INFORMATIVE_ID_FICHE, uniqueIdStocked2);
 
                     Toast.makeText(getContext(), "Fiche ajoutée aux favoris", Toast.LENGTH_LONG)
                             .show();
@@ -220,6 +221,9 @@ public class FicheDetailsFragment extends Fragment {
                     ft2.detach(this).attach(this).commit();
                 }
                 return true;
+            default:
+                Log.d("FicheDetalsFragment", "Erreur");
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

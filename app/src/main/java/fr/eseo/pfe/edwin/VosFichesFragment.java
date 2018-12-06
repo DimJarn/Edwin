@@ -39,10 +39,6 @@ public class VosFichesFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
@@ -63,7 +59,7 @@ public class VosFichesFragment extends Fragment {
         List<Integer> listeIdsFichesFavorites = tinydb.getListInt("listeFicheInformativeIdFiche");
         final List<FicheInformative> fichesFavs = new ArrayList<>();
 
-        if (listeIdsFichesFavorites.size() != 0) {
+        if (!listeIdsFichesFavorites.isEmpty()) {
             for (int idFiche = 0; idFiche < listeIdsFichesFavorites.size(); idFiche++) {
                 FicheInformative ficheInfoFav = EdwinDatabase.getAppDatabase(view.getContext())
                         .ficheInformativeDao().findFicheInformativeFromId(listeIdsFichesFavorites
@@ -75,7 +71,6 @@ public class VosFichesFragment extends Fragment {
                     .LENGTH_LONG).show();
         }
 
-        System.out.println(fichesFavs.toString());
         //Création de la ArrayList qui nous permettra de remplire la listView
         ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
         //On déclare la HashMap qui contiendra les informations pour un item
@@ -107,9 +102,6 @@ public class VosFichesFragment extends Fragment {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                //on récupère la HashMap contenant les infos de notre item (titre, description, img)
-                HashMap<String, String> map = (HashMap<String, String>) mListView
-                        .getItemAtPosition(position);
                 int idFiche = fichesFavs.get(position).getIdFiche();
                 Bundle bundle = new Bundle();
                 bundle.putInt("idFiche", idFiche);
@@ -127,10 +119,5 @@ public class VosFichesFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         this.listener = null;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
     }
 }

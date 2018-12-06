@@ -11,9 +11,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,11 +21,6 @@ import fr.eseo.pfe.edwin.FirstLaunch.TutorialActivity;
 public class MainActivity extends AppCompatActivity {
 
     ViewPager viewPager;
-    LinearLayout sliderDotspanel;
-    private int dotscount;
-    private ImageView[] dots;
-    private Button buttonTutorial = null;
-    private Button buttonAide = null;
     private SharedPreferences Prefs;
     private String TAG;
     public static final String NAME_FILE_CGU = "file_cgu.txt";//Name of the final to read for terms and conditions use

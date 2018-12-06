@@ -2,11 +2,11 @@ package fr.eseo.pfe.edwin;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.ListFragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -16,12 +16,7 @@ import android.widget.ListView;
  */
 public class AccueilFragment extends ListFragment implements View.OnClickListener {
 
-    private Callback callback = dummyCallback;
     FragmentActivity listener;
-    Fragment AideActivity;
-    private Fragment fragmentAide;
-    private Fragment fragmentAPropos;
-    private Fragment fragmentFiches;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +32,6 @@ public class AccueilFragment extends ListFragment implements View.OnClickListene
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        //onAttachToContext(context);
         if (context instanceof Activity) {
             this.listener = (FragmentActivity) context;
         }
@@ -49,15 +43,6 @@ public class AccueilFragment extends ListFragment implements View.OnClickListene
 
     }
 
-    /**
-     * Called when the fragment attaches to the context
-     */
-    protected void onAttachToContext(Context context) {
-        if (!(context instanceof Callback)) {
-            throw new IllegalStateException("Activity must implement callback interface.");
-        }
-        callback = (Callback) context;
-    }
 
 
     /**
@@ -80,26 +65,22 @@ public class AccueilFragment extends ListFragment implements View.OnClickListene
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        // notify callback about the selected list item
 
-        //callback.onItemSelected(DummyContent.ITEMS.get(position).id);
     }
 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonYourOperation:
-                System.out.println("Test");
-                //this.showFichesFragment();
+                Log.d("AccueilFragmentClick", "Test value");
                 break;
             case R.id.buttonNeedHelp:
-                System.out.println("Test");
-
-                //this.showAideFragment();
+                Log.d("AccueilFragmentClick", "Test value");
                 break;
             case R.id.buttonMoreInfo:
-                System.out.println("Test");
-
-                //this.showAProposFragment();
+                Log.d("AccueilFragmentClick", "Test value");
+                break;
+            default:
+                Log.d("AccueilFragmentError", "Default value");
                 break;
         }
     }

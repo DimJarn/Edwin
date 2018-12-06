@@ -37,11 +37,6 @@ public class QuizFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.quiz, container, false);
         ListView listView = view.findViewById(R.id.listView);
@@ -54,11 +49,6 @@ public class QuizFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         this.listener = null;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
@@ -97,8 +87,6 @@ public class QuizFragment extends Fragment {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                //on récupère la HashMap contenant les infos de notre item (titre, description, img)
-                HashMap<String, String> map = (HashMap<String, String>) mListView.getItemAtPosition(position);
 
                 int idQuiz = quizList.get(position).getIdQuiz();
                 Bundle bundle = new Bundle();

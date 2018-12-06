@@ -20,11 +20,14 @@ import fr.eseo.pfe.edwin.data.Question;
 
 public class QuizzDetailsFragment extends Fragment {
 
+    public static final String YOUR_SCORE = "Your score";
     int questionId = 0;
     int score = 0;
     Question currentQuestion;
     TextView textViewQuiz;
-    RadioButton radioButton1, radioButton2, radioButton3;
+    RadioButton radioButton1;
+    RadioButton radioButton2;
+    RadioButton radioButton3;
     private RadioGroup radioGroup;
     Button buttonSuivant;
     private List<Question> listQuestions;
@@ -73,8 +76,6 @@ public class QuizzDetailsFragment extends Fragment {
 
                 RadioButton answer = (RadioButton) getActivity().findViewById(radioGroup
                         .getCheckedRadioButtonId());
-                System.out.println("answer" + radioGroup.getCheckedRadioButtonId());
-
                 int idRadioGroup = radioGroup.getCheckedRadioButtonId();
                 radioGroup.clearCheck();
 
@@ -88,20 +89,9 @@ public class QuizzDetailsFragment extends Fragment {
                     toast.show();
                 } else {
                     // one of the radio buttons is checked
-
-
-               /* if (answer == (null)) {
-                    Context context = getContext();
-                    CharSequence text = "Pas de radio selectionné";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
-                } else {*/
                     if (currentQuestion.getReponse().equals(answer.getText())) {
                         score++;
-                        Log.d("Your score", "Your score" + score);
-                        System.out.println("Your score" + score);
+                        Log.d(YOUR_SCORE, YOUR_SCORE + score);
                     }
                     if (questionId < 5) {
                         currentQuestion = listQuestions.get(questionId);
@@ -119,30 +109,6 @@ public class QuizzDetailsFragment extends Fragment {
             }
 
         });
-    }
-
-
-    /**
-     * Creation
-     *
-     * @param savedInstanceState
-     */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        //AFFICHE LA VUE DU DETAIL DE GLOSSAIRE
-        super.onCreate(savedInstanceState);
-
-
-    }
-
-    /**
-     * creation après
-     *
-     * @param savedInstanceState
-     */
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
     }
 
     /**

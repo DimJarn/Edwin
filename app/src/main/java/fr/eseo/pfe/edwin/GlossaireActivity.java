@@ -1,16 +1,12 @@
 package fr.eseo.pfe.edwin;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-import java.util.List;
 
 import fr.eseo.pfe.edwin.Main.MainActivity;
 
@@ -20,20 +16,16 @@ import fr.eseo.pfe.edwin.Main.MainActivity;
  * Affichage d'un fragment en premier lieu
  */
 public class GlossaireActivity extends MainActivity {
-    List<String> mAllValues;
-    private ArrayAdapter<String> mAdapter;
-    private Context mContext;
-    private ListView mListView;
-
-    private Fragment fragmentGlossaireDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.glossaire_activity); // on set un layout avec rien pour ensuite afficher le fragment
+        setContentView(R.layout.glossaire_activity); // on set un layout avec rien pour ensuite
+        // afficher le fragment
         setupToolbar(); // on integre le menu
         Fragment fragment = GlossaireFragment.newInstance();
-        getFragmentManager().beginTransaction().replace(R.id.article_detail_container, fragment).commit();
+        getFragmentManager().beginTransaction().replace(R.id.article_detail_container, fragment)
+                .commit();
     }
 
     /**
@@ -68,10 +60,6 @@ public class GlossaireActivity extends MainActivity {
         return false;
     }
 
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 
     @Override
     protected int getSelfNavDrawerItem() {
@@ -86,10 +74,10 @@ public class GlossaireActivity extends MainActivity {
      **/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                openDrawer();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            openDrawer();
+        } else {
+            Log.d("GlossaireActivity", "Erreur");
         }
         return super.onOptionsItemSelected(item);
     }

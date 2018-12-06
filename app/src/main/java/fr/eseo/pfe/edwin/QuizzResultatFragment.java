@@ -19,11 +19,6 @@ public class QuizzResultatFragment extends Fragment {
         return (new QuizzResultatFragment());
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     /**
      * @param inflater
      * @param container
@@ -75,16 +70,8 @@ public class QuizzResultatFragment extends Fragment {
             case 5:
                 t.setText(" Whao, you have 100%, Who are you? An Android Jet brain");
                 break;
+            default:
+                t.setText("No score");
         }
-    }
-
-    /**
-     * creation après
-     *
-     * @param savedInstanceState
-     */
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
     }
 }

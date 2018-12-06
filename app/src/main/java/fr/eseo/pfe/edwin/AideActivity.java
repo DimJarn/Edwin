@@ -3,6 +3,7 @@ package fr.eseo.pfe.edwin;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.MenuItem;
 
 import fr.eseo.pfe.edwin.Main.MainActivity;
@@ -37,19 +38,17 @@ public class AideActivity extends MainActivity {
         return false;
     }
 
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 
     /**
      * Method to change the item selected in the menu
+     *
      * @return id of selected item
      */
     @Override
     protected int getSelfNavDrawerItem() {
         return R.id.aide;
     }
+
     /**
      * @Override public boolean onCreateOptionsMenu(Menu menu) {
      * getMenuInflater().inflate(R.menu.sample_actions, menu);
@@ -58,10 +57,10 @@ public class AideActivity extends MainActivity {
      **/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                openDrawer();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            openDrawer();
+        } else {
+            Log.d("AideActivity: ", "Default value");
         }
         return super.onOptionsItemSelected(item);
     }

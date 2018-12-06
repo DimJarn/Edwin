@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -85,23 +86,24 @@ public class AccueilActivity extends MainActivity implements View.OnClickListene
 
         ArrayList<FicheInformative> ficheInformativeArrayList = JSON.getFiches();
 
-        for(FicheInformative ficheInformative1 : ficheInformativeArrayList){
+        for (FicheInformative ficheInformative1 : ficheInformativeArrayList) {
             System.out.println("fiche : " + ficheInformative1.getNomOperation());
         }
 
         ArrayList<ContenuFiche> contenuFicheArrayList = JSON.getContenuFiches();
 
-        for(ContenuFiche contenuFiche1 : contenuFicheArrayList){
+        for (ContenuFiche contenuFiche1 : contenuFicheArrayList) {
             System.out.println("contenu fiche : " + contenuFiche1.getIntro());
         }
 
         ArrayList<Glossaire> glossaire = JSON.getGlossaire();
 
-        for(Glossaire terme : glossaire){
+        for (Glossaire terme : glossaire) {
             System.out.println("glossaire : " + terme.getNomTerme());
         }
 
-        //EdwinDatabase.getAppDatabase(this).ficheInformativeDao().insertFicheInformative(ficheInformative);
+        //EdwinDatabase.getAppDatabase(this).ficheInformativeDao().insertFicheInformative
+        // (ficheInformative);
         //EdwinDatabase.getAppDatabase(this).contenuFicheDao().insertContenuFiche(contenuFiche);
         EdwinDatabase.getAppDatabase(this).ficheInformativeDao().insertFicheInformative
                 (ficheInformative);
@@ -321,6 +323,9 @@ public class AccueilActivity extends MainActivity implements View.OnClickListene
             case R.id.buttonMoreInfo:
                 startActivity(new Intent(this, AProposActivity.class));
                 break;
+            default:
+                Log.d("AccueilActivityMessage", "Default value");
+                break;
         }
     }
 
@@ -336,6 +341,9 @@ public class AccueilActivity extends MainActivity implements View.OnClickListene
             case android.R.id.home:
                 openDrawer();
                 return true;
+            default:
+                Log.d("AccueilActivityMessage", "Default value");
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

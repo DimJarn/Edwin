@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.MenuItem;
 
 import fr.eseo.pfe.edwin.Main.MainActivity;
@@ -44,10 +45,10 @@ public class VosFichesActivity extends MainActivity {
      **/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                openDrawer();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            openDrawer();
+        } else {
+            Log.d("VosFichesActivity", "Erreur");
         }
         return super.onOptionsItemSelected(item);
     }
@@ -60,10 +61,5 @@ public class VosFichesActivity extends MainActivity {
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return false;
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
     }
 }

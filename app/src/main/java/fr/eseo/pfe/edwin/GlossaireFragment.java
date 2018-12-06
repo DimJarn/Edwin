@@ -33,10 +33,7 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
     List<String> mAllValues;
     private ArrayAdapter<String> mAdapter;
     private Context mContext;
-    private ListView mListView;
-
     private List<Glossaire> listeMotsGlossaire;
-    private Fragment fragmentGlossaireDetails;
 
     /**
      * Methode newInstance()
@@ -69,7 +66,7 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
 
         String item = (String) listView.getAdapter().getItem(position);
         if (getActivity() instanceof OnItem1SelectedListener) {
-            ((OnItem1SelectedListener) getActivity()).OnItem1SelectedListener(item);
+            ((OnItem1SelectedListener) getActivity()).onItem1SelectedListener(item);
         }
         getFragmentManager().popBackStack();
 
@@ -86,14 +83,6 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
         Fragment fragment =  GlossaireDetailsFragment.newInstance();
         fragment.setArguments(bundle);
         getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.layout_fragment1, fragment).commit();
-    }
-
-    /**
-     * methode OnDetach()
-     */
-    @Override
-    public void onDetach() {
-        super.onDetach();
     }
 
     /**
@@ -205,7 +194,7 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
      * Selection de l'item
      */
     public interface OnItem1SelectedListener {
-        void OnItem1SelectedListener(String item);
+        void onItem1SelectedListener(String item);
     }
 
     /**
@@ -471,14 +460,4 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
         setListAdapter(mAdapter);
     }
 
-
-    /**
-     * creation activite
-     *
-     * @param savedInstanceState
-     */
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
 }
