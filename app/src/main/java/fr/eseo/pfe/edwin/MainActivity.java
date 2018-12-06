@@ -21,8 +21,8 @@ import fr.eseo.pfe.edwin.FirstLaunch.TutorialActivity;
 public class MainActivity extends AppCompatActivity {
 
     ViewPager viewPager;
-    private SharedPreferences Prefs;
-    private String TAG;
+    private SharedPreferences sharedPreferences;
+    private String tag;
     public static final String NAME_FILE_CGU = "file_cgu.txt";//Name of the final to read for terms and conditions use
     public static final String CONDITIONS_GENERALES_D_UTILISATION = "Conditions générales d'utilisation :";
     public static final String YOUR_OWN_APPLICATION_PACKAGENAME_COM = "YOUR.OWN.APPLICATION.PACKAGENAME.COM";
@@ -157,8 +157,9 @@ public class MainActivity extends AppCompatActivity {
      * If not accepted, the pop up will be at every start of the app
      */
     private void termsAndConditionsDialog() {
-        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean agreed = sharedPreferences.getBoolean("agreed", false);
+        final SharedPreferences defaultSharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        boolean agreed = defaultSharedPreferences.getBoolean("agreed", false);
         String cguMessage = readTxtFile(NAME_FILE_CGU);
 
         if (!agreed) {
@@ -169,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            SharedPreferences.Editor editor = defaultSharedPreferences.edit();
                             editor.putBoolean("agreed", true);
                             editor.commit();
                         }
@@ -187,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
      * Launch the tutorial for the first use of the app
      */
     private void detectFirstUseAOpenTutorialAndBox() {
-        Prefs = this.getSharedPreferences(YOUR_OWN_APPLICATION_PACKAGENAME_COM, Context.MODE_PRIVATE);
+        sharedPreferences = this.getSharedPreferences(YOUR_OWN_APPLICATION_PACKAGENAME_COM, Context.MODE_PRIVATE);
         if (promptTutorial()) {
             // Tutorial was never prompted
             AlertDialog.Builder builder;
@@ -213,9 +214,9 @@ public class MainActivity extends AppCompatActivity {
     // The function that decides if you need to prompt the dialog window
     public boolean promptTutorial() {
         // Check fo saved value in Shared preference for key: keyTutorial return "NullTutorial" if nothing found
-        String keyTutorial = Prefs.getString("keyTutorial", NULL_TUTORIAL);
+        String keyTutorial = sharedPreferences.getString("keyTutorial", NULL_TUTORIAL);
         // Log what we found in shared preference
-        Log.d(TAG, "Shared Pref read: [keyTutorial: " + keyTutorial + "]");
+        Log.d(tag, "Shared Pref read: [keyTutorial: " + keyTutorial + "]");
 
         if (keyTutorial.contains(NULL_TUTORIAL)) {
             // if nothing found save a new value "PROMPTED" for the key: keyTutorial
@@ -236,9 +237,9 @@ public class MainActivity extends AppCompatActivity {
      */
     // The SaveKEy function
     public void saveKey(String key, String value) {
-        SharedPreferences.Editor editor = Prefs.edit();
-        // Log what are we saving in the shared Prefs
-        Log.d(TAG, "Shared Prefs Write [" + key + ":" + value + "]");
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        // Log what are we saving in the shared sharedPreferences
+        Log.d(tag, "Shared sharedPreferences Write [" + key + ":" + value + "]");
         editor.putString(key, value);
         editor.commit();
     }

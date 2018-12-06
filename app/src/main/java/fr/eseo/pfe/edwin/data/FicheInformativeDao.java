@@ -25,13 +25,5 @@ public interface FicheInformativeDao {
 
     @Query("SELECT * FROM fiche_informative WHERE id_fiche = :idFiche")
     public FicheInformative findFicheInformativeFromId(int idFiche);
-/*
-
-    @Query("SELECT * FROM contenu_fiche WHERE id_contenu_fiche = :idFiche")
-    public FicheInformative findFicheInformativeFromIdAndContent(int idFiche);
-*/
-
-
-
 
 }

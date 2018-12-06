@@ -1,10 +1,8 @@
 package fr.eseo.pfe.edwin;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -363,25 +361,7 @@ public class AccueilActivity extends MainActivity implements View.OnClickListene
         return false;
     }
 
-    /**
-     * Updated the checked item in the navigation drawer
-     *
-     * @param navigationView the navigation view
-     */
-    private void setSelectedItem(NavigationView navigationView) {
-        // Which navigation item should be selected?
-        int selectedItem = getSelfNavDrawerItem(); // subclass has to override this method
-        navigationView.setCheckedItem(selectedItem);
-    }
 
-    // Methode générique permettant de gérer l'affichage des fragment dans l'element du layout
-    // activity_main_frame_layout
-    private void startTransactionFragment(Fragment fragment) {
-        if (!fragment.isVisible()) {
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.activity_main_frame_layout, fragment).commit();
-        }
-    }
 /**
  private void showAProposFragment(){
  if (this.fragmentAPropos == null) this.fragmentAPropos = AProposActivity.newInstance();

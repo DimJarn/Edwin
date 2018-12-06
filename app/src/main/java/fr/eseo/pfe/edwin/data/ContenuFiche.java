@@ -6,12 +6,13 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-@Entity(tableName = "contenu_fiche", foreignKeys = {@ForeignKey(entity= FicheInformative.class, parentColumns = "id_fiche", childColumns="id_contenu_fiche")})
+@Entity(tableName = "contenu_fiche", foreignKeys = {@ForeignKey(entity = FicheInformative.class,
+        parentColumns = "id_fiche", childColumns = "id_contenu_fiche")})
 public class ContenuFiche {
 
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name="id_contenu_fiche")
+    @ColumnInfo(name = "id_contenu_fiche")
     private int idContenuFiche;
 
     @NonNull
@@ -24,7 +25,7 @@ public class ContenuFiche {
     private String maladie;
 
     @NonNull
-    @ColumnInfo(name="risques_maladie")
+    @ColumnInfo(name = "risques_maladie")
     private String risquesMaladie;
 
     @NonNull
@@ -37,20 +38,24 @@ public class ContenuFiche {
     private String suites;
 
     @NonNull
-    @ColumnInfo(name="risques_intervention")
+    @ColumnInfo(name = "risques_intervention")
     private String risquesOperation;
 
     @NonNull
     private String suivi;
 
-    public ContenuFiche(){
+    public ContenuFiche() {
 
     }
 
-    public ContenuFiche(@NonNull int idContenuFiche, @NonNull String maladie, @NonNull String risquesMaladie,
-                        @NonNull String principe, @NonNull String technique, @NonNull String suites,
-                        @NonNull String risquesOperation, @NonNull String suivi){
+    public ContenuFiche(@NonNull int idContenuFiche, @NonNull String intro, @NonNull String
+            rappelAnatomique, @NonNull String maladie, @NonNull String risquesMaladie, @NonNull
+                                String principe, @NonNull String technique, @NonNull String
+            suites, @NonNull String
+                                risquesOperation, @NonNull String suivi) {
         this.idContenuFiche = idContenuFiche;
+        this.intro = intro;
+        this.rappelAnatomique = rappelAnatomique;
         this.maladie = maladie;
         this.risquesMaladie = risquesMaladie;
         this.principe = principe;

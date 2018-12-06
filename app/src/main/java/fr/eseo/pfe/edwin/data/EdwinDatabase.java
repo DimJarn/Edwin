@@ -9,7 +9,7 @@ import android.content.Context;
         Quiz.class, Question.class, APropos.class, CGU.class}, version = 4)
 public abstract class EdwinDatabase extends RoomDatabase {
 
-    private static EdwinDatabase INSTANCE;
+    private static EdwinDatabase instance;
 
     public abstract FicheInformativeDao ficheInformativeDao();
     public abstract ContenuFicheDao contenuFicheDao();
@@ -20,19 +20,19 @@ public abstract class EdwinDatabase extends RoomDatabase {
     public abstract CGUDao cguDao();
 
     public static EdwinDatabase getAppDatabase(Context context) {
-        if (INSTANCE == null) {
-            INSTANCE =
+        if (instance == null) {
+            instance =
                     Room.databaseBuilder(context.getApplicationContext(), EdwinDatabase.class, "user-database")
                             // allow queries on the main thread.
                             // Don't do this on a real app! See PersistenceBasicSample for an example.
                             .fallbackToDestructiveMigration().allowMainThreadQueries()
                             .build();
         }
-        return INSTANCE;
+        return instance;
     }
 
     public static void destroyInstance() {
-        INSTANCE = null;
+        instance = null;
     }
 
 }

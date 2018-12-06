@@ -6,10 +6,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-
-import java.net.HttpURLConnection;
 
 public class JSON {
 
@@ -147,7 +146,7 @@ public class JSON {
 
                 InputStream inputStream = connections[0].getInputStream();
 
-                String result = InputStreamOperations.InputStreamToString(inputStream);
+                String result = InputStreamOperations.inputStreamToString(inputStream);
 
                 return result;
             } catch (Exception e) {
