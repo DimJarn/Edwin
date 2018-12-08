@@ -1,7 +1,6 @@
 package fr.eseo.pfe.edwin;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +14,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
 import fr.eseo.pfe.edwin.data.Question;
 
@@ -81,12 +81,8 @@ public class QuizzDetailsFragment extends Fragment {
 
                 if (idRadioGroup == -1) {
                     // no radio buttons are checked
-                    Context context = getContext();
-                    CharSequence text = "Erreur: aucune réponse de selectionnée.";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
+                    Toasty.error(getContext(), "Aucune réponse selectionnée.", Toast
+                            .LENGTH_SHORT, true).show();
                 } else {
                     // one of the radio buttons is checked
                     if (currentQuestion.getReponse().equals(answer.getText())) {

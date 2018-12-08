@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
 import fr.eseo.pfe.edwin.Util.TinyDB;
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
 import fr.eseo.pfe.edwin.data.FicheInformative;
@@ -67,8 +68,8 @@ public class VosFichesFragment extends Fragment {
                 fichesFavs.add(ficheInfoFav);
             }
         } else {
-            Toast.makeText(getContext(), "Aucune fiche dans les favoris.", Toast
-                    .LENGTH_LONG).show();
+            Toasty.info(getContext(), "Aucune fiche dans les favoris.", Toast.LENGTH_SHORT, true)
+                    .show();
         }
 
         //Création de la ArrayList qui nous permettra de remplire la listView

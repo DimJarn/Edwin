@@ -4,6 +4,8 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,6 +23,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import es.dmoral.toasty.Toasty;
 import fr.eseo.pfe.edwin.Util.ExpandableAdapter;
 import fr.eseo.pfe.edwin.Util.TinyDB;
 import fr.eseo.pfe.edwin.data.ContenuFiche;
@@ -35,6 +38,11 @@ public class FicheDetailsFragment extends Fragment {
     private HashMap<String, List<String>> listHash;
     private TextView textViewTitre;
     private FicheInformative ficheInformative;
+    private Toolbar actionBarToolbar;
+    private DrawerLayout drawerLayout;
+    private Toolbar toolbar;
+    private DrawerLayout mDrawer;
+    private DrawerLayout.DrawerListener drawerToggle;
 
     /**
      * Methode newInstance()
@@ -55,7 +63,6 @@ public class FicheDetailsFragment extends Fragment {
         //AFFICHE LA VUE DU DETAIL DE GLOSSAIRE
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
     }
 
     /**
@@ -70,8 +77,21 @@ public class FicheDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
             savedInstanceState) {
         View view = inflater.inflate(R.layout.fiche_details_fragment, container, false);
+        // on cache la toolbar precedente et on affiche une autre
+        //((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+        /*if (!((MainActivity) getActivity()).providesActivityToolbar()) {
+            // No Toolbar present. Set include_toolbar:
+            ((MainActivity) getActivity()).setToolbar((Toolbar) view.findViewById(R.id.toolbar));
+            // add back arrow to toolbar
+            if ( ((AppCompatActivity) getActivity()).getSupportActionBar() != null) {
+                ((AppCompatActivity) getActivity()).getSupportActionBar()
+                .setDisplayHomeAsUpEnabled(true);
+            }
+
+        }*/
         return view;
     }
+
 
     /**
      * creation après
@@ -89,7 +109,6 @@ public class FicheDetailsFragment extends Fragment {
         initData(myInt);
         listAdapter = new ExpandableAdapter(getContext(), listDataheader, listHash);
         listView.setAdapter(listAdapter);
-
     }
 
 
@@ -99,6 +118,9 @@ public class FicheDetailsFragment extends Fragment {
                 .contenuFicheDao().findContenuFicheFromId(idFiche);
         ficheInformative = EdwinDatabase.getAppDatabase(listView.getContext())
                 .ficheInformativeDao().findFicheInformativeFromId(idFiche);
+
+        // Toolbar collapsingToolbar = getView().findViewById(R.id.toolbar);
+        //collapsingToolbar.setTitle(ficheInformative.getNomOperation());
 
         textViewTitre = (TextView) getView().findViewById(R.id.nom_operation);
         textViewTitre.setText(ficheInformative.getNomOperation());
@@ -172,54 +194,30 @@ public class FicheDetailsFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                // your logic
-                Toast.makeText(getContext(), "Item 1 Selected" + ficheInformative.getIdFiche(),
-                        Toast
-                                .LENGTH_LONG).show();
-
-                TinyDB tinydb = new TinyDB(getContext());
-                ArrayList<Integer> allIdFicheStocked = tinydb.getListInt
-                        (LISTE_FICHE_INFORMATIVE_ID_FICHE);
-                if (allIdFicheStocked.contains(ficheInformative.getIdFiche())) {
-                    allIdFicheStocked.remove(new Integer(ficheInformative.getIdFiche()));
-                    tinydb.putListInt(LISTE_FICHE_INFORMATIVE_ID_FICHE, allIdFicheStocked);
-                    Toast.makeText(getContext(), "La fiche " + ficheInformative.getNomOperation()
-                            + " a été supprimée des favs", Toast
-                            .LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getContext(), "La fiche ne fait pas partie des favs", Toast
-                            .LENGTH_LONG).show();
-                }
-
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.detach(this).attach(this).commit();
-
-                return true;
             case R.id.item1:
                 TinyDB tinydb2 = new TinyDB(getContext());
                 ArrayList<Integer> allIdFicheStocked2 = tinydb2.getListInt
                         (LISTE_FICHE_INFORMATIVE_ID_FICHE);
                 if (allIdFicheStocked2.contains(ficheInformative.getIdFiche())) {
-                    Toast.makeText(getContext(), "La fiche " + ficheInformative.getNomOperation()
-                            + " est déjà dans les favoris !", Toast
-                            .LENGTH_LONG).show();
+                    allIdFicheStocked2.remove(new Integer(ficheInformative.getIdFiche()));
+                    tinydb2.putListInt(LISTE_FICHE_INFORMATIVE_ID_FICHE, allIdFicheStocked2);
+                    Toasty.warning(getContext(), "Fiche supprimée des favoris !", Toast
+                            .LENGTH_SHORT, true).show();
                 } else {
-
                     allIdFicheStocked2.add(ficheInformative.getIdFiche());
                     Set set2 = new HashSet();
                     set2.addAll(allIdFicheStocked2);
                     ArrayList<Integer> uniqueIdStocked2 = new ArrayList<Integer>(set2);
                     tinydb2.putListInt(LISTE_FICHE_INFORMATIVE_ID_FICHE, uniqueIdStocked2);
 
-                    Toast.makeText(getContext(), "Fiche ajoutée aux favoris", Toast.LENGTH_LONG)
-                            .show();
-
-                    FragmentTransaction ft2 = getFragmentManager().beginTransaction();
-                    ft2.detach(this).attach(this).commit();
+                    //Toast.makeText(getContext(), "Fiche ajoutée aux favoris", Toast.LENGTH_LONG)
+                    //        .show();
+                    Toasty.success(getContext(), "Fiche ajoutée aux favoris !", Toast
+                            .LENGTH_SHORT, true).show();
                 }
+                FragmentTransaction ft2 = getFragmentManager().beginTransaction();
+                ft2.detach(this).attach(this).commit();
                 return true;
             default:
                 Log.d("FicheDetalsFragment", "Erreur");
@@ -227,5 +225,4 @@ public class FicheDetailsFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
