@@ -136,6 +136,88 @@ public class JSON {
         return glossaire;
     }
 
+    public static ArrayList<Quiz> getQuiz(){
+
+        ArrayList<Quiz> quizArrayList = new ArrayList<Quiz>();
+
+        try {
+            String myurl= "http://effi-qua-propre-services.fr/quiz.php";
+            URL url = new URL(myurl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            connection.setRequestMethod("GET");
+
+            String result = new RetrieveFeedTask().execute(connection).get();
+
+            // On récupère le tableau d'objets qui nous concernent
+            JSONArray array = new JSONArray(result);
+            // Pour tous les objets on récupère les infos
+            for (int i = 0; i < array.length(); i++) {
+                // On récupère un objet JSON du tableau
+                JSONObject objQuiz = new JSONObject(array.getString(i));
+
+                System.out.println(objQuiz);
+
+                Quiz quiz = new Quiz();
+
+                quiz.setIdQuiz(objQuiz.getInt("idQuiz"));
+                quiz.setNomQuiz(objQuiz.getString("nomQuiz"));
+                quiz.setRefFiche(objQuiz.getInt("refFiche"));
+
+                quizArrayList.add(quiz);
+
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return quizArrayList;
+    }
+
+    public static ArrayList<Question> getQuestions(){
+
+        ArrayList<Question> questions = new ArrayList<Question>();
+
+        try {
+            String myurl= "http://effi-qua-propre-services.fr/questions.php";
+            URL url = new URL(myurl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            connection.setRequestMethod("GET");
+
+            String result = new RetrieveFeedTask().execute(connection).get();
+
+            // On récupère le tableau d'objets qui nous concernent
+            JSONArray array = new JSONArray(result);
+            // Pour tous les objets on récupère les infos
+            for (int i = 0; i < array.length(); i++) {
+                // On récupère un objet JSON du tableau
+                JSONObject objQuestion = new JSONObject(array.getString(i));
+
+                System.out.println(objQuestion);
+
+                Question question = new Question();
+
+               question.setIdQuestion(objQuestion.getInt("idQuestion"));
+               question.setIntitule(objQuestion.getString("intitule"));
+               question.setChoix1(objQuestion.getString("choix1"));
+               question.setChoix2(objQuestion.getString("choix2"));
+               question.setChoix3(objQuestion.getString("choix3"));
+               question.setReponse(objQuestion.getString("reponse"));
+               question.setRefQuiz(objQuestion.getInt("refQuiz"));
+
+                questions.add(question);
+
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return questions;
+    }
+
     public static class RetrieveFeedTask extends AsyncTask<HttpURLConnection, Void, String> {
 
         private Exception exception;

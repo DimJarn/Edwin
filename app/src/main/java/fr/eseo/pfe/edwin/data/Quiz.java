@@ -3,6 +3,7 @@ package fr.eseo.pfe.edwin.data;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
@@ -25,10 +26,15 @@ public class Quiz {
     @ColumnInfo(name="ref_fiche")
     private int refFiche;
 
+    @Ignore
     public Quiz(@NonNull int idQuiz, @NonNull String nomQuiz, @NonNull int refFiche){
         this.idQuiz = idQuiz;
         this.nomQuiz = nomQuiz;
         this.refFiche = refFiche;
+    }
+
+    public Quiz(){
+
     }
 
     @NonNull

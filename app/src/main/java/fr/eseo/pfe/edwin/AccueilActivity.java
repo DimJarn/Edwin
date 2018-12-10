@@ -1,8 +1,10 @@
 package fr.eseo.pfe.edwin;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,6 +19,7 @@ import java.util.List;
 
 import fr.eseo.pfe.edwin.Main.MainActivity;
 import fr.eseo.pfe.edwin.data.ContenuFiche;
+import fr.eseo.pfe.edwin.data.DatabaseInitializer;
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
 import fr.eseo.pfe.edwin.data.FicheInformative;
 import fr.eseo.pfe.edwin.data.Glossaire;
@@ -50,6 +53,9 @@ public class AccueilActivity extends MainActivity implements View.OnClickListene
         // Tie DrawerLayout events to the ActionBarToggle
         mDrawer.addDrawerListener(drawerToggle);
 
+        //EdwinDatabase.getAppDatabase(this).clearAllTables();
+
+        //populateDBFirstTime();
         //populateDBFicheEtContenu();
         //populateDBGlossaire();
         //populateDBQuiz();
@@ -78,6 +84,51 @@ public class AccueilActivity extends MainActivity implements View.OnClickListene
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
+
+
+    private void populateDBFirstTime(){
+        ArrayList<FicheInformative> ficheInformativeArrayList = JSON.getFiches();
+
+        for (FicheInformative ficheInformative1 : ficheInformativeArrayList) {
+            System.out.println("fiche : " + ficheInformative1.getNomOperation());
+        }
+
+        ArrayList<ContenuFiche> contenuFicheArrayList = JSON.getContenuFiches();
+
+        for (ContenuFiche contenuFiche1 : contenuFicheArrayList) {
+            System.out.println("contenu fiche : " + contenuFiche1.getIntro());
+        }
+
+        ArrayList<Glossaire> glossaire = JSON.getGlossaire();
+
+        for (Glossaire terme : glossaire) {
+            System.out.println("glossaire : " + terme.getNomTerme());
+        }
+
+        ArrayList<Quiz> quizArrayList = JSON.getQuiz();
+
+        for (Quiz quiz : quizArrayList) {
+            System.out.println("quiz : " + quiz.getNomQuiz());
+        }
+
+        ArrayList<Question> questions = JSON.getQuestions();
+
+        for (Question question : questions) {
+            System.out.println("question : " + question.getIntitule());
+        }
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!prefs.getBoolean("firstTime", false)) {
+            // <---- run your one time code here
+            DatabaseInitializer.populateAsync(EdwinDatabase.getAppDatabase(this), ficheInformativeArrayList,
+                    contenuFicheArrayList, glossaire, quizArrayList, questions);
+
+            // mark first time has ran.
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("firstTime", true);
+            editor.commit();
+        }
+    }
     private void populateDBFicheEtContenu() {
         FicheInformative ficheInformative = new FicheInformative();
 
@@ -117,23 +168,6 @@ public class AccueilActivity extends MainActivity implements View.OnClickListene
         contenuFiche2.setRisquesOperation("PNEUMO Risques op");
         contenuFiche2.setSuivi("PNEUMO Suivi");
 
-        ArrayList<FicheInformative> ficheInformativeArrayList = JSON.getFiches();
-
-        for (FicheInformative ficheInformative1 : ficheInformativeArrayList) {
-            System.out.println("fiche : " + ficheInformative1.getNomOperation());
-        }
-
-        ArrayList<ContenuFiche> contenuFicheArrayList = JSON.getContenuFiches();
-
-        for (ContenuFiche contenuFiche1 : contenuFicheArrayList) {
-            System.out.println("contenu fiche : " + contenuFiche1.getIntro());
-        }
-
-        ArrayList<Glossaire> glossaire = JSON.getGlossaire();
-
-        for (Glossaire terme : glossaire) {
-            System.out.println("glossaire : " + terme.getNomTerme());
-        }
 
         //EdwinDatabase.getAppDatabase(this).ficheInformativeDao().insertFicheInformative
         // (ficheInformative);

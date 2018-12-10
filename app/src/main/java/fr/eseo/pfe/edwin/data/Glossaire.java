@@ -3,6 +3,7 @@ package fr.eseo.pfe.edwin.data;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
@@ -33,6 +34,7 @@ public class Glossaire {
     public Glossaire(){
     }
 
+    @Ignore
     public Glossaire(@NonNull int idTerme, @NonNull String nomTerme, @NonNull String definition, String image, int refFiche){
         this.idTerme = idTerme;
         this.nomTerme = nomTerme;

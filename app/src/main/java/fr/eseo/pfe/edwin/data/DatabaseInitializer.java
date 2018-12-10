@@ -13,11 +13,9 @@ public class DatabaseInitializer {
 
     public static void populateAsync(@NonNull final EdwinDatabase db, ArrayList ficheInformativeArrayList,
                                      ArrayList contenuFicheArrayList, ArrayList glossaireArrayList,
-                                     ArrayList questionArrayList, ArrayList quizArrayList,
-                                     ArrayList cguArrayList, ArrayList aProposArrayList) {
+                                     ArrayList quizArrayList, ArrayList questionArrayList) {
         PopulateDbAsync task = new PopulateDbAsync(db);
-        task.execute(ficheInformativeArrayList, contenuFicheArrayList, glossaireArrayList, questionArrayList
-        , quizArrayList, cguArrayList, aProposArrayList);
+        task.execute(ficheInformativeArrayList, contenuFicheArrayList, glossaireArrayList, quizArrayList, questionArrayList);
     }
 
 
@@ -58,8 +56,7 @@ public class DatabaseInitializer {
 
     private static void populateDatabase(EdwinDatabase db, ArrayList<FicheInformative> ficheInformativeArrayList,
                                          ArrayList<ContenuFiche> contenuFicheArrayList, ArrayList<Glossaire> glossaireArrayList,
-                                         ArrayList<Question> questionArrayList, ArrayList<Quiz> quizArrayList,
-                                         ArrayList<CGU> cguArrayList, ArrayList<APropos> aProposArrayList) {
+                                         ArrayList<Quiz> quizArrayList, ArrayList<Question> questionArrayList) {
         for(FicheInformative ficheInformative : ficheInformativeArrayList){
             addFicheInformative(db, ficheInformative);
         }
@@ -72,20 +69,12 @@ public class DatabaseInitializer {
             addGlossaire(db, glossaire);
         }
 
-        for(Question question : questionArrayList){
-            addQuestion(db, question);
-        }
-
         for(Quiz quiz : quizArrayList){
             addQuiz(db, quiz);
         }
 
-        for(CGU cgu : cguArrayList){
-            addCGU(db, cgu);
-        }
-
-        for(APropos aPropos : aProposArrayList){
-            addAPropos(db, aPropos);
+        for(Question question : questionArrayList){
+            addQuestion(db, question);
         }
 
         FicheInformative ficheInformative = db.ficheInformativeDao().findFicheInformativeFromId(1);
@@ -106,8 +95,7 @@ public class DatabaseInitializer {
 
         @Override
         protected Void doInBackground(final ArrayList... params) {
-            populateDatabase(mDb, params[0], params[1], params[2], params[3], params[4],
-                    params[5], params[6]);
+            populateDatabase(mDb, params[0], params[1], params[2], params[3], params[4]);
             return null;
         }
     }
