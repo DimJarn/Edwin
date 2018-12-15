@@ -11,15 +11,20 @@
         android:theme="@style/SplashTheme">
 
 
-        <activity android:name=".AccueilActivity"
+        <activity
+            android:name=".OpenningApplicationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
-
+            android:theme="@style/themeTest.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".AccueilActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
         </activity>
         <activity
             android:name=".AProposActivity"

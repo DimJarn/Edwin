@@ -54,7 +54,7 @@ public class VosFichesFragment extends Fragment {
         mListView = (ListView) view.findViewById(R.id.listView);
         TextView emptyTextView = view.findViewById(android.R.id.empty);
         mListView.setEmptyView(emptyTextView);
-
+        // setUpButton();
 
         TinyDB tinydb = new TinyDB(getContext());
         List<Integer> listeIdsFichesFavorites = tinydb.getListInt("listeFicheInformativeIdFiche");
@@ -121,4 +121,23 @@ public class VosFichesFragment extends Fragment {
         super.onDetach();
         this.listener = null;
     }
+
+    /* *//**
+     * Methode pour initialiser les boutons de la page d'accueil
+     *//*
+    private void setUpButton() {
+        final FloatingActionButton fab = getView().findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toasty.info(getContext(), "Ajouter des fiches !", Toast.LENGTH_SHORT,
+                        true)
+                        .show();
+                startActivity(new Intent(getContext(), FicheActivity.class));
+
+            }
+        });
+
+    }*/
+
 }
