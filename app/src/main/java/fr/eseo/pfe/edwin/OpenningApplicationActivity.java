@@ -234,7 +234,9 @@ public class OpenningApplicationActivity extends AppCompatActivity {
         }
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if (!prefs.getBoolean("firstTime", false)) {
+        System.out.println("first time : " + prefs.getBoolean("firstTime", true) + "  " + prefs.getBoolean("firstTime", false));
+
+        if (prefs.getBoolean("firstTime", true)) {
 
             // <---- run your one time code here
             DatabaseInitializer.populateAsync(EdwinDatabase.getAppDatabase(this),
@@ -259,7 +261,7 @@ public class OpenningApplicationActivity extends AppCompatActivity {
 
             // mark first time has ran.
             SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean("firstTime", true);
+            editor.putBoolean("firstTime", false);
             editor.commit();
         }
     }
