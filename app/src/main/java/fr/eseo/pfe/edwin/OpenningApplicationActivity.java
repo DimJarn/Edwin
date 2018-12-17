@@ -62,8 +62,9 @@ public class OpenningApplicationActivity extends AppCompatActivity {
          * On charge la BDD ici avant de lancer l'accueil
          */
         //EdwinDatabase.getAppDatabase(this).clearAllTables();
-
         //populateDBFirstTime();
+        //updateData();
+
         //populateDBFicheEtContenu();
         //populateDBGlossaire();
         //populateDBQuiz();
@@ -198,10 +199,10 @@ public class OpenningApplicationActivity extends AppCompatActivity {
     }
 
     /**
-     * BDD
+     * Remplissaire de la BDD locale à partir de la BDD externe à la première ouverture de l'application
      */
-
     private void populateDBFirstTime() {
+
         ArrayList<FicheInformative> ficheInformativeArrayList = JSON.getFiches();
 
         for (FicheInformative ficheInformative1 : ficheInformativeArrayList) {
@@ -234,15 +235,67 @@ public class OpenningApplicationActivity extends AppCompatActivity {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if (!prefs.getBoolean("firstTime", false)) {
+
             // <---- run your one time code here
             DatabaseInitializer.populateAsync(EdwinDatabase.getAppDatabase(this),
                     ficheInformativeArrayList,
                     contenuFicheArrayList, glossaire, quizArrayList, questions);
 
+            JSON jsonFiches = new JSON();
+            jsonFiches.setJson(JSON.getJSONFiches());
+            jsonFiches.setContenu("fiches");
+
+            JSON jsonGlossaire = new JSON();
+            jsonGlossaire.setJson(JSON.getJSONGlossaire());
+            jsonGlossaire.setContenu("glossaire");
+
+            JSON jsonQuiz = new JSON();
+            jsonQuiz.setJson(JSON.getJSONQuiz());
+            jsonQuiz.setContenu("quiz");
+
+            EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonFiches);
+            //EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonGlossaire);
+            //EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonQuiz);
+
             // mark first time has ran.
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("firstTime", true);
             editor.commit();
+        }
+    }
+
+    /**
+    Fonction permettant de faire un update de la BDD locale à l'ajout d'une ou plusieurs fiches à la BDD externe
+     */
+    private void updateData(){
+
+        JSON jsonFiches = EdwinDatabase.getAppDatabase(this).jsonDao().findJSONFromContenu("fiches");
+
+        try {
+            if (!((jsonFiches.getJson()).equals(JSON.getJSONFiches()))) {
+
+                EdwinDatabase.getAppDatabase(this).clearAllTables();
+
+                ArrayList<FicheInformative> ficheInformativeArrayList = JSON.getFiches();
+
+                ArrayList<ContenuFiche> contenuFicheArrayList = JSON.getContenuFiches();
+
+                ArrayList<Glossaire> glossaire = JSON.getGlossaire();
+
+                ArrayList<Quiz> quizArrayList = JSON.getQuiz();
+
+                ArrayList<Question> questions = JSON.getQuestions();
+
+                DatabaseInitializer.populateAsync(EdwinDatabase.getAppDatabase(this),
+                        ficheInformativeArrayList,
+                        contenuFicheArrayList, glossaire, quizArrayList, questions);
+
+                jsonFiches.setJson(JSON.getJSONFiches());
+
+                EdwinDatabase.getAppDatabase(this).jsonDao().updateJSON(jsonFiches);
+            }
+        } catch (NullPointerException ex){
+
         }
     }
 

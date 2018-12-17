@@ -6,7 +6,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 @Database(entities = {FicheInformative.class, ContenuFiche.class, Glossaire.class,
-        Quiz.class, Question.class, APropos.class, CGU.class}, version = 4)
+        Quiz.class, Question.class, APropos.class, CGU.class, JSON.class}, version = 5)
 public abstract class EdwinDatabase extends RoomDatabase {
 
     private static EdwinDatabase instance;
@@ -18,6 +18,7 @@ public abstract class EdwinDatabase extends RoomDatabase {
     public abstract QuestionDao questionDao();
     public abstract AProposDao aProposDao();
     public abstract CGUDao cguDao();
+    public abstract JSONDao jsonDao();
 
     public static EdwinDatabase getAppDatabase(Context context) {
         if (instance == null) {

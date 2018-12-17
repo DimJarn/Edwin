@@ -1,6 +1,10 @@
 package fr.eseo.pfe.edwin.data;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -10,7 +14,45 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+@Entity(tableName = "json")
 public class JSON {
+
+    @PrimaryKey
+    @NonNull
+    private int id;
+
+    private String json;
+
+    private String contenu;
+
+    public JSON(){
+
+    }
+
+    @NonNull
+    public int getId() {
+        return id;
+    }
+
+    public String getJson() {
+        return json;
+    }
+
+    public String getContenu() {
+        return contenu;
+    }
+
+    public void setId(@NonNull int id) {
+        this.id = id;
+    }
+
+    public void setJson(String json) {
+        this.json = json;
+    }
+
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
+    }
 
     public static ArrayList<FicheInformative> getFiches(){
 
@@ -48,6 +90,26 @@ public class JSON {
         }
 
         return fichesList;
+    }
+
+    public static String getJSONFiches() {
+
+        String result = "";
+
+        try {
+            String myurl = "http://effi-qua-propre-services.fr/fiche.php";
+            URL url = new URL(myurl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            connection.setRequestMethod("GET");
+
+            result = new RetrieveFeedTask().execute(connection).get();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
     public static ArrayList<ContenuFiche> getContenuFiches(){
@@ -136,6 +198,26 @@ public class JSON {
         return glossaire;
     }
 
+    public static String getJSONGlossaire(){
+
+        String result = "";
+
+        try {
+            String myurl= "http://effi-qua-propre-services.fr/glossaire.php";
+            URL url = new URL(myurl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            connection.setRequestMethod("GET");
+
+            result = new RetrieveFeedTask().execute(connection).get();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
     public static ArrayList<Quiz> getQuiz(){
 
         ArrayList<Quiz> quizArrayList = new ArrayList<Quiz>();
@@ -173,6 +255,25 @@ public class JSON {
         }
 
         return quizArrayList;
+    }
+
+    public static String getJSONQuiz(){
+
+        String result = "";
+
+        try {
+            String myurl= "http://effi-qua-propre-services.fr/quiz.php";
+            URL url = new URL(myurl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            connection.setRequestMethod("GET");
+
+            result = new RetrieveFeedTask().execute(connection).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
     public static ArrayList<Question> getQuestions(){
