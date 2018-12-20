@@ -62,8 +62,15 @@ public class OpenningApplicationActivity extends AppCompatActivity {
          * On charge la BDD ici avant de lancer l'accueil
          */
         //EdwinDatabase.getAppDatabase(this).clearAllTables();
-        //populateDBFirstTime();
-        //updateData();
+        List<FicheInformative> fiches = EdwinDatabase.getAppDatabase(this).ficheInformativeDao().findAllFichesInformatives();
+
+        if(fiches.isEmpty()){
+            populateDBFirstTime();
+            System.out.println("EMPTY");
+        } else {
+            System.out.println("UPDATE");
+            updateData();
+        }
 
         //populateDBFicheEtContenu();
         //populateDBGlossaire();
@@ -205,65 +212,34 @@ public class OpenningApplicationActivity extends AppCompatActivity {
 
         ArrayList<FicheInformative> ficheInformativeArrayList = JSON.getFiches();
 
-        for (FicheInformative ficheInformative1 : ficheInformativeArrayList) {
-            System.out.println("fiche : " + ficheInformative1.getNomOperation());
-        }
-
         ArrayList<ContenuFiche> contenuFicheArrayList = JSON.getContenuFiches();
-
-        for (ContenuFiche contenuFiche1 : contenuFicheArrayList) {
-            System.out.println("contenu fiche : " + contenuFiche1.getIntro());
-        }
 
         ArrayList<Glossaire> glossaire = JSON.getGlossaire();
 
-        for (Glossaire terme : glossaire) {
-            System.out.println("glossaire : " + terme.getNomTerme());
-        }
-
         ArrayList<Quiz> quizArrayList = JSON.getQuiz();
-
-        for (Quiz quiz : quizArrayList) {
-            System.out.println("quiz : " + quiz.getNomQuiz());
-        }
 
         ArrayList<Question> questions = JSON.getQuestions();
 
-        for (Question question : questions) {
-            System.out.println("question : " + question.getIntitule());
-        }
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        System.out.println("first time : " + prefs.getBoolean("firstTime", true) + "  " + prefs.getBoolean("firstTime", false));
-
-        if (prefs.getBoolean("firstTime", true)) {
-
-            // <---- run your one time code here
-            DatabaseInitializer.populateAsync(EdwinDatabase.getAppDatabase(this),
+        DatabaseInitializer.populateAsync(EdwinDatabase.getAppDatabase(this),
                     ficheInformativeArrayList,
                     contenuFicheArrayList, glossaire, quizArrayList, questions);
 
-            JSON jsonFiches = new JSON();
-            jsonFiches.setJson(JSON.getJSONFiches());
-            jsonFiches.setContenu("fiches");
+        JSON jsonFiches = new JSON();
+        jsonFiches.setJson(JSON.getJSONFiches());
+        jsonFiches.setContenu("fiches");
 
-            JSON jsonGlossaire = new JSON();
-            jsonGlossaire.setJson(JSON.getJSONGlossaire());
-            jsonGlossaire.setContenu("glossaire");
+        JSON jsonGlossaire = new JSON();
+        jsonGlossaire.setJson(JSON.getJSONGlossaire());
+        jsonGlossaire.setContenu("glossaire");
 
-            JSON jsonQuiz = new JSON();
-            jsonQuiz.setJson(JSON.getJSONQuiz());
-            jsonQuiz.setContenu("quiz");
+        JSON jsonQuiz = new JSON();
+        jsonQuiz.setJson(JSON.getJSONQuiz());
+        jsonQuiz.setContenu("quiz");
 
-            EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonFiches);
-            //EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonGlossaire);
-            //EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonQuiz);
+        EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonFiches);
+        //EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonGlossaire);
+        //EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonQuiz);
 
-            // mark first time has ran.
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean("firstTime", false);
-            editor.commit();
-        }
     }
 
     /**
