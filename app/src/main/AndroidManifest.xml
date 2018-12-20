@@ -41,70 +41,24 @@
         <activity
             android:name=".QuizzActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme"></activity>
+            android:theme="@style/QuizTheme"></activity>
         <activity
             android:name=".FicheActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme"></activity>
         <activity
             android:name=".FirstLaunch.TutorialActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".VosFichesActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <!--
-       <activity android:name=".SplashActivity"
-           android:theme="@style/themeTest.Launcher">
-           <intent-filter>
-               <action android:name="android.intent.action.MAIN" />
-
-               <category android:name="android.intent.category.LAUNCHER" />
-           </intent-filter>
-       </activity>
-       <activity
-           android:name=".MainActivity"
-           android:theme="@style/SplashTheme"
-           android:screenOrientation="portrait">
-       </activity>
-       <activity
-           android:name=".FicheDetailsActivityNotUsed"
-           android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".FichesActivity"
-            android:theme="@style/ListFont"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".GlossaireActivity"
-            android:theme="@style/ListFont"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".GlossaireDetailsActivity"
-            android:theme="@style/ListFont"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".QuizActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".QuizDetailsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".TutorialActivity"
-            android:screenOrientation="portrait" />
-
-       <meta-data
-           android:name="preloaded_fonts"
-           android:resource="@array/preloaded_fonts" />
-
-       <activity
-           android:name=".MenuActivityy"
-           android:label="@string/title_activity_menu_activityy"
-           android:theme="@style/SplashTheme"></activity>-->
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

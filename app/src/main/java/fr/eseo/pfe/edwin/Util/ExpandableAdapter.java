@@ -1,7 +1,6 @@
 package fr.eseo.pfe.edwin.Util;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +67,7 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
             view = inflater.inflate(R.layout.fiche_contenu_expgroup,null);
         }
         TextView listHeader =  (TextView)view.findViewById(R.id.listHeader);
-        listHeader.setTypeface(null, Typeface.BOLD);
+        //listHeader.setTypeface(null, Typeface.BOLD);
         listHeader.setText(headerTitle);
         return view;
     }

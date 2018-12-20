@@ -4,6 +4,8 @@
         <item>@font/alfa_slab_one</item>
         <item>@font/bad_script</item>
         <item>@font/hind_medium</item>
+        <item>@font/open_sans_bold</item>
+        <item>@font/open_sans_light</item>
         <item>@font/secular_one</item>
     </array>
 </resources>

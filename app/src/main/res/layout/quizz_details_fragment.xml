@@ -37,17 +37,13 @@
 
                         <TextView
                             android:id="@+id/nom_du_quiz"
+                            style="@style/QuizThemeTitreQuestion"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:gravity="center_horizontal"
-                            android:padding="4dp"
-                            android:text="Titre"
                             android:drawableEnd="@drawable/ic_quiz_question"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                            android:textColor="@color/White"
-                            android:textSize="25dp"
-                            android:textStyle="normal" />
+                            android:padding="4dp"
+                            android:text="Titre" />
 
                     </LinearLayout>
                 </RelativeLayout>
@@ -71,28 +67,20 @@
 
                         <TextView
                             android:id="@+id/quiz_question_numero"
+                            style="@style/QuizThemeNumeroQuestion"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:gravity="left"
                             android:padding="10dp"
-                            android:text="Question_numero"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                            android:textColor="@color/primaryColor"
-                            android:textSize="18dp"
-                            android:textStyle="bold" />
+                            android:text="Question_numero" />
 
                         <TextView
                             android:id="@+id/nom_quiz"
+                            style="@style/QuizThemeTitreQuestionView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
-                            android:gravity="center"
-                            android:text="nomQuizz"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                            android:textColor="@color/primaryColor"
-                            android:textSize="35dp"
-                            android:textStyle="bold" />
+                            android:text="nomQuizz" />
 
                         <RadioGroup
                             android:id="@+id/radioGp1"
@@ -107,6 +95,7 @@
                                 android:layout_height="wrap_content"
                                 android:padding="20dp"
                                 android:text="Radio btn 1"
+                                android:buttonTint="@color/primaryColor"
                                 android:textColor="@color/primaryColor" />
 
                             <RadioButton
@@ -115,6 +104,7 @@
                                 android:layout_height="wrap_content"
                                 android:padding="20dp"
                                 android:text="Radio btn 2"
+                                android:buttonTint="@color/primaryColor"
                                 android:textColor="@color/primaryColor" />
 
                             <RadioButton
@@ -123,16 +113,16 @@
                                 android:layout_height="wrap_content"
                                 android:padding="20dp"
                                 android:text="Radio btn 3"
+                                android:buttonTint="@color/primaryColor"
                                 android:textColor="@color/primaryColor" />
                         </RadioGroup>
 
                         <Button
                             android:id="@+id/buttonNext"
-                            style="@style/Widget.AppCompat.Button.Colored"
+                            style="@style/QuizThemeButtonNext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Prochaine question"
-                            android:textColor="@color/White" />
+                            android:text="Prochaine question" />
 
 
                     </LinearLayout>

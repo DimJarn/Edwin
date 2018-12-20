@@ -146,8 +146,19 @@ public class AccueilActivity extends MainActivity implements View.OnClickListene
         return false;
     }
 
+    /**
+     * If click on Back --> quit the app
+     */
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        this.startActivity(intent);
+    }
 
-/**
+    /**
  private void showAProposFragment(){
  if (this.fragmentAPropos == null) this.fragmentAPropos = AProposActivity.newInstance();
  this.startTransactionFragment(this.fragmentAPropos);

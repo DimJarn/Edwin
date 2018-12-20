@@ -30,4 +30,7 @@ public interface GlossaireDao {
     @Query("SELECT * FROM glossaire WHERE nom_terme = :nomTerme")
     public Glossaire findItemGlossaireFromName(String nomTerme);
 
+    @Query("SELECT * FROM glossaire WHERE ref_fiche = :ref_fiche")
+    public List<Glossaire> findItemGlossaireFromRefFiche(int ref_fiche);
+
 }

@@ -11,10 +11,8 @@
         android:orientation="horizontal">
 
         <TextView
+            style="@style/FicheThemeExpendableTextViewTitre"
             android:id="@+id/listHeader"
-            android:textSize="22dp"
-            android:textColor="@color/primaryColor"
-            android:textStyle="bold"
             android:layout_weight="6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

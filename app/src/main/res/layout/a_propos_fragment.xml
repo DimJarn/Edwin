@@ -5,37 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
-    <!--
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appbar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/detail_backdrop_height"
-            android:fitsSystemWindows="true"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-            <android.support.design.widget.CollapsingToolbarLayout
-                android:id="@+id/collapsing_toolbar"
-                style="@style/SizeSpecificCollapsingToolbarLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                app:expandedTitleMarginEnd="64dp"
-                app:expandedTitleMarginStart="48dp">
-
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="?attr/colorPrimary"
-                    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                    app:title="@string/a_propos_title" />
-
-            </android.support.design.widget.CollapsingToolbarLayout>
-
-        </android.support.design.widget.AppBarLayout>
-    -->
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -48,6 +18,13 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_light"
+                android:text="TextView" />
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -66,25 +43,23 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/logo_idee_50"
+                        android:layout_gravity="center"
                         android:padding="5dp"
-                        android:layout_gravity="center"/>
+                        android:src="@drawable/logo_idee_50" />
 
                     <TextView
                         android:id="@+id/author"
+                        style="@style/InformationThemeTextTitleView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/a_propos_origin_project"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:text="@string/a_propos_origin_project" />
 
                     <TextView
                         android:id="@+id/quote"
+                        style="@style/InformationThemeTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/a_propos_origin_project_text"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:text="@string/a_propos_origin_project_text" />
 
                 </LinearLayout>
 
@@ -108,23 +83,21 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/logo_realisation_50"
+                        android:layout_gravity="center"
                         android:padding="5dp"
-                        android:layout_gravity="center"/>
+                        android:src="@drawable/logo_realisation_50" />
 
                     <TextView
+                        style="@style/InformationThemeTextTitleView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/a_propos_contact"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:text="@string/a_propos_contact" />
 
                     <TextView
+                        style="@style/InformationThemeTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:text="@string/a_propos_contact_text"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:text="@string/a_propos_contact_text" />
 
                 </LinearLayout>
 
@@ -149,56 +122,51 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/logo_condition_50"
+                        android:layout_gravity="center"
                         android:padding="5dp"
-                        android:layout_gravity="center"/>
+                        android:src="@drawable/logo_condition_50" />
 
                     <TextView
                         android:id="@+id/title_text_conditions"
+                        style="@style/InformationThemeTextTitleView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/a_propos_condition_use"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:text="@string/a_propos_condition_use" />
 
                     <TextView
                         android:id="@+id/content_text_detail"
+                        style="@style/InformationThemeTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:text="@string/a_propos_condition_detail"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:text="@string/a_propos_condition_detail" />
 
                     <TextView
                         android:id="@+id/content_text_photo"
+                        style="@style/InformationThemeTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:text="@string/a_propos_condition_photo"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:text="@string/a_propos_condition_photo" />
 
                     <TextView
                         android:id="@+id/content_text_droits"
+                        style="@style/InformationThemeTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:text="@string/a_propos_condition_droits_auteurs"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:text="@string/a_propos_condition_droits_auteurs" />
 
                     <TextView
                         android:id="@+id/content_text_donnes_perso"
+                        style="@style/InformationThemeTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:text="@string/a_propos_condition_donnees_perso"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:text="@string/a_propos_condition_donnees_perso" />
+
                     <TextView
                         android:id="@+id/content_text_decharge_utilisation"
+                        style="@style/InformationThemeTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:text="@string/a_propos_condition_decharge_utilisation"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:text="@string/a_propos_condition_decharge_utilisation" />
 
                 </LinearLayout>
 
@@ -209,16 +177,16 @@
                 style="@style/Widget.CardContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:background="@color/LightGreyColor"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="113dp"
                     android:layout_height="120dp"
-                    android:scaleType="fitXY"
                     android:layout_gravity="center_horizontal"
                     android:adjustViewBounds="false"
+                    android:scaleType="fitXY"
                     android:src="@drawable/logo_edwyn" />
 
                 <TextView
@@ -226,9 +194,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                     android:text="@string/a_propos_dev"
-                    android:textColor="@color/colorPrimaryDark" />
+                    style="@style/InformationThemeTextView" />
 
                 <!-- Content to hide / show-->
             </LinearLayout>

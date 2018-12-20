@@ -54,7 +54,9 @@ public class GlossaireDetailsFragment extends Fragment implements View.OnClickLi
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.findItem(R.id.action_search);
-        item.setVisible(false);
+        if (item != null) {
+            item.setVisible(false);
+        }
     }
 
 

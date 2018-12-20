@@ -58,7 +58,7 @@
     </style>
 
 
-    <style name="toolbarDesign" >
+    <style name="toolbarDesign">
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="android:listDivider">@color/DarkGrey</item>
         <item name="android:textColorSecondary">@color/primaryColor</item>
@@ -71,8 +71,256 @@
         <item name="android:background">?attr/colorPrimary</item>
     </style>
 
-    <style name="ToolbarPopUp" parent ="ThemeOverlay.AppCompat.Light">
+    <style name="ToolbarPopUp" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:background">@color/DarkGrey</item>
     </style>
+
+    <!-- *************************************************************************************** -->
+    <!-- *************************************************************************************** -->
+    <!-- ************************************STYLE********************************************** -->
+    <!-- *************************************************************************************** -->
+    <!-- *************************************************************************************** -->
+
+    <!-- Page accueil -->
+
+    <!-- Permet de modifier le theme de la page d'accueil -->
+    <style name="AccueilTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:textAppearance">@style/AccueilThemeTextViewTop</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+    </style>
+
+    <style name="AccueilThemeTextViewTop" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/backgroundColor</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.Widget.AppCompat.Toolbar.Title
+        </item>
+    </style>
+
+    <style name="AccueilThemeTextViewBottom" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
+    </style>
+
+    <!-- *************************************************************************************** -->
+    <!-- *************************************************************************************** -->
+    <!-- Page info -->
+    <!-- *************************************************************************************** -->
+    <!-- *************************************************************************************** -->
+
+    <!-- Permet de modifier le theme de la page d'accueil -->
+    <style name="InformationThemeTextTitleView" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+
+    <style name="InformationThemeTextView" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Subhead</item>
+    </style>
+
+    <!-- *************************************************************************************** -->
+    <!-- *************************************************************************************** -->
+    <!-- Page Glossaire -->
+    <!-- *************************************************************************************** -->
+    <!-- *************************************************************************************** -->
+
+    <!-- Permet de modifier le theme de la page d'accueil -->
+    <style name="GlossaireTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+    </style>
+    <!--Glossaire Fragment (liste des mots ) -->
+    <style name="GlossaireThemeListTextView" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">24dp</item>
+        <item name="android:drawableTint">@color/primaryColor</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+
+    <!--Glossaire DetailFragment -->
+    <!--Titre -->
+    <style name="GlossaireThemeTitreMotGlossaire" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">35dp</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+    <!--Titre definition -->
+    <style name="GlossaireThemeTitreDefinitionMotGlossaire" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+    <!--Texte definition -->
+    <style name="GlossaireThemeTexteMotGlossaire" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+    <!--Texte definition -->
+    <style name="GlossaireThemeSource" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:fontFamily">@font/open_sans_light</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+
+    <!-- *************************************************************************************** -->
+    <!-- *************************************************************************************** -->
+    <!-- Page Fiche-->
+    <!-- *************************************************************************************** -->
+    <!-- *************************************************************************************** -->
+
+    <!-- Permet de modifier le theme de la page Fiche -->
+    <style name="FicheTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+    </style>
+    <!--Fiche Fragment -->
+    <style name="FicheThemeListTextView" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:drawableTint">@color/primaryColor</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+    <!--Fiche Detail Fragment -->
+    <style name="FicheThemeTitreDetail" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">35dp</item>
+        <item name="android:drawableTint">@color/primaryColor</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+
+    <style name="FicheThemeSousTitreDetail" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:drawableTint">@color/primaryColor</item>
+        <item name="android:fontFamily">@font/open_sans_light</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+
+    <style name="FicheThemeDescriptionDetail" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:drawableTint">@color/primaryColor</item>
+        <item name="android:fontFamily">@font/open_sans_light</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+    <!-- Contenu fiche -->
+    <style name="FicheThemeContenuTitre" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:drawableTint">@color/primaryColor</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+    <!-- Contenu fiche TextView-->
+    <style name="FicheThemeContenuTextView" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:drawableTint">@color/colorPrimaryDark</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+
+    <!-- Contenu fiche expendable text view -->
+    <style name="FicheThemeExpendableTextViewTitre" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:drawableTint">@color/primaryColor</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+
+    <style name="FicheThemeExpendableTextViewContenu" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:drawableTint">@color/colorPrimaryDark</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+
+
+    <!-- *************************************************************************************** -->
+    <!-- *************************************************************************************** -->
+    <!-- Page Quiz-->
+    <!-- *************************************************************************************** -->
+    <!-- *************************************************************************************** -->
+
+    <!-- Permet de modifier le theme de la page Fiche -->
+    <style name="QuizTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@color/primaryColor</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <!--Fiche Quiz -->
+    <style name="QuizThemeTitreQuestion" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/White</item>
+        <item name="android:textSize">25dp</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Large</item>
+    </style>
+
+    <style name="QuizThemeNumeroQuestion" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Large</item>
+    </style>
+
+    <style name="QuizThemeTitreQuestionView" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">35dp</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+
+    <style name="QuizThemeButtonNext" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:textColor">@color/White</item>
+    </style>
+
+    <!--Fiche Quiz / resultat  -->
+
 
 </resources>

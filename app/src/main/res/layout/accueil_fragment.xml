@@ -35,14 +35,10 @@
 
                     <TextView
                         android:id="@+id/quote"
+                        style="@style/AccueilThemeTextViewTop"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/accueil_presentation"
-                        android:textSize="15dp"
-                        android:textStyle="italic"
-                        android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-                        android:textColor="@color/backgroundColor" />
+                        android:text="@string/accueil_presentation" />
 
                 </LinearLayout>
 
@@ -59,22 +55,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/secondaryColor"
                 android:orientation="horizontal"
-                android:padding="10dp"
-                android:background="@color/secondaryColor">
+                android:padding="10dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/logo_favorites"
                     android:layout_gravity="center"
+                    android:background="@color/secondaryColor"
                     android:paddingLeft="25dp"
-                    android:background="@color/secondaryColor" />
+                    android:src="@drawable/logo_favorites" />
 
                 <Button
                     android:id="@+id/buttonYourOperation"
-                    android:layout_width="match_parent"
                     style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/secondaryColor"
                     android:padding="3dp"
@@ -84,17 +80,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/tertiaryColor"
                 android:orientation="horizontal"
-                android:padding="10dp"
-                android:background="@color/tertiaryColor">
+                android:padding="10dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/logo_help_50"
                     android:layout_gravity="center"
+                    android:background="@color/tertiaryColor"
                     android:paddingLeft="25dp"
-                    android:background="@color/tertiaryColor" />
+                    android:src="@drawable/logo_help_50" />
 
                 <Button
                     android:id="@+id/buttonNeedHelp"
@@ -110,25 +106,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/quartColor"
                 android:orientation="horizontal"
-                android:padding="10dp"
-                android:background="@color/quartColor">
+                android:padding="10dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/logo_info_50"
                     android:layout_gravity="center"
+                    android:background="@color/quartColor"
                     android:paddingLeft="25dp"
-                    android:background="@color/quartColor" />
+                    android:src="@drawable/logo_info_50" />
 
                 <Button
                     android:id="@+id/buttonMoreInfo"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="3dp"
                     android:background="@color/quartColor"
+                    android:padding="3dp"
                     android:text="Plus d'info" />
             </LinearLayout>
 
@@ -136,8 +132,8 @@
                 style="@style/Widget.CardContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:background="@color/LightGreyColor"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -150,12 +146,11 @@
 
                 <TextView
                     android:id="@+id/dev_info"
+                    style="@style/AccueilThemeTextViewBottom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/accueil_info"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:textColor="@android:color/black" />
+                    android:text="@string/accueil_info" />
 
                 <!-- Content to hide / show-->
             </LinearLayout>
