@@ -2,15 +2,14 @@
     android:id="@+id/layout_fragment1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bglayerwhite"
+    android:background="@color/GreyColor"
     android:orientation="vertical">
 
     <ListView
         android:id="@android:id/list"
         style="@style/GlossaireThemeListTextView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="@color/colorPrimaryDark" />
+        android:layout_height="match_parent" />
 
 
     <TextView
