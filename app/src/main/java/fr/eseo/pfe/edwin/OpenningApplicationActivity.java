@@ -55,7 +55,7 @@ public class OpenningApplicationActivity extends AppCompatActivity {
          */
         setTheme(R.style.themeTest_Launcher);
         //TODO: voir le pour le temps d'attente avec le chargement de la BDD (thread)
-        SystemClock.sleep(4000); //temps d'attente de 4s
+        SystemClock.sleep(3000); //temps d'attente de 4s
 
 
         /**

@@ -51,82 +51,115 @@
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
                 android:src="@drawable/doctors_low" />
+            <!--
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/secondaryColor"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
 
-            <LinearLayout
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:background="@color/secondaryColor"
+                                android:paddingLeft="25dp"
+                                android:src="@drawable/logo_favorites" />
+
+                            <Button
+                                android:id="@+id/buttonYourOperation"
+                                style="?android:attr/borderlessButtonStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/secondaryColor"
+                                android:padding="3dp"
+                                android:text="Vos fiches" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/tertiaryColor"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:background="@color/tertiaryColor"
+                                android:paddingLeft="25dp"
+                                android:src="@drawable/logo_help_50" />
+
+                            <Button
+                                android:id="@+id/buttonNeedHelp"
+                                style="?android:attr/borderlessButtonStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/tertiaryColor"
+                                android:onClick="onButtonClicked"
+                                android:padding="3dp"
+                                android:text="Besoin d'aide ?" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/quartColor"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:background="@color/quartColor"
+                                android:paddingLeft="25dp"
+                                android:src="@drawable/logo_info_50" />
+
+                            <Button
+                                android:id="@+id/buttonMoreInfo"
+                                style="?android:attr/borderlessButtonStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/quartColor"
+                                android:padding="3dp"
+                                android:text="Plus d'info" />
+                        </LinearLayout>-->
+
+            <Button
+                android:id="@+id/buttonYourOperation"
+                style="@style/AccueilThemeButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/logo_favorites"
                 android:background="@color/secondaryColor"
-                android:orientation="horizontal"
-                android:padding="10dp">
+                android:clickable="true"
+                android:focusable="false"
+                android:text="VOS FICHES" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@color/secondaryColor"
-                    android:paddingLeft="25dp"
-                    android:src="@drawable/logo_favorites" />
-
-                <Button
-                    android:id="@+id/buttonYourOperation"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/secondaryColor"
-                    android:padding="3dp"
-                    android:text="Vos fiches" />
-            </LinearLayout>
-
-            <LinearLayout
+            <Button
+                android:id="@+id/buttonNeedHelp"
+                style="@style/AccueilThemeButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/logo_help_50"
                 android:background="@color/tertiaryColor"
-                android:orientation="horizontal"
-                android:padding="10dp">
+                android:clickable="true"
+                android:focusable="false"
+                android:text="BESOIN D'AIDE ?" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@color/tertiaryColor"
-                    android:paddingLeft="25dp"
-                    android:src="@drawable/logo_help_50" />
-
-                <Button
-                    android:id="@+id/buttonNeedHelp"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/tertiaryColor"
-                    android:onClick="onButtonClicked"
-                    android:padding="3dp"
-                    android:text="Besoin d'aide ?" />
-            </LinearLayout>
-
-            <LinearLayout
+            <Button
+                android:id="@+id/buttonMoreInfo"
+                style="@style/AccueilThemeButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/logo_info_50"
                 android:background="@color/quartColor"
-                android:orientation="horizontal"
-                android:padding="10dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@color/quartColor"
-                    android:paddingLeft="25dp"
-                    android:src="@drawable/logo_info_50" />
-
-                <Button
-                    android:id="@+id/buttonMoreInfo"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/quartColor"
-                    android:padding="3dp"
-                    android:text="Plus d'info" />
-            </LinearLayout>
+                android:clickable="true"
+                android:focusable="false"
+                android:text="PLUS D'INFO" />
 
             <LinearLayout
                 style="@style/Widget.CardContent"
@@ -134,6 +167,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/LightGreyColor"
                 android:gravity="center"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="bottom"
                 android:orientation="horizontal">
 
                 <ImageView

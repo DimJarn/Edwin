@@ -22,10 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AccueilActivity"
+        <activity
+            android:name=".AccueilActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
-        </activity>
+            android:theme="@style/SplashTheme"></activity>
         <activity
             android:name=".AProposActivity"
             android:screenOrientation="portrait"
@@ -52,6 +52,10 @@
             android:theme="@style/SplashTheme" />
         <activity
             android:name=".VosFichesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme" />
+        <activity
+            android:name=".ParametresActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme" />
 

@@ -16,6 +16,7 @@ import fr.eseo.pfe.edwin.AccueilActivity;
 import fr.eseo.pfe.edwin.AideActivity;
 import fr.eseo.pfe.edwin.FicheActivity;
 import fr.eseo.pfe.edwin.GlossaireActivity;
+import fr.eseo.pfe.edwin.ParametresActivity;
 import fr.eseo.pfe.edwin.QuizzActivity;
 import fr.eseo.pfe.edwin.R;
 
@@ -129,6 +130,7 @@ public abstract class MainActivity extends AppCompatActivity implements Navigati
                 ());*/
 
     }
+
     /**
      * Sets up the navigation drawer.
      */
@@ -223,6 +225,9 @@ public abstract class MainActivity extends AppCompatActivity implements Navigati
                 break;
             case R.id.apropos:
                 startActivity(new Intent(this, AProposActivity.class));
+                break;
+            case R.id.parametres:
+                startActivity(new Intent(this, ParametresActivity.class));
                 break;
             case R.id.nav_quit:
                 Intent intent = new Intent();

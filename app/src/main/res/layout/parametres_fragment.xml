@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content_parametres_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gris"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/Widget.CardContent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/dev_info"
+                    style="@style/ParametresThemeTextTitleView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Informations :" />
+
+                <!-- Content to hide / show-->
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/app_version"
+                style="@style/ParametresThemeTextTitleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="Version de l'application" />
+
+            <TextView
+                android:id="@+id/app_version_content"
+                style="@style/ParametresThemeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
+                android:text="XX" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/device_id"
+                style="@style/ParametresThemeTextTitleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="ID du téléphone" />
+
+            <TextView
+                android:id="@+id/device_id_content"
+                style="@style/ParametresThemeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="XX" />
+
+
+            <LinearLayout
+                style="@style/Widget.CardContent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/mode_dev"
+                    style="@style/ParametresThemeTextTitleView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Contenu :" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/mode_developpeur"
+                style="@style/ParametresThemeTextTitleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableEnd="@drawable/ic_menu_manage"
+                android:drawableTint="@color/secondaryColor"
+                android:background="@color/LightGreyColor"
+                android:gravity="left"
+                android:text="Mode developpeur" />
+
+            <Button
+                android:id="@+id/idBtnModeDeveloppeur"
+                style="@style/ParametresThemeButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:clickable="true"
+                android:focusable="false"
+                android:text="Modifier l'addresse de la BDD" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/evaluer_application"
+                style="@style/ParametresThemeTextTitleSmall"
+                android:layout_width="match_parent"
+                android:drawableEnd="@drawable/logo_star3"
+                android:drawableTint="@color/secondaryColor"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:gravity="left"
+                android:text="Evaluer l'application" />
+
+            <Button
+                android:id="@+id/idBtnevaluerApplicationContent"
+                style="@style/ParametresThemeButton"
+                android:background="@color/LightGreyColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="false"
+                android:text="Ouvrir Google Play" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/contacterDvpeur"
+                style="@style/ParametresThemeTextTitleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableEnd="@drawable/ic_menu_send"
+                android:drawableTint="@color/secondaryColor"
+                android:background="@color/LightGreyColor"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="Contacter les développeurs" />
+
+            <Button
+                android:id="@+id/idcontacterDvpeurContent"
+                style="@style/ParametresThemeButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:clickable="true"
+                android:focusable="false"
+                android:text="Envoyer aux développeurs un email contenant les informations de l'appareil" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/partagerAppli"
+                style="@style/ParametresThemeTextTitleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:drawableEnd="@drawable/ic_menu_share"
+                android:drawableTint="@color/secondaryColor"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="Partager" />
+
+            <Button
+                android:id="@+id/idPartagerAppliContent"
+                style="@style/ParametresThemeButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:clickable="true"
+                android:focusable="false"
+                android:text="Partager l'application" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

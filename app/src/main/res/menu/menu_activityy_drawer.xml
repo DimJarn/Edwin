@@ -37,10 +37,16 @@
             android:icon="@drawable/logo_info"
             android:title="Infos" />
         <item
+            android:id="@+id/parametres"
+            app:showAsAction="always"
+            android:icon="@drawable/logo_settings"
+            android:title="Paramètres" />
+        <item
             android:id="@+id/nav_quit"
             app:showAsAction="always"
             android:icon="@drawable/logo_cancel"
             android:title="Quitter l'application" />
     </group>
+
 
 </menu>

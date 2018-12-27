@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content_parametres_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gris"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/Widget.CardContent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/dev_info"
+                    style="@style/ParametresThemeTextTitleView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Informations de connexion à la BDD " />
+
+                <!-- Content to hide / show-->
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/app_version"
+                style="@style/ParametresThemeTextTitleDetails"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="URL de la base de données : " />
+
+            <TextView
+                android:id="@+id/app_version_content"
+                style="@style/ParametresThemeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="XX" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/device_id"
+                style="@style/ParametresThemeTextTitleDetails"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="Driver de BDD : " />
+
+            <TextView
+                android:id="@+id/device_id_content"
+                style="@style/ParametresThemeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="XX" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+
+            <TextView
+                android:id="@+id/username"
+                style="@style/ParametresThemeTextTitleDetails"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="Nom d'utilisateur : " />
+
+            <TextView
+                android:id="@+id/username_content"
+                style="@style/ParametresThemeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="XX" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/password"
+                style="@style/ParametresThemeTextTitleDetails"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="Mot de passe de connexion : " />
+
+            <TextView
+                android:id="@+id/password_content"
+                style="@style/ParametresThemeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/LightGreyColor"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:text="XX" />
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>
