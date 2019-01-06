@@ -24,6 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/description_image"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_your_fiche" />
@@ -38,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Aucun résultat."
+                android:text="@string/aucun_r_sultat"
                 android:textColor="@color/colorPrimaryDark" />
 
         </LinearLayout>

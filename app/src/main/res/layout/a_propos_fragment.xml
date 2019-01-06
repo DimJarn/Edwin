@@ -38,6 +38,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/description_image"
                         android:padding="5dp"
                         android:src="@drawable/logo_idee_50" />
 
@@ -78,6 +79,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/description_image"
                         android:padding="5dp"
                         android:src="@drawable/logo_realisation_50" />
 
@@ -117,6 +119,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/description_image"
                         android:padding="5dp"
                         android:src="@drawable/logo_condition_50" />
 
@@ -180,6 +183,7 @@
                     android:layout_height="120dp"
                     android:layout_gravity="center_horizontal"
                     android:adjustViewBounds="false"
+                    android:contentDescription="@string/description_image"
                     android:scaleType="fitXY"
                     android:src="@drawable/logo_edwyn" />
 

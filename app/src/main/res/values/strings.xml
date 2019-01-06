@@ -12,6 +12,8 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 
+    <string name="description_image">Ceci est une image.</string>
+
     <!-- A Propos -->
     <string name="a_propos_title">Informations</string>
     <string name="a_propos_origin_project">Origine du projet</string>
@@ -48,8 +50,13 @@
 
     <!-- Accueil -->
 
-    <string name="accueil_presentation"> Bienvenue sur Edwin. \n Je suis là pour t\'aider à avoir des informations sur
-    le déroulement d\'une opération.</string>
+
+    <string name="accueil_presentation"> Edwin,\n l\'application chirurgicale qui vous accompagne
+        en chirurgie thoracique.</string>
+    <string name="button_vos_fiches"> VOS FICHES </string>
+    <string name="button_besoin_aide"> BESOIN D\'AIDE ? </string>
+    <string name="button_plus_info"> PLUS D\'INFO </string>
+
     <string name="accueil_info"> Edwin - PFE 2018/ 2019 </string>
 
 
@@ -57,5 +64,44 @@
 
     <string name="titre_def"> Définition :</string>
     <string name="glossaire_source"> Définition issue de Larousse.</string>
+
+
+    <!-- Fiche Detail Activity -->
+
+    <string name="pneumothorax_titre"> Pneumothorax</string>
+    <string name="service_titre"> Service de chrirurgie thoracique </string>
+    <string name="intro_operation"> L’intervention qui vous est proposée s’appelle la symphyse pleurale </string>
+    <string name="rappel_anatomique">Rappel anatomique</string>
+    <string name="la_maladie">La maladie</string>
+
+
+    <!-- Parametres Details activity -->
+
+    <string name="informations_de_connexion_la_bdd">Informations de connexion à la BDD</string>
+    <string name="url_de_la_base_de_donn_es">URL de la base de données :</string>
+    <string name="driver_de_bdd">Driver de BDD :</string>
+    <string name="nom_d_utilisateur">Nom d\'utilisateur :</string>
+    <string name="mot_de_passe_de_connexion">Mot de passe de connexion :</string>
+
+    <!-- Parametres activity -->
+
+    <string name="informations">Informations :</string>
+    <string name="version_de_l_application">Version de l\'application</string>
+    <string name="id_du_t_l_phone">ID du téléphone</string>
+    <string name="contenu">Contenu :</string>
+    <string name="mode_developpeur">Mode developpeur</string>
+    <string name="modifier_l_addresse_de_la_bdd">Modifier l\'addresse de la BDD</string>
+    <string name="evaluer_l_application">Evaluer l\'application</string>
+    <string name="ouvrir_google_play">Ouvrir Google Play</string>
+    <string name="contacter_les_d_veloppeurs">Contacter les développeurs</string>
+    <string name="envoyer_aux_d_veloppeurs_un_email_contenant_les_informations_de_l_appareil">Envoyer aux développeurs un email contenant les informations de l\'appareil</string>
+    <string name="partager">Partager</string>
+    <string name="partager_l_application">Partager l\'application</string>
+
+
+    <!-- Quiz -->
+
+    <string name="aucun_r_sultat">Aucun résultat.</string>
+
 
 </resources>
