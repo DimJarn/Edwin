@@ -42,6 +42,7 @@ public class FicheFragment extends Fragment {
         return inflater.inflate(R.layout.fiche_fragment, container, false);
     }
 
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -60,7 +61,7 @@ public class FicheFragment extends Fragment {
         for (FicheInformative ficheInformative : listeFiches) {
             map = new HashMap<String, String>();
             map.put("titre", ficheInformative.getNomOperation());
-            //map.put("img", String.valueOf(R.drawable.logo_cancel));
+            map.put("img", String.valueOf(R.drawable.logo_sheets));
             map.put("arrow", String.valueOf(R.drawable.logo_arrowright));
             listItem.add(map);
         }

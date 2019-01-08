@@ -36,44 +36,65 @@
 
                         <TextView
                             android:id="@+id/quiz_question_numero"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:gravity="center"
-                            android:padding="10dp"
-                            android:text="Résultat :"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                            android:textColor="@color/primaryColor"
-                            android:textSize="18dp"
-                            android:textStyle="bold" />
-
-                        <RelativeLayout
-                            android:id="@+id/ratingBar"
-                            android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@color/gris">
+                            android:layout_marginTop="15dp"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="Votre score"
+                            android:layout_gravity="center"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="35dp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/score"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:padding="10dp"
+                            android:text="3/5"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                            android:textColor="@color/primaryColor"
+                            android:textSize="35dp"
+                            android:textStyle="bold" />
 
-                            <RatingBar
-                                android:id="@+id/ratingBar1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:clickable="false"
-                                android:gravity="center"
-                                android:isIndicator="true"
-                                android:numStars="5"
-                                android:rating="0.0"
-                                android:stepSize="1.0" />
-                        </RelativeLayout>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imageResult"
+                            android:layout_marginTop="15dp"
+                            android:layout_gravity="center"/>
 
                         <TextView
                             android:id="@+id/textResultat"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
+                            android:textStyle="italic"
+                            android:layout_marginTop="10dp"
+                            android:padding="20dp"
                             android:text="Large Text"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                             android:textColor="@color/primaryColor" />
+
+                        <Button
+                            android:id="@+id/buttonAgain"
+                            style="@style/Widget.AppCompat.Button.Colored"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Recommencer un quiz"
+                            android:textColor="@color/White" />
+
+                        <Button
+                            android:id="@+id/buttonHome"
+                            style="@style/Widget.AppCompat.Button.Colored"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Menu"
+                            android:textColor="@color/White" />
 
                     </LinearLayout>
                 </RelativeLayout>

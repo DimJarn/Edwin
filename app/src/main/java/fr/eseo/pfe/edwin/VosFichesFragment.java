@@ -83,6 +83,7 @@ public class VosFichesFragment extends Fragment {
         for (FicheInformative ficheInformative : fichesFavs) {
             map = new HashMap<String, String>();
             map.put("titre", ficheInformative.getNomOperation());
+            map.put("img", String.valueOf(R.drawable.logo_star));
             map.put("arrow", String.valueOf(R.drawable.logo_arrowright));
             listItem.add(map);
         }

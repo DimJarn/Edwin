@@ -17,7 +17,7 @@
             android:contentDescription="@string/description_image"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
-            android:src="@drawable/wallpaper_fiche" />
+            android:src="@drawable/quiz_menu" />
 
         <ListView
             android:id="@+id/listView"

@@ -2,11 +2,13 @@ package fr.eseo.pfe.edwin;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -34,6 +36,11 @@ public class QuizzDetailsFragment extends Fragment {
     private TextView numeroQuestionTextView;
     private TextView nomQuiz;
 
+    ProgressBar androidProgressBar;
+    int progressStatusCounter = 0;
+    TextView textView;
+    Handler progressHandler = new Handler();
+
     /**
      * Methode newInstance()
      *
@@ -50,8 +57,53 @@ public class QuizzDetailsFragment extends Fragment {
         numeroQuestionTextView = (TextView) view.findViewById(R.id.quiz_question_numero);
         nomQuiz = (TextView) view.findViewById(R.id.nom_du_quiz);
 
+        androidProgressBar = (ProgressBar) view.findViewById(R.id.horizontal_progress_bar);
+        //Start progressing bar
+        new Thread(new Runnable() {
+            public void run() {
+                while (progressStatusCounter < 100) {
+                    progressStatusCounter = 0;
+                    androidProgressBar.setProgress(progressStatusCounter);
+                    progressHandler.post(new Runnable() {
+                        public void run() {
+                            switch (questionId ) {
+                                case 1:
+                                    progressStatusCounter = 0;
+                                    androidProgressBar.setProgress(progressStatusCounter);
+                                    break;
+                                case 2:
+                                    progressStatusCounter = 20;
+                                    androidProgressBar.setProgress(progressStatusCounter);
+                                    break;
+                                case 3:
+                                    progressStatusCounter = 40;
+                                    androidProgressBar.setProgress(progressStatusCounter);
+                                    break;
+                                case 4:
+                                    progressStatusCounter = 60;
+                                    androidProgressBar.setProgress(progressStatusCounter);
+                                    break;
+                                case 5:
+                                    progressStatusCounter = 80;
+                                    androidProgressBar.setProgress(progressStatusCounter);
+                                    break;
+                                default:
+                                    progressStatusCounter = 0;
+                                    androidProgressBar.setProgress(progressStatusCounter);
+                            }
+                        }
+                    });
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
         Bundle bundleIdQuiz = this.getArguments();
-        int idQuiz = bundleIdQuiz.getInt("idQuiz");
+        final int idQuiz = bundleIdQuiz.getInt("idQuiz");
 
         String titreQuiz = EdwinDatabase.getAppDatabase(textViewQuiz.getContext()).quizDao()
                 .findQuizFromId(idQuiz).getNomQuiz();
@@ -95,8 +147,11 @@ public class QuizzDetailsFragment extends Fragment {
                     } else {
                         Bundle bundle1 = new Bundle();
                         bundle1.putInt("score", score);
+                        Bundle bundle2 = new Bundle();
+                        bundle2.putInt("idQuiz", idQuiz);
                         Fragment fragment = QuizzResultatFragment.newInstance();
                         fragment.setArguments(bundle1);
+                        fragment.setArguments(bundle2);
                         getFragmentManager().beginTransaction().replace(R.id.layoutFicheDetail,
                                 fragment).commit();
 

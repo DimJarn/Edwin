@@ -68,7 +68,7 @@ public class QuizFragment extends Fragment {
         for (Quiz quiz : quizList) {
             map = new HashMap<String, String>();
             map.put("titre", quiz.getNomQuiz());
-            map.put("img", String.valueOf(R.drawable.logo_cancel));
+            map.put("img", String.valueOf(R.drawable.logo_quiz));
             map.put("arrow", String.valueOf(R.drawable.logo_arrowright));
             listItem.add(map);
         }

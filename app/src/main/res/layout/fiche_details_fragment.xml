@@ -145,6 +145,8 @@
 
             <ExpandableListView
                 android:id="@+id/expand"
+                android:childDivider="#00000000"
+                android:divider="#00000000"
                 style="@style/FicheThemeContenuTextView"
                 android:nestedScrollingEnabled="true"
                 android:layout_width="match_parent"
