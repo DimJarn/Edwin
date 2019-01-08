@@ -36,6 +36,22 @@ import fr.eseo.pfe.edwin.data.Glossaire;
 
 public class FicheDetailsFragment extends Fragment {
     public static final String LISTE_FICHE_INFORMATIVE_ID_FICHE = "listeFicheInformativeIdFiche";
+    View.OnClickListener btnClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Object tag = v.getTag();
+            Toast.makeText(getContext(), "clicked button" + tag + " / ID", Toast.LENGTH_SHORT)
+                    .show();
+
+            Bundle bundle = new Bundle();
+            bundle.putInt("idTerme", (Integer) tag);
+
+            Fragment fragment = GlossaireDetailsFragment.newInstance();
+            fragment.setArguments(bundle);
+            getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id
+                    .layoutFicheDetail, fragment).commit();
+        }
+    };
     private ExpandableListView listView;
     private ExpandableAdapter listAdapter;
     private List<String> listDataheader;
@@ -80,7 +96,6 @@ public class FicheDetailsFragment extends Fragment {
         return view;
     }
 
-
     /**
      * creation après
      *
@@ -100,7 +115,6 @@ public class FicheDetailsFragment extends Fragment {
 
         //setButton();
     }
-
 
     private void initData(int idFiche) {
         ContenuFiche listeFiches = EdwinDatabase.getAppDatabase(listView.getContext())
@@ -134,7 +148,6 @@ public class FicheDetailsFragment extends Fragment {
         listDataheader.add("Suites habituelles");
         listDataheader.add("Risques liés");
         listDataheader.add("Suivi post-opératoire");
-        listDataheader.add("Mot du glossaire");
 
         List<String> pourquoi = new ArrayList<>();
         pourquoi.add(listeFiches.getRisquesMaladie());
@@ -143,6 +156,7 @@ public class FicheDetailsFragment extends Fragment {
         principes.add(listeFiches.getPrincipe());
 
         List<String> techniques = new ArrayList<>();
+        System.out.println("Techniques opératoires" + listeFiches.getTechnique());
         techniques.add(listeFiches.getTechnique());
 
         List<String> suites = new ArrayList<>();
@@ -160,7 +174,6 @@ public class FicheDetailsFragment extends Fragment {
         listHash.put(listDataheader.get(3), suites);
         listHash.put(listDataheader.get(4), risques);
         listHash.put(listDataheader.get(5), suivi);
-
 
     }
 
@@ -246,22 +259,6 @@ public class FicheDetailsFragment extends Fragment {
         }
 
     }
-
-    View.OnClickListener btnClicked = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Object tag = v.getTag();
-            Toast.makeText(getContext(), "clicked button" + tag + " / ID", Toast.LENGTH_SHORT)
-                    .show();
-
-            Bundle bundle = new Bundle();
-            bundle.putInt("idTerme", (Integer) tag);
-
-            Fragment fragment = GlossaireDetailsFragment.newInstance();
-            fragment.setArguments(bundle);
-            getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.layoutFicheDetail, fragment).commit();
-        }
-    };
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
