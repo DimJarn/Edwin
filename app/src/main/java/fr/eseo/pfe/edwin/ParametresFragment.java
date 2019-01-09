@@ -21,11 +21,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
-import static fr.eseo.pfe.edwin.Util.FilePropertiesUtil.getProperty;
+import static fr.eseo.pfe.edwin.utilitaires.FilePropertiesUtil.getProperty;
 
+/**
+ * Fragment Parametres, extends de Fragemnt
+ * Affichage de la page Parametres et intégration du menu
+ *
+ * @author dimitrijarneau
+ */
 public class ParametresFragment extends Fragment implements View.OnClickListener {
 
     private static final String PROPERTY_PASSWORD_DVP = "password_dev";
@@ -50,17 +57,15 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
     /**
      * Création de la vue
      *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
+     * @param inflater l'inflater
+     * @param container le container
+     * @param savedInstanceState l'instance
      * @return
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
             savedInstanceState) {
-        View view = inflater.inflate(R.layout.parametres_fragment, container, false);
-
-        return view;
+        return inflater.inflate(R.layout.parametres_fragment, container, false);
     }
 
 
@@ -87,20 +92,21 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
      * Methode pour initialiser les boutons de la page d'accueil
      */
     private void setUpButton() {
-        Button buttonDvpMode = (Button) getView().findViewById(R.id.idBtnModeDeveloppeur);
+        Button buttonDvpMode = Objects.requireNonNull(getView()).findViewById(R.id
+                .idBtnModeDeveloppeur);
         buttonDvpMode.setOnClickListener(this);
 
 
-        Button buttonEvaluerApp = (Button) getView().findViewById(R.id
+        Button buttonEvaluerApp = getView().findViewById(R.id
                 .idBtnevaluerApplicationContent);
         buttonEvaluerApp.setOnClickListener(this);
 
-        Button buttonEnvoyerMail = (Button) getView().findViewById(R.id
+        Button buttonEnvoyerMail = getView().findViewById(R.id
                 .idcontacterDvpeurContent);
         buttonEnvoyerMail.setOnClickListener(this);
 
 
-        Button buttonPartagerByMail = (Button) getView().findViewById(R.id
+        Button buttonPartagerByMail = getView().findViewById(R.id
                 .idPartagerAppliContent);
         buttonPartagerByMail.setOnClickListener(this);
     }
@@ -108,7 +114,7 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
     /**
      * Methode pour attribuer les actions aux boutons
      *
-     * @param v
+     * @param v la vue
      */
     public void onClick(View v) {
         switch (v.getId()) {
@@ -178,9 +184,9 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
                     //TODO inserer la bonne adresse de l'appli
                     startActivity(viewIntent);
                 } catch (Exception e) {
-                    Toasty.error(getContext(), "Impossible de se connecter, Essayer de nouveau...",
+                    Toasty.error(getContext(), "Impossible de se connecter, Essayer de " +
+                                    "nouveau..." + e,
                             Toast.LENGTH_SHORT, true).show();
-                    e.printStackTrace();
                 }
                 break;
             case R.id.idcontacterDvpeurContent:
@@ -193,7 +199,7 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
                     String deviceModel = android.os.Build.MODEL;
                     String osVersion = android.os.Build.VERSION.RELEASE;
                     intent.putExtra(Intent.EXTRA_TEXT, "ID du téléphone : " + Settings.Secure
-                            .getString(getView().getContext()
+                            .getString(Objects.requireNonNull(getView()).getContext()
                                             .getContentResolver(),
                                     Settings.Secure.ANDROID_ID) + "\n Version de l'application : " +
                             versionCode + " " + versionName + "\n Téléphone : " + deviceBrand +
@@ -204,8 +210,7 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
                     startActivity(Intent.createChooser(intent, "Envoyer email"));
                 } catch (Exception e) {
                     Toasty.error(getContext(), "Impossible d'envoyer l'email, Essayer de " +
-                            "nouveau...", Toast.LENGTH_SHORT, true).show();
-                    e.printStackTrace();
+                            "nouveau..." + e, Toast.LENGTH_SHORT, true).show();
                 }
                 break;
             case R.id.idPartagerAppliContent:
@@ -226,8 +231,7 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
                     startActivity(Intent.createChooser(intent, "Envoyer email"));
                 } catch (Exception e) {
                     Toasty.error(getContext(), "Impossible d'envoyer l'email, Essayer de " +
-                            "nouveau...", Toast.LENGTH_SHORT, true).show();
-                    e.printStackTrace();
+                            "nouveau..." + e, Toast.LENGTH_SHORT, true).show();
                 }
                 break;
             default:

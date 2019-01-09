@@ -1,4 +1,4 @@
-package fr.eseo.pfe.edwin.Util;
+package fr.eseo.pfe.edwin.utilitaires;
 
 import android.util.Log;
 

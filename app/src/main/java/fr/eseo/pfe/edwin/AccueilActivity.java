@@ -3,6 +3,7 @@ package fr.eseo.pfe.edwin;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,7 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import fr.eseo.pfe.edwin.Main.MainActivity;
+import java.util.Objects;
+
+import fr.eseo.pfe.edwin.main.MainActivity;
 
 /**
  * @author dimitrijarneau
@@ -34,14 +37,19 @@ public class AccueilActivity extends MainActivity implements View.OnClickListene
         setupToolbar();
         setUpButton();
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_real);
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toolbar = findViewById(R.id.toolbar_real);
+        mDrawer = findViewById(R.id.drawer_layout);
         drawerToggle = setupDrawerToggle();
         // Tie DrawerLayout events to the ActionBarToggle
         mDrawer.addDrawerListener(drawerToggle);
 
     }
 
+    /**
+     * Methode privée pour initialiser le drawer toogle
+     *
+     * @return the action bar
+     */
     private ActionBarDrawerToggle setupDrawerToggle() {
         // NOTE: Make sure you pass in a valid toolbar reference.  ActionBarDrawToggle() does not
         // require it
@@ -71,7 +79,7 @@ public class AccueilActivity extends MainActivity implements View.OnClickListene
         final ActionBar ab = getActionBarToolbar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Accueil");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Accueil");
 
     }
 
@@ -79,20 +87,20 @@ public class AccueilActivity extends MainActivity implements View.OnClickListene
      * Methode pour initialiser les boutons de la page d'accueil
      */
     private void setUpButton() {
-        Button buttonHelp = (Button) findViewById(R.id.buttonNeedHelp);
+        Button buttonHelp = findViewById(R.id.buttonNeedHelp);
         buttonHelp.setOnClickListener(this);
 
-        Button buttonYourOperation = (Button) findViewById(R.id.buttonYourOperation);
+        Button buttonYourOperation = findViewById(R.id.buttonYourOperation);
         buttonYourOperation.setOnClickListener(this);
 
-        Button buttonMoreInfo = (Button) findViewById(R.id.buttonMoreInfo);
+        Button buttonMoreInfo = findViewById(R.id.buttonMoreInfo);
         buttonMoreInfo.setOnClickListener(this);
     }
 
     /**
      * Methode pour attribuer les actions aux boutons
      *
-     * @param v
+     * @param v, la vue
      */
     public void onClick(View v) {
         switch (v.getId()) {
@@ -112,11 +120,11 @@ public class AccueilActivity extends MainActivity implements View.OnClickListene
     }
 
     /**
-     * @Override public boolean onCreateOptionsMenu(Menu menu) {
-     * getMenuInflater().inflate(R.menu.sample_actions, menu);
-     * return true;
-     * }
-     **/
+     * Methode qui attribue une action en fonction de l'option selectionnée
+     *
+     * @param item l'item du menu selectionné
+     * @return item l'item seletionné
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -142,12 +150,13 @@ public class AccueilActivity extends MainActivity implements View.OnClickListene
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return false;
     }
 
     /**
-     * If click on Back --> quit the app
+     * Methode onBack
+     * Si l'utilisateur clique sur retour, fermeture de l'application
      */
     @Override
     public void onBackPressed() {
@@ -157,12 +166,4 @@ public class AccueilActivity extends MainActivity implements View.OnClickListene
         intent.addCategory(Intent.CATEGORY_HOME);
         this.startActivity(intent);
     }
-
-    /**
- private void showAProposFragment(){
- if (this.fragmentAPropos == null) this.fragmentAPropos = AProposActivity.newInstance();
- this.startTransactionFragment(this.fragmentAPropos);
- }
-
- **/
 }

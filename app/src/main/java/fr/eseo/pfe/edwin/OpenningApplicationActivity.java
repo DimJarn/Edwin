@@ -19,7 +19,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eseo.pfe.edwin.FirstLaunch.TutorialActivity;
 import fr.eseo.pfe.edwin.data.ContenuFiche;
 import fr.eseo.pfe.edwin.data.DatabaseInitializer;
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
@@ -28,6 +27,7 @@ import fr.eseo.pfe.edwin.data.Glossaire;
 import fr.eseo.pfe.edwin.data.JSON;
 import fr.eseo.pfe.edwin.data.Question;
 import fr.eseo.pfe.edwin.data.Quiz;
+import fr.eseo.pfe.edwin.launch.TutorialActivity;
 
 public class OpenningApplicationActivity extends AppCompatActivity {
     ViewPager viewPager;

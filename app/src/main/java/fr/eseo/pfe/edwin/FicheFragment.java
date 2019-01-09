@@ -19,9 +19,14 @@ import java.util.List;
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
 import fr.eseo.pfe.edwin.data.FicheInformative;
 
+/**
+ * Fragment FicheAFragment, extends de Fragment
+ * Affichage de la page FicheFragment et intégration du menu
+ * Présence boutons sur cette activité
+ * Fragments liés a cette activité
+ */
 public class FicheFragment extends Fragment {
     FragmentActivity listener;
-    private ListView mListView;
 
     public static FicheFragment newInstance() {
         return (new FicheFragment());
@@ -46,20 +51,20 @@ public class FicheFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mListView = (ListView) view.findViewById(R.id.listView);
+        ListView mListView = view.findViewById(R.id.listView);
 
         final List<FicheInformative> listeFiches = EdwinDatabase.getAppDatabase(view.getContext()
         ).ficheInformativeDao().findAllFichesInformatives();
 
         //Création de la ArrayList qui nous permettra de remplire la listView
-        ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
+        ArrayList<HashMap<String, String>> listItem = new ArrayList<>();
         //On déclare la HashMap qui contiendra les informations pour un item
         HashMap<String, String> map;
 
         //On refait la manip plusieurs fois avec des données différentes pour former les items de
         // notre ListView
         for (FicheInformative ficheInformative : listeFiches) {
-            map = new HashMap<String, String>();
+            map = new HashMap<>();
             map.put("titre", ficheInformative.getNomOperation());
             //map.put("img", String.valueOf(R.drawable.logo_sheets));
             map.put("arrow", String.valueOf(R.drawable.logo_arrowright));
@@ -83,10 +88,6 @@ public class FicheFragment extends Fragment {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                //on récupère la HashMap contenant les infos de notre item (titre, description, img)
-                HashMap<String, String> map = (HashMap<String, String>) mListView
-                        .getItemAtPosition(position);
-
                 int idFiche = listeFiches.get(position).getIdFiche();
                 Bundle bundle = new Bundle();
                 bundle.putInt("idFiche", idFiche);

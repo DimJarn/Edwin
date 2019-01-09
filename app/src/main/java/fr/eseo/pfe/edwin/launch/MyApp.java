@@ -1,4 +1,4 @@
-package fr.eseo.pfe.edwin.FirstLaunch;
+package fr.eseo.pfe.edwin.launch;
 
 import android.app.Application;
 import android.os.SystemClock;

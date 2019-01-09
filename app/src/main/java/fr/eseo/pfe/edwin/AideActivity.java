@@ -1,6 +1,7 @@
 package fr.eseo.pfe.edwin;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -8,8 +9,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
-import fr.eseo.pfe.edwin.Main.MainActivity;
+import java.util.Objects;
 
+import fr.eseo.pfe.edwin.main.MainActivity;
+
+/**
+ * Activité Aide qui ouvre le layout et le gere
+ */
 public class AideActivity extends MainActivity {
     private DrawerLayout mDrawer;
     private ActionBarDrawerToggle drawerToggle;
@@ -22,8 +28,8 @@ public class AideActivity extends MainActivity {
         setupToolbar(); // to integrate the menu
 
         //to animate icon menu
-        toolbar = (Toolbar) findViewById(R.id.toolbar_real);
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toolbar = findViewById(R.id.toolbar_real);
+        mDrawer = findViewById(R.id.drawer_layout);
         drawerToggle = setupDrawerToggle();
         // Tie DrawerLayout events to the ActionBarToggle
         mDrawer.addDrawerListener(drawerToggle);
@@ -51,7 +57,7 @@ public class AideActivity extends MainActivity {
         final ActionBar ab = getActionBarToolbar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Aide");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Aide");
 
     }
 
@@ -61,13 +67,13 @@ public class AideActivity extends MainActivity {
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return false;
     }
 
 
     /**
-     * Method to change the item selected in the menu
+     * Method pour changer l'item selectionné dans le menu
      *
      * @return id of selected item
      */
@@ -77,11 +83,11 @@ public class AideActivity extends MainActivity {
     }
 
     /**
-     * @Override public boolean onCreateOptionsMenu(Menu menu) {
-     * getMenuInflater().inflate(R.menu.sample_actions, menu);
-     * return true;
-     * }
-     **/
+     * Methode qui attribue une action en fonction de l'option selectionnée
+     *
+     * @param item l'item du menu selectionné
+     * @return item l'item seletionné
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (drawerToggle.onOptionsItemSelected(item)) {

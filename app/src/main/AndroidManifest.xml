@@ -47,7 +47,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme"></activity>
         <activity
-            android:name=".FirstLaunch.TutorialActivity"
+            android:name=".launch.TutorialActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme" />
         <activity

@@ -27,9 +27,9 @@ import fr.eseo.pfe.edwin.data.Glossaire;
  * @author dimitrijarneau
  * Fragment Glossaire
  * Affichage de la liste des mots et filtre de recherche
- *
  */
-public class GlossaireFragment extends ListFragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener {
+public class GlossaireFragment extends ListFragment implements SearchView.OnQueryTextListener,
+        MenuItem.OnActionExpandListener {
     List<String> mAllValues;
     private ArrayAdapter<String> mAdapter;
     private Context mContext;
@@ -45,7 +45,7 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
     }
 
     /**
-     * @param savedInstanceState
+     * @param savedInstanceState l'instance
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,10 +57,10 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
     /**
      * Methode permettant une action après un click sur un élement
      *
-     * @param listView
-     * @param v
-     * @param position
-     * @param id
+     * @param listView la listview
+     * @param v        la vue
+     * @param position la position
+     * @param id       l'id
      */
     public void onListItemClick(ListView listView, View v, int position, long id) {
 
@@ -71,30 +71,31 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
         getFragmentManager().popBackStack();
 
         //On récupére le mot selectionné en recherchant si le string récupéré est bien dans la db
-        Glossaire termeMotSelect = EdwinDatabase.getAppDatabase(v.getContext()).glossaireDao().findItemGlossaireFromName(item);
+        Glossaire termeMotSelect = EdwinDatabase.getAppDatabase(v.getContext()).glossaireDao()
+                .findItemGlossaireFromName(item);
         // On récupére son id dans la liste initiale et on transmet
         int idTermeMotSelect = termeMotSelect.getIdTerme();
 
-
-        //int idTerme = listeMotsGlossaire.get(position).getIdTerme();
         Bundle bundle = new Bundle();
         bundle.putInt("idTerme", idTermeMotSelect);
 
-        Fragment fragment =  GlossaireDetailsFragment.newInstance();
+        Fragment fragment = GlossaireDetailsFragment.newInstance();
         fragment.setArguments(bundle);
-        getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.layout_fragment1, fragment).commit();
+        getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id
+                .layout_fragment1, fragment).commit();
     }
 
     /**
      * Création de la vue
      *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
+     * @param inflater           l'inflater
+     * @param container          le container
+     * @param savedInstanceState l'instance
+     * @return la vue
      */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+            savedInstanceState) {
         View view = inflater.inflate(R.layout.glossaire_fragment, container, false);
         ListView listView = view.findViewById(android.R.id.list);
         TextView emptyTextView = view.findViewById(android.R.id.empty);
@@ -108,8 +109,8 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
     /**
      * Methode de creation barre de recherche
      *
-     * @param menu
-     * @param inflater
+     * @param menu     le menu
+     * @param inflater l'inflater
      */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -125,7 +126,7 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
     /**
      * Boolean
      *
-     * @param query
+     * @param query la recherche
      * @return boolean
      */
     @Override
@@ -136,8 +137,8 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
     /**
      * Methode de recherche
      *
-     * @param newText
-     * @return
+     * @param newText le nouveau texte
+     * @return le boolean (false)
      */
     @Override
     public boolean onQueryTextChange(String newText) {
@@ -146,7 +147,7 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
             return false;
         }
 
-        List<String> filteredValues = new ArrayList<String>(mAllValues);
+        List<String> filteredValues = new ArrayList<>(mAllValues);
         for (String value : mAllValues) {
             if (!value.toLowerCase().contains(newText.toLowerCase())) {
                 filteredValues.remove(value);
@@ -171,8 +172,8 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
     /**
      * boolean
      *
-     * @param item
-     * @return
+     * @param item l'item selectionné
+     * @return un boolean
      */
     @Override
     public boolean onMenuItemActionExpand(MenuItem item) {
@@ -182,8 +183,8 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
     /**
      * boolean
      *
-     * @param item
-     * @return
+     * @param item l'item selectionné
+     * @return un boolean
      */
     @Override
     public boolean onMenuItemActionCollapse(MenuItem item) {
@@ -191,18 +192,12 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
     }
 
     /**
-     * Selection de l'item
-     */
-    public interface OnItem1SelectedListener {
-        void onItem1SelectedListener(String item);
-    }
-
-    /**
      * Affectation de la liste de mot
      */
     private void populateList(View view) {
         //on recupere la liste de mots du glossaire
-        listeMotsGlossaire = EdwinDatabase.getAppDatabase(view.getContext()).glossaireDao().findAllGlossaires();
+        listeMotsGlossaire = EdwinDatabase.getAppDatabase(view.getContext()).glossaireDao()
+                .findAllGlossaires();
 
         mAllValues = new ArrayList<>();
         for (Glossaire motGlossaire : listeMotsGlossaire) {
@@ -213,6 +208,13 @@ public class GlossaireFragment extends ListFragment implements SearchView.OnQuer
 
         mAdapter = new ArrayAdapter<>(mContext, R.layout.textview_glossaire, mAllValues);
         setListAdapter(mAdapter);
+    }
+
+    /**
+     * Selection de l'item
+     */
+    public interface OnItem1SelectedListener {
+        void onItem1SelectedListener(String item);
     }
 
 }

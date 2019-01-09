@@ -20,6 +20,10 @@ import java.util.List;
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
 import fr.eseo.pfe.edwin.data.Quiz;
 
+/**
+ * Fragment Quiz, extends de Fragment
+ * Affichage de la page Quiz et intégration du menu
+ */
 public class QuizFragment extends Fragment {
     FragmentActivity listener;
     private ListView mListView;
@@ -37,7 +41,8 @@ public class QuizFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+            savedInstanceState) {
         View view = inflater.inflate(R.layout.quiz, container, false);
         ListView listView = view.findViewById(R.id.listView);
         TextView emptyTextView = view.findViewById(android.R.id.empty);
@@ -54,26 +59,29 @@ public class QuizFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mListView = (ListView) view.findViewById(R.id.listView);
+        mListView = view.findViewById(R.id.listView);
 
-        final List<Quiz> quizList = EdwinDatabase.getAppDatabase(view.getContext()).quizDao().findAllQuiz();
+        final List<Quiz> quizList = EdwinDatabase.getAppDatabase(view.getContext()).quizDao()
+                .findAllQuiz();
 
         //Création de la ArrayList qui nous permettra de remplire la listView
-        ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
+        ArrayList<HashMap<String, String>> listItem = new ArrayList<>();
         //On déclare la HashMap qui contiendra les informations pour un item
         HashMap<String, String> map;
 
 
-        //On refait la manip plusieurs fois avec des données différentes pour former les items de notre ListView
+        //On refait la manip plusieurs fois avec des données différentes pour former les items de
+        // notre ListView
         for (Quiz quiz : quizList) {
-            map = new HashMap<String, String>();
+            map = new HashMap<>();
             map.put("titre", quiz.getNomQuiz());
             //xmap.put("img", String.valueOf(R.drawable.logo_quiz));
             map.put("arrow", String.valueOf(R.drawable.logo_arrowright));
             listItem.add(map);
         }
 
-        //Création d'un SimpleAdapter qui se chargera de mettre les items présent dans notre list (listItem) dans la vue affichageitem
+        //Création d'un SimpleAdapter qui se chargera de mettre les items présent dans notre list
+        // (listItem) dans la vue affichageitem
         SimpleAdapter mSchedule = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             mSchedule = new SimpleAdapter(getContext(), listItem, R.layout.fiche_item,
@@ -95,7 +103,8 @@ public class QuizFragment extends Fragment {
                 fragment.setArguments(bundle);
                 // Très important !!
                 //la méthode .addToBackStack permet d'utiliser le bouton retour dans le fragment
-                getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.layout_fragment_fiche_1, fragment).commit();
+                getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id
+                        .layout_fragment_fiche_1, fragment).commit();
             }
         });
     }

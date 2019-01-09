@@ -1,4 +1,4 @@
-package fr.eseo.pfe.edwin.FirstLaunch;
+package fr.eseo.pfe.edwin.launch;
 
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import fr.eseo.pfe.edwin.R;
-import fr.eseo.pfe.edwin.Util.ViewPagerAdapter;
+import fr.eseo.pfe.edwin.utilitaires.ViewPagerAdapter;
 
 public class TutorialActivity extends AppCompatActivity {
 
@@ -23,9 +23,9 @@ public class TutorialActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tutorial_image_slider);
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        viewPager = findViewById(R.id.viewPager);
 
-        sliderDotspanel = (LinearLayout) findViewById(R.id.SliderDots);
+        sliderDotspanel = findViewById(R.id.SliderDots);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
 

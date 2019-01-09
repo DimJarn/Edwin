@@ -4,19 +4,17 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import es.dmoral.toasty.Toasty;
-
+/**
+ * Fragment Resultat Quiz, extends de Fragment
+ * Affichage de la page Resultat Quiz et intégration du menu
+ */
 public class QuizzResultatFragment extends Fragment {
 
     /**
@@ -29,32 +27,32 @@ public class QuizzResultatFragment extends Fragment {
     }
 
     /**
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
+     * @param inflater           l'inflater
+     * @param container          le container
+     * @param savedInstanceState l'instance
+     * @return la vue
      */
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.quiz_resultat_reponse, container, false);
-        return view;
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle
+            savedInstanceState) {
+        return inflater.inflate(R.layout.quiz_resultat_reponse, container, false);
     }
 
     /**
-     * @param view
-     * @param savedInstanceState
+     * @param view               la vue
+     * @param savedInstanceState l'instance
      */
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         //get text view
-        TextView t = (TextView) getActivity().findViewById(R.id.textResultat);
+        TextView t = getActivity().findViewById(R.id.textResultat);
         //get text view
-        TextView ts = (TextView) getActivity().findViewById(R.id.score);
+        TextView ts = getActivity().findViewById(R.id.score);
         //get image view
-        ImageView i = (ImageView) getActivity().findViewById(R.id.imageResult);
+        ImageView i = getActivity().findViewById(R.id.imageResult);
         //get score
         Bundle bundle = this.getArguments();
         int score = bundle.getInt("score");
@@ -129,7 +127,7 @@ public class QuizzResultatFragment extends Fragment {
                 ts.setText("Oups");
         }
 
-        Button buttonHome = (Button)view.findViewById(R.id.buttonHome);
+        Button buttonHome = view.findViewById(R.id.buttonHome);
         buttonHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), AccueilActivity.class);
@@ -137,7 +135,7 @@ public class QuizzResultatFragment extends Fragment {
             }
         });
 
-        Button buttonQuiz = (Button)view.findViewById(R.id.buttonAgain);
+        Button buttonQuiz = view.findViewById(R.id.buttonAgain);
         buttonQuiz.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), QuizzActivity.class);

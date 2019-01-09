@@ -1,4 +1,4 @@
-package fr.eseo.pfe.edwin.Main;
+package fr.eseo.pfe.edwin.main;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,8 +20,8 @@ import fr.eseo.pfe.edwin.ParametresActivity;
 import fr.eseo.pfe.edwin.QuizzActivity;
 import fr.eseo.pfe.edwin.R;
 
-import static fr.eseo.pfe.edwin.Util.LogUtil.logD;
-import static fr.eseo.pfe.edwin.Util.LogUtil.makeLogTag;
+import static fr.eseo.pfe.edwin.utilitaires.LogUtil.logD;
+import static fr.eseo.pfe.edwin.utilitaires.LogUtil.makeLogTag;
 
 /**
  * Classe Main qui gère :

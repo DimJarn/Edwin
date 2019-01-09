@@ -19,14 +19,19 @@ import java.util.HashMap;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
-import fr.eseo.pfe.edwin.Util.TinyDB;
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
 import fr.eseo.pfe.edwin.data.FicheInformative;
+import fr.eseo.pfe.edwin.utilitaires.TinyDB;
 
+/**
+ * Fragment VosFicheFragment extends de Fragment
+ * Affichage de la page VosFicheActivity et intégration du menu
+ * Présence boutons sur cette activité
+ * Fragments liés a cette activité
+ */
 public class VosFichesFragment extends Fragment {
 
     FragmentActivity listener;
-    private ListView mListView;
 
     public static VosFichesFragment newInstance() {
         return (new VosFichesFragment());
@@ -51,10 +56,9 @@ public class VosFichesFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mListView = (ListView) view.findViewById(R.id.listView);
+        ListView mListView = view.findViewById(R.id.listView);
         TextView emptyTextView = view.findViewById(android.R.id.empty);
         mListView.setEmptyView(emptyTextView);
-        // setUpButton();
 
         TinyDB tinydb = new TinyDB(getContext());
         List<Integer> listeIdsFichesFavorites = tinydb.getListInt("listeFicheInformativeIdFiche");
@@ -73,14 +77,14 @@ public class VosFichesFragment extends Fragment {
         }
 
         //Création de la ArrayList qui nous permettra de remplire la listView
-        ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
+        ArrayList<HashMap<String, String>> listItem = new ArrayList<>();
         HashMap<String, String> map;
 
 
         //On refait la manip plusieurs fois avec des données différentes pour former les items de
         // notre ListView
         for (FicheInformative ficheInformative : fichesFavs) {
-            map = new HashMap<String, String>();
+            map = new HashMap<>();
             map.put("titre", ficheInformative.getNomOperation());
             //map.put("img", String.valueOf(R.drawable.logo_star));
             map.put("arrow", String.valueOf(R.drawable.logo_arrowright));

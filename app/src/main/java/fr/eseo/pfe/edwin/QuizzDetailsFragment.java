@@ -20,6 +20,10 @@ import es.dmoral.toasty.Toasty;
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
 import fr.eseo.pfe.edwin.data.Question;
 
+/**
+ * Fragment Detail Quiz, extends de Fragment
+ * Affichage de la page Detail Quiz et intégration du menu
+ */
 public class QuizzDetailsFragment extends Fragment {
 
     public static final String YOUR_SCORE = "Your score";
@@ -30,16 +34,14 @@ public class QuizzDetailsFragment extends Fragment {
     RadioButton radioButton1;
     RadioButton radioButton2;
     RadioButton radioButton3;
-    private RadioGroup radioGroup;
     Button buttonSuivant;
-    private List<Question> listQuestions;
-    private TextView numeroQuestionTextView;
-    private TextView nomQuiz;
-
     ProgressBar androidProgressBar;
     int progressStatusCounter = 0;
     TextView textView;
     Handler progressHandler = new Handler();
+    private RadioGroup radioGroup;
+    private List<Question> listQuestions;
+    private TextView numeroQuestionTextView;
 
     /**
      * Methode newInstance()
@@ -53,12 +55,75 @@ public class QuizzDetailsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        textViewQuiz = (TextView) view.findViewById(R.id.nom_quiz);
-        numeroQuestionTextView = (TextView) view.findViewById(R.id.quiz_question_numero);
-        nomQuiz = (TextView) view.findViewById(R.id.nom_du_quiz);
+        textViewQuiz = view.findViewById(R.id.nom_quiz);
+        numeroQuestionTextView = view.findViewById(R.id.quiz_question_numero);
+        TextView nomQuiz = view.findViewById(R.id.nom_du_quiz);
 
-        androidProgressBar = (ProgressBar) view.findViewById(R.id.horizontal_progress_bar);
+        androidProgressBar = view.findViewById(R.id.horizontal_progress_bar);
         //Start progressing bar
+        startProgressingBar();
+
+        Bundle bundleIdQuiz = this.getArguments();
+        final int idQuiz = bundleIdQuiz.getInt("idQuiz");
+
+        String titreQuiz = EdwinDatabase.getAppDatabase(textViewQuiz.getContext()).quizDao()
+                .findQuizFromId(idQuiz).getNomQuiz();
+        nomQuiz.setText(titreQuiz);
+
+        listQuestions = EdwinDatabase.getAppDatabase(textViewQuiz.getContext()).questionDao()
+                .findQuestionFromIdQuiz(idQuiz);
+        currentQuestion = listQuestions.get(questionId);
+
+        radioButton1 = view.findViewById(R.id.radioBtn1);
+        radioButton2 = view.findViewById(R.id.radioBtn2);
+        radioButton3 = view.findViewById(R.id.radioBtn3);
+        buttonSuivant = view.findViewById(R.id.buttonNext);
+
+        setQuestionView();
+
+        //Enfin on met un écouteur d'évènement sur notre listView
+        buttonSuivant.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                RadioButton answer = getActivity().findViewById(radioGroup
+                        .getCheckedRadioButtonId());
+                int idRadioGroup = radioGroup.getCheckedRadioButtonId();
+                radioGroup.clearCheck();
+
+                if (idRadioGroup == -1) {
+                    // no radio buttons are checked
+                    Toasty.error(getContext(), "Aucune réponse selectionnée.", Toast
+                            .LENGTH_SHORT, true).show();
+                } else {
+                    // one of the radio buttons is checked
+                    if (currentQuestion.getReponse().contentEquals(answer.getText())) {
+                        score++;
+                        Log.d(YOUR_SCORE, YOUR_SCORE + score);
+                    }
+                    if (questionId < 5) {
+                        currentQuestion = listQuestions.get(questionId);
+                        setQuestionView();
+                    } else {
+                        Bundle bundle1 = new Bundle();
+                        bundle1.putInt("score", score);
+                        Bundle bundle2 = new Bundle();
+                        bundle2.putInt("idQuiz", idQuiz);
+                        Fragment fragment = QuizzResultatFragment.newInstance();
+                        fragment.setArguments(bundle1);
+                        fragment.setArguments(bundle2);
+                        getFragmentManager().beginTransaction().replace(R.id.layoutFicheDetail,
+                                fragment).commit();
+
+                    }
+                }
+            }
+
+        });
+    }
+
+    private void startProgressingBar() {
         new Thread(new Runnable() {
             public void run() {
                 while (progressStatusCounter < 100) {
@@ -66,7 +131,7 @@ public class QuizzDetailsFragment extends Fragment {
                     androidProgressBar.setProgress(progressStatusCounter);
                     progressHandler.post(new Runnable() {
                         public void run() {
-                            switch (questionId ) {
+                            switch (questionId) {
                                 case 1:
                                     progressStatusCounter = 0;
                                     androidProgressBar.setProgress(progressStatusCounter);
@@ -101,85 +166,25 @@ public class QuizzDetailsFragment extends Fragment {
                 }
             }
         }).start();
-
-        Bundle bundleIdQuiz = this.getArguments();
-        final int idQuiz = bundleIdQuiz.getInt("idQuiz");
-
-        String titreQuiz = EdwinDatabase.getAppDatabase(textViewQuiz.getContext()).quizDao()
-                .findQuizFromId(idQuiz).getNomQuiz();
-        nomQuiz.setText(titreQuiz);
-
-        listQuestions = EdwinDatabase.getAppDatabase(textViewQuiz.getContext()).questionDao()
-                .findQuestionFromIdQuiz(idQuiz);
-        currentQuestion = listQuestions.get(questionId);
-
-        radioButton1 = (RadioButton) view.findViewById(R.id.radioBtn1);
-        radioButton2 = (RadioButton) view.findViewById(R.id.radioBtn2);
-        radioButton3 = (RadioButton) view.findViewById(R.id.radioBtn3);
-        buttonSuivant = (Button) view.findViewById(R.id.buttonNext);
-
-        setQuestionView();
-
-        //Enfin on met un écouteur d'évènement sur notre listView
-        buttonSuivant.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                RadioButton answer = (RadioButton) getActivity().findViewById(radioGroup
-                        .getCheckedRadioButtonId());
-                int idRadioGroup = radioGroup.getCheckedRadioButtonId();
-                radioGroup.clearCheck();
-
-                if (idRadioGroup == -1) {
-                    // no radio buttons are checked
-                    Toasty.error(getContext(), "Aucune réponse selectionnée.", Toast
-                            .LENGTH_SHORT, true).show();
-                } else {
-                    // one of the radio buttons is checked
-                    if (currentQuestion.getReponse().equals(answer.getText())) {
-                        score++;
-                        Log.d(YOUR_SCORE, YOUR_SCORE + score);
-                    }
-                    if (questionId < 5) {
-                        currentQuestion = listQuestions.get(questionId);
-                        setQuestionView();
-                    } else {
-                        Bundle bundle1 = new Bundle();
-                        bundle1.putInt("score", score);
-                        Bundle bundle2 = new Bundle();
-                        bundle2.putInt("idQuiz", idQuiz);
-                        Fragment fragment = QuizzResultatFragment.newInstance();
-                        fragment.setArguments(bundle1);
-                        fragment.setArguments(bundle2);
-                        getFragmentManager().beginTransaction().replace(R.id.layoutFicheDetail,
-                                fragment).commit();
-
-                    }
-                }
-            }
-
-        });
     }
 
     /**
      * Création de la vue
      *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
+     * @param inflater l'inflater
+     * @param container le container
+     * @param savedInstanceState l'instance
+     * @return la vue
      */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+            savedInstanceState) {
         View view = inflater.inflate(R.layout.quizz_details_fragment, container, false);
         radioGroup = (RadioGroup) view.findViewById(R.id.radioGp1);
         return view;
     }
 
     private void setQuestionView() {
-
-
         textViewQuiz.setText(currentQuestion.getIntitule());
         numeroQuestionTextView.setText("Question n°" + (questionId + 1) + " :");
         radioButton1.setText(currentQuestion.getChoix1());

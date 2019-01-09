@@ -11,53 +11,34 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import es.dmoral.toasty.Toasty;
-import fr.eseo.pfe.edwin.Util.ExpandableAdapter;
-import fr.eseo.pfe.edwin.Util.TinyDB;
 import fr.eseo.pfe.edwin.data.ContenuFiche;
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
 import fr.eseo.pfe.edwin.data.FicheInformative;
+import fr.eseo.pfe.edwin.utilitaires.TinyDB;
 
 public class FicheDetailsFragment extends Fragment {
     public static final String LISTE_FICHE_INFORMATIVE_ID_FICHE = "listeFicheInformativeIdFiche";
-    View.OnClickListener btnClicked = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Object tag = v.getTag();
-            Toast.makeText(getContext(), "clicked button" + tag + " / ID", Toast.LENGTH_SHORT)
-                    .show();
 
-            Bundle bundle = new Bundle();
-            bundle.putInt("idTerme", (Integer) tag);
+    private FicheInformative ficheInformative;
 
-            Fragment fragment = GlossaireDetailsFragment.newInstance();
-            fragment.setArguments(bundle);
-            getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id
-                    .layoutFicheDetail, fragment).commit();
-        }
-    };
+    /* LAST VERSION
+    private ListView mListView;
     private ExpandableListView listView;
     private ExpandableAdapter listAdapter;
     private List<String> listDataheader;
     private HashMap<String, List<String>> listHash;
-    private TextView textViewTitre;
-    private TextView textViewTitrePourquoiOpération;
-
-    private FicheInformative ficheInformative;
-    private ListView mListView;
+    */
 
     /**
      * Methode newInstance()
@@ -71,7 +52,7 @@ public class FicheDetailsFragment extends Fragment {
     /**
      * Creation
      *
-     * @param savedInstanceState
+     * @param savedInstanceState l'instance sauvegardée
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -83,22 +64,21 @@ public class FicheDetailsFragment extends Fragment {
     /**
      * Création de la vue
      *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
+     * @param inflater           le layout
+     * @param container          le container
+     * @param savedInstanceState l'instance sauvegardée
+     * @return la vue
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
             savedInstanceState) {
-        View view = inflater.inflate(R.layout.fiche_details_fragment, container, false);
-        return view;
+        return inflater.inflate(R.layout.fiche_details_fragment, container, false);
     }
 
     /**
      * creation après
      *
-     * @param savedInstanceState
+     * @param savedInstanceState l'instance
      */
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -120,55 +100,55 @@ public class FicheDetailsFragment extends Fragment {
 
         ficheInformative = EdwinDatabase.getAppDatabase(getContext())
                 .ficheInformativeDao().findFicheInformativeFromId(idFiche);
-        textViewTitre = (TextView) getView().findViewById(R.id.nom_operation);
+        TextView textViewTitre = getView().findViewById(R.id.nom_operation);
         textViewTitre.setText(ficheInformative.getNomOperation());
 
         ContenuFiche listeFiches = EdwinDatabase.getAppDatabase(getContext())
                 .contenuFicheDao().findContenuFicheFromId(idFiche);
 
         // sample code snippet to set the text content on the ExpandableTextView
-        ExpandableTextView expTv = (ExpandableTextView) getView().findViewById(R.id
+        ExpandableTextView expTv = getView().findViewById(R.id
                 .expand_text_viewRappelAnatomique);
         // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
         expTv.setText(listeFiches.getRappelAnatomique());
 
         // sample code snippet to set the text content on the ExpandableTextView
-        ExpandableTextView expTv1 = (ExpandableTextView) getView().findViewById(R.id
+        ExpandableTextView expTv1 = getView().findViewById(R.id
                 .expand_text_view);
         // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
         expTv1.setText(listeFiches.getMaladie());
 
 
-        ExpandableTextView expTvPourquoiOpérer = (ExpandableTextView) getView().findViewById(R.id
+        ExpandableTextView expTvPourquoiOperer = getView().findViewById(R.id
                 .expand_text_view_PourquoiOpération);
         // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
-        expTvPourquoiOpérer.setText(listeFiches.getRisquesMaladie());
+        expTvPourquoiOperer.setText(listeFiches.getRisquesMaladie());
 
 
-        ExpandableTextView expTvPrincipeIntervention = (ExpandableTextView) getView().findViewById
+        ExpandableTextView expTvPrincipeIntervention = getView().findViewById
                 (R.id.expand_text_view_PrincipesIntervention);
         // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
         expTvPrincipeIntervention.setText(listeFiches.getPrincipe());
 
-        ExpandableTextView expTvTechniquesOperatoires = (ExpandableTextView) getView().findViewById
+        ExpandableTextView expTvTechniquesOperatoires = getView().findViewById
                 (R.id.expand_text_view_TechniquesOperatoires);
         // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
         expTvTechniquesOperatoires.setText(listeFiches.getTechnique());
 
 
-        ExpandableTextView expTvTechniquesSuitesHabituelles = (ExpandableTextView) getView()
+        ExpandableTextView expTvTechniquesSuitesHabituelles = getView()
                 .findViewById(R.id.expand_text_view_SuitesHabituelles);
         // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
         expTvTechniquesSuitesHabituelles.setText(listeFiches.getSuites());
 
 
-        ExpandableTextView expTvTechniquesRisquesLiés = (ExpandableTextView) getView()
+        ExpandableTextView expTvTechniquesRisquesLies = getView()
                 .findViewById(R.id.expand_text_view_Risquesliés);
         // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
-        expTvTechniquesRisquesLiés.setText(listeFiches.getRisquesOperation());
+        expTvTechniquesRisquesLies.setText(listeFiches.getRisquesOperation());
 
 
-        ExpandableTextView expTvTechniquesSuivi = (ExpandableTextView) getView()
+        ExpandableTextView expTvTechniquesSuivi = getView()
                 .findViewById(R.id.expand_text_view_Suivi);
         // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
         expTvTechniquesSuivi.setText(listeFiches.getSuivi());
@@ -244,7 +224,7 @@ public class FicheDetailsFragment extends Fragment {
                 ArrayList<Integer> allIdFicheStocked2 = tinydb2.getListInt
                         (LISTE_FICHE_INFORMATIVE_ID_FICHE);
                 if (allIdFicheStocked2.contains(ficheInformative.getIdFiche())) {
-                    allIdFicheStocked2.remove(new Integer(ficheInformative.getIdFiche()));
+                    allIdFicheStocked2.remove(Integer.valueOf(ficheInformative.getIdFiche()));
                     tinydb2.putListInt(LISTE_FICHE_INFORMATIVE_ID_FICHE, allIdFicheStocked2);
                     Toasty.warning(getContext(), "Fiche supprimée des favoris !", Toast
                             .LENGTH_SHORT, true).show();
@@ -252,11 +232,9 @@ public class FicheDetailsFragment extends Fragment {
                     allIdFicheStocked2.add(ficheInformative.getIdFiche());
                     Set set2 = new HashSet();
                     set2.addAll(allIdFicheStocked2);
-                    ArrayList<Integer> uniqueIdStocked2 = new ArrayList<Integer>(set2);
+                    ArrayList<Integer> uniqueIdStocked2 = new ArrayList<>(set2);
                     tinydb2.putListInt(LISTE_FICHE_INFORMATIVE_ID_FICHE, uniqueIdStocked2);
 
-                    //Toast.makeText(getContext(), "Fiche ajoutée aux favoris", Toast.LENGTH_LONG)
-                    //        .show();
                     Toasty.success(getContext(), "Fiche ajoutée aux favoris !", Toast
                             .LENGTH_SHORT, true).show();
                 }

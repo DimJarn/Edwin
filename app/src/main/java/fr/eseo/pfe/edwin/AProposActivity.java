@@ -1,7 +1,7 @@
 package fr.eseo.pfe.edwin;
 
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -9,10 +9,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
-import fr.eseo.pfe.edwin.Main.MainActivity;
+import java.util.Objects;
+
+import fr.eseo.pfe.edwin.main.MainActivity;
 
 /**
- * Acitivté A Propos, extends de la Main Activité
+ * Activté A Propos, extends de la Main Activité
  * Affichage de la page A propos et intégration du menu
  * Pas de boutons sur cette activité
  * Pas de fragments liés a cette activité
@@ -30,19 +32,25 @@ public class AProposActivity extends MainActivity {
         setContentView(R.layout.a_propos_activity);
         setupToolbar(); // to integrate the menu
         animateIconMenu();
-
-
     }
 
+    /**
+     * Methode privée pour animer l'icone
+     */
     private void animateIconMenu() {
         //to animate icon menu
-        toolbar = (Toolbar) findViewById(R.id.toolbar_real);
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toolbar = findViewById(R.id.toolbar_real);
+        mDrawer = findViewById(R.id.drawer_layout);
         drawerToggle = setupDrawerToggle();
         // Tie DrawerLayout events to the ActionBarToggle
         mDrawer.addDrawerListener(drawerToggle);
     }
 
+    /**
+     * Methode privée pour initialiser le drawer toogle
+     *
+     * @return the action bar
+     */
     private ActionBarDrawerToggle setupDrawerToggle() {
         // NOTE: Make sure you pass in a valid toolbar reference.  ActionBarDrawToggle() does not
         // require it
@@ -65,19 +73,8 @@ public class AProposActivity extends MainActivity {
         final ActionBar ab = getActionBarToolbar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Informations");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Informations");
 
-    }
-
-    /**
-     * Updated the checked item in the navigation drawer
-     *
-     * @param navigationView the navigation view
-     */
-    private void setSelectedItem(NavigationView navigationView) {
-        // Which navigation item should be selected?
-        int selectedItem = getSelfNavDrawerItem(); // subclass has to override this method
-        navigationView.setCheckedItem(selectedItem);
     }
 
     /**
@@ -90,7 +87,7 @@ public class AProposActivity extends MainActivity {
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return false;
     }
 
@@ -106,11 +103,11 @@ public class AProposActivity extends MainActivity {
     }
 
     /**
-     * @Override public boolean onCreateOptionsMenu(Menu menu) {
-     * getMenuInflater().inflate(R.menu.sample_actions, menu);
-     * return true;
-     * }
-     **/
+     * Methode qui attribue une action en fonction de l'option selectionnée
+     *
+     * @param item l'item du menu selectionné
+     * @return item l'item seletionné
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

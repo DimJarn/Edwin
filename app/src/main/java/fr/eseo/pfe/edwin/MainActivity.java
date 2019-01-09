@@ -15,7 +15,7 @@ import android.util.Log;
 import java.io.IOException;
 import java.io.InputStream;
 
-import fr.eseo.pfe.edwin.FirstLaunch.TutorialActivity;
+import fr.eseo.pfe.edwin.launch.TutorialActivity;
 
 
 public class MainActivity extends AppCompatActivity {
