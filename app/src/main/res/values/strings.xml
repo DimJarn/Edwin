@@ -65,6 +65,12 @@
     <string name="titre_def"> Définition :</string>
     <string name="glossaire_source"> Définition issue de Larousse.</string>
 
+    <!-- Glossaire details fragment -->
+
+    <string name="nom_item">Nom_item</string>
+    <string name="d_finition_du_mot">Définition du mot</string>
+    <string name="voir_la_fiche_correspondante">Voir la fiche correspondante</string>
+
 
     <!-- Fiche Detail Activity -->
 
@@ -73,7 +79,12 @@
     <string name="intro_operation"> L’intervention qui vous est proposée s’appelle la symphyse pleurale </string>
     <string name="rappel_anatomique">Rappel anatomique</string>
     <string name="la_maladie">La maladie</string>
-
+    <string name="pourquoiOperer">Pourquoi vous faire opérer - alternatives ?</string>
+    <string name="principes_de_l_intervention">Principes de l\'intervention</string>
+    <string name="techniques_op_ratoires">Techniques opératoires</string>
+    <string name="suites_habituelles">Suites habituelles</string>
+    <string name="risques_li_s">Risques liés</string>
+    <string name="suivi">Suivi</string>
 
     <!-- Parametres Details activity -->
 
@@ -89,8 +100,8 @@
     <string name="version_de_l_application">Version de l\'application</string>
     <string name="id_du_t_l_phone">ID du téléphone</string>
     <string name="contenu">Contenu :</string>
-    <string name="mode_developpeur">Mode developpeur</string>
-    <string name="modifier_l_addresse_de_la_bdd">Modifier l\'addresse de la BDD</string>
+    <string name="repondre_qcm">Répondre au QCM :</string>
+    <string name="lienQCM">Lien vers le QCM</string>
     <string name="evaluer_l_application">Evaluer l\'application</string>
     <string name="ouvrir_google_play">Ouvrir Google Play</string>
     <string name="contacter_les_d_veloppeurs">Contacter les développeurs</string>
@@ -102,6 +113,17 @@
     <!-- Quiz -->
 
     <string name="aucun_r_sultat">Aucun résultat.</string>
-
+    <string name="_1_seule_r_ponse_correcte">1 seule réponse correcte</string>
+    <string name="votre_score">Votre score</string>
+    <string name="_3_5">3/5</string>
+    <string name="recommencer_un_quiz">Recommencer un quiz</string>
+    <string name="menu">Menu</string>
+    <string name="titre">Titre</string>
+    <string name="question_numero">Question_numero</string>
+    <string name="nomquizz">nomQuizz</string>
+    <string name="radio_btn_1">Radio btn 1</string>
+    <string name="radio_btn_2">Radio btn 2</string>
+    <string name="radio_btn_3">Radio btn 3</string>
+    <string name="prochaine_question">Prochaine question</string>
 
 </resources>

@@ -41,11 +41,11 @@
                             android:layout_marginTop="15dp"
                             android:gravity="center"
                             android:padding="10dp"
-                            android:text="Votre score"
+                            android:text="@string/votre_score"
                             android:layout_gravity="center"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="35dp"
+                            android:textSize="35sp"
                             android:textStyle="bold" />
                         <TextView
                             android:id="@+id/score"
@@ -55,14 +55,15 @@
                             android:gravity="center"
                             android:layout_gravity="center"
                             android:padding="10dp"
-                            android:text="3/5"
+                            android:text="@string/_3_5"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                             android:textColor="@color/primaryColor"
-                            android:textSize="35dp"
+                            android:textSize="35sp"
                             android:textStyle="bold" />
 
                         <ImageView
                             android:layout_width="wrap_content"
+                            android:contentDescription="@string/description_image"
                             android:layout_height="wrap_content"
                             android:id="@+id/imageResult"
                             android:layout_marginTop="15dp"
@@ -85,7 +86,7 @@
                             style="@style/Widget.AppCompat.Button.Colored"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Recommencer un quiz"
+                            android:text="@string/recommencer_un_quiz"
                             android:textColor="@color/White" />
 
                         <Button
@@ -93,7 +94,7 @@
                             style="@style/Widget.AppCompat.Button.Colored"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Menu"
+                            android:text="@string/menu"
                             android:textColor="@color/White" />
 
                     </LinearLayout>

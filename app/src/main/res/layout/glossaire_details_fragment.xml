@@ -38,6 +38,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:contentDescription="@string/description_image"
                             android:layout_gravity="center"
                             android:padding="5dp"
                             android:src="@drawable/ic_information" />
@@ -48,7 +49,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Nom_item" />
+                            android:text="@string/nom_item" />
 
                         <TextView
                             style="@style/GlossaireThemeTitreDefinitionMotGlossaire"
@@ -66,7 +67,7 @@
                             android:layout_marginTop="10dp"
                             android:gravity="bottom"
                             android:padding="5dp"
-                            android:text="Définition du mot" />
+                            android:text="@string/d_finition_du_mot" />
 
 
                         <LinearLayout
@@ -78,7 +79,8 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_gravity="left"
+                                android:layout_gravity="start"
+                                android:contentDescription="@string/description_image"
                                 android:padding="5dp"
                                 android:src="@drawable/ic_from" />
 
@@ -103,7 +105,9 @@
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
                                 android:background="@color/secondaryColor"
-                                android:paddingLeft="5dp"
+                                android:contentDescription="@string/description_image"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
                                 android:src="@drawable/ic_loupe" />
 
                             <Button
@@ -113,7 +117,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@color/secondaryColor"
                                 android:padding="3dp"
-                                android:text="Voir la fiche correspondante" />
+                                android:text="@string/voir_la_fiche_correspondante" />
                         </LinearLayout>
 
                     </LinearLayout>

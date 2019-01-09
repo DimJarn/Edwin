@@ -105,15 +105,15 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/mode_developpeur"
+                android:id="@+id/repondre_qcm"
                 style="@style/ParametresThemeTextTitleSmall"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableEnd="@drawable/ic_menu_manage"
+                android:drawableEnd="@drawable/ic_question"
                 android:drawableTint="@color/secondaryColor"
                 android:background="@color/LightGreyColor"
                 android:gravity="start"
-                android:text="@string/mode_developpeur" />
+                android:text="@string/repondre_qcm" />
 
             <Button
                 android:id="@+id/idBtnModeDeveloppeur"
@@ -123,7 +123,7 @@
                 android:background="@color/LightGreyColor"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="@string/modifier_l_addresse_de_la_bdd" />
+                android:text="@string/lienQCM" />
 
             <View
                 android:layout_width="match_parent"

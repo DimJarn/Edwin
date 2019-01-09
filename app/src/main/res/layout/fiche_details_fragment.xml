@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 expandableTextView:animDuration="200"
-                expandableTextView:maxCollapsedLines="3">
+                expandableTextView:maxCollapsedLines="2">
 
                 <TextView
                     android:id="@id/expandable_text"
@@ -104,7 +104,7 @@
                     android:layout_gravity="end|bottom"
                     android:contentDescription="@string/description_image"
                     android:background="@android:color/transparent"
-                    android:padding="16dp" />
+                    android:padding="2dp" />
             </com.ms.square.android.expandabletextview.ExpandableTextView>
 
 
@@ -122,7 +122,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 expandableTextView:animDuration="200"
-                expandableTextView:maxCollapsedLines="3">
+                expandableTextView:maxCollapsedLines="2">
 
                 <TextView
                     android:id="@id/expandable_text"
@@ -139,11 +139,224 @@
                     android:contentDescription="@string/description_image"
                     android:layout_gravity="end|bottom"
                     android:background="@android:color/transparent"
-                    android:padding="16dp" />
+                    android:padding="2dp" />
             </com.ms.square.android.expandabletextview.ExpandableTextView>
 
 
-            <ExpandableListView
+            <TextView
+                android:id="@+id/titrePourquoiOpération"
+                style="@style/FicheThemeContenuTitre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@string/pourquoiOperer" />
+
+            <com.ms.square.android.expandabletextview.ExpandableTextView xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/expand_text_view_PourquoiOpération"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                expandableTextView:animDuration="200"
+                expandableTextView:maxCollapsedLines="2">
+
+                <TextView
+                    android:id="@id/expandable_text"
+                    style="@style/FicheThemeContenuTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <ImageButton
+                    android:id="@id/expand_collapse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/description_image"
+                    android:layout_gravity="end|bottom"
+                    android:background="@android:color/transparent"
+                    android:padding="2dp" />
+            </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+
+            <TextView
+                android:id="@+id/titrePrincipesIntervention"
+                style="@style/FicheThemeContenuTitre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@string/principes_de_l_intervention" />
+
+            <com.ms.square.android.expandabletextview.ExpandableTextView xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/expand_text_view_PrincipesIntervention"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                expandableTextView:animDuration="200"
+                expandableTextView:maxCollapsedLines="2">
+
+                <TextView
+                    android:id="@id/expandable_text"
+                    style="@style/FicheThemeContenuTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <ImageButton
+                    android:id="@id/expand_collapse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/description_image"
+                    android:layout_gravity="end|bottom"
+                    android:background="@android:color/transparent"
+                    android:padding="2dp" />
+            </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+
+            <TextView
+                android:id="@+id/titreTechniquesOpératoires"
+                style="@style/FicheThemeContenuTitre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@string/techniques_op_ratoires" />
+
+            <com.ms.square.android.expandabletextview.ExpandableTextView xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/expand_text_view_TechniquesOperatoires"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                expandableTextView:animDuration="200"
+                expandableTextView:maxCollapsedLines="2">
+
+                <TextView
+                    android:id="@id/expandable_text"
+                    style="@style/FicheThemeContenuTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <ImageButton
+                    android:id="@id/expand_collapse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/description_image"
+                    android:layout_gravity="end|bottom"
+                    android:background="@android:color/transparent"
+                    android:padding="2dp" />
+            </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+
+            <TextView
+                android:id="@+id/titreSuitesHabituelles"
+                style="@style/FicheThemeContenuTitre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@string/suites_habituelles" />
+
+            <com.ms.square.android.expandabletextview.ExpandableTextView xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/expand_text_view_SuitesHabituelles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                expandableTextView:animDuration="200"
+                expandableTextView:maxCollapsedLines="2">
+
+                <TextView
+                    android:id="@id/expandable_text"
+                    style="@style/FicheThemeContenuTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <ImageButton
+                    android:id="@id/expand_collapse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/description_image"
+                    android:layout_gravity="end|bottom"
+                    android:background="@android:color/transparent"
+                    android:padding="2dp" />
+            </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+
+            <TextView
+                android:id="@+id/titreRisquesliés"
+                style="@style/FicheThemeContenuTitre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@string/risques_li_s" />
+
+            <com.ms.square.android.expandabletextview.ExpandableTextView xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/expand_text_view_Risquesliés"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                expandableTextView:animDuration="200"
+                expandableTextView:maxCollapsedLines="2">
+
+                <TextView
+                    android:id="@id/expandable_text"
+                    style="@style/FicheThemeContenuTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <ImageButton
+                    android:id="@id/expand_collapse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/description_image"
+                    android:layout_gravity="end|bottom"
+                    android:background="@android:color/transparent"
+                    android:padding="2dp" />
+            </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+
+            <TextView
+                android:id="@+id/titreSuivi"
+                style="@style/FicheThemeContenuTitre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@string/suivi" />
+
+            <com.ms.square.android.expandabletextview.ExpandableTextView xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/expand_text_view_Suivi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                expandableTextView:animDuration="200"
+                expandableTextView:maxCollapsedLines="2">
+
+                <TextView
+                    android:id="@id/expandable_text"
+                    style="@style/FicheThemeContenuTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <ImageButton
+                    android:id="@id/expand_collapse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/description_image"
+                    android:layout_gravity="end|bottom"
+                    android:background="@android:color/transparent"
+                    android:padding="2dp" />
+            </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+
+            <!--<
+            LAST VERSION
+
+            ExpandableListView
                 android:id="@+id/expand"
                 android:childDivider="#00000000"
                 android:divider="#00000000"
@@ -152,7 +365,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
-
+-->
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

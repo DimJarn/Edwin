@@ -68,7 +68,7 @@ public class QuizFragment extends Fragment {
         for (Quiz quiz : quizList) {
             map = new HashMap<String, String>();
             map.put("titre", quiz.getNomQuiz());
-            map.put("img", String.valueOf(R.drawable.logo_quiz));
+            //xmap.put("img", String.valueOf(R.drawable.logo_quiz));
             map.put("arrow", String.valueOf(R.drawable.logo_arrowright));
             listItem.add(map);
         }
@@ -77,7 +77,7 @@ public class QuizFragment extends Fragment {
         SimpleAdapter mSchedule = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             mSchedule = new SimpleAdapter(getContext(), listItem, R.layout.fiche_item,
-                    new String[]{"img", "titre", "arrow"}, new int[]{R.id.img, R.id.titre, R.id.fleche});
+                    new String[]{"titre", "arrow"}, new int[]{R.id.titre, R.id.fleche});
         }
 
         //On attribut à notre listView l'adapter que l'on vient de créer

@@ -11,10 +11,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +30,6 @@ import fr.eseo.pfe.edwin.Util.TinyDB;
 import fr.eseo.pfe.edwin.data.ContenuFiche;
 import fr.eseo.pfe.edwin.data.EdwinDatabase;
 import fr.eseo.pfe.edwin.data.FicheInformative;
-import fr.eseo.pfe.edwin.data.Glossaire;
 
 public class FicheDetailsFragment extends Fragment {
     public static final String LISTE_FICHE_INFORMATIVE_ID_FICHE = "listeFicheInformativeIdFiche";
@@ -57,6 +54,8 @@ public class FicheDetailsFragment extends Fragment {
     private List<String> listDataheader;
     private HashMap<String, List<String>> listHash;
     private TextView textViewTitre;
+    private TextView textViewTitrePourquoiOpération;
+
     private FicheInformative ficheInformative;
     private ListView mListView;
 
@@ -104,27 +103,28 @@ public class FicheDetailsFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        listView = (ExpandableListView) getView().findViewById(R.id.expand);
+        //listView = (ExpandableListView) getView().findViewById(R.id.expand);
 
         Bundle bundle = this.getArguments();
         int myInt = bundle.getInt("idFiche");
 
         initData(myInt);
-        listAdapter = new ExpandableAdapter(getContext(), listDataheader, listHash);
-        listView.setAdapter(listAdapter);
+
+        //listAdapter = new ExpandableAdapter(getContext(), listDataheader, listHash);
+        //listView.setAdapter(listAdapter);
 
         //setButton();
     }
 
     private void initData(int idFiche) {
-        ContenuFiche listeFiches = EdwinDatabase.getAppDatabase(listView.getContext())
-                .contenuFicheDao().findContenuFicheFromId(idFiche);
 
-        ficheInformative = EdwinDatabase.getAppDatabase(listView.getContext())
+        ficheInformative = EdwinDatabase.getAppDatabase(getContext())
                 .ficheInformativeDao().findFicheInformativeFromId(idFiche);
         textViewTitre = (TextView) getView().findViewById(R.id.nom_operation);
         textViewTitre.setText(ficheInformative.getNomOperation());
 
+        ContenuFiche listeFiches = EdwinDatabase.getAppDatabase(getContext())
+                .contenuFicheDao().findContenuFicheFromId(idFiche);
 
         // sample code snippet to set the text content on the ExpandableTextView
         ExpandableTextView expTv = (ExpandableTextView) getView().findViewById(R.id
@@ -138,7 +138,46 @@ public class FicheDetailsFragment extends Fragment {
         // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
         expTv1.setText(listeFiches.getMaladie());
 
-        listDataheader = new ArrayList<>();
+
+        ExpandableTextView expTvPourquoiOpérer = (ExpandableTextView) getView().findViewById(R.id
+                .expand_text_view_PourquoiOpération);
+        // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
+        expTvPourquoiOpérer.setText(listeFiches.getRisquesMaladie());
+
+
+        ExpandableTextView expTvPrincipeIntervention = (ExpandableTextView) getView().findViewById
+                (R.id.expand_text_view_PrincipesIntervention);
+        // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
+        expTvPrincipeIntervention.setText(listeFiches.getPrincipe());
+
+        ExpandableTextView expTvTechniquesOperatoires = (ExpandableTextView) getView().findViewById
+                (R.id.expand_text_view_TechniquesOperatoires);
+        // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
+        expTvTechniquesOperatoires.setText(listeFiches.getTechnique());
+
+
+        ExpandableTextView expTvTechniquesSuitesHabituelles = (ExpandableTextView) getView()
+                .findViewById(R.id.expand_text_view_SuitesHabituelles);
+        // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
+        expTvTechniquesSuitesHabituelles.setText(listeFiches.getSuites());
+
+
+        ExpandableTextView expTvTechniquesRisquesLiés = (ExpandableTextView) getView()
+                .findViewById(R.id.expand_text_view_Risquesliés);
+        // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
+        expTvTechniquesRisquesLiés.setText(listeFiches.getRisquesOperation());
+
+
+        ExpandableTextView expTvTechniquesSuivi = (ExpandableTextView) getView()
+                .findViewById(R.id.expand_text_view_Suivi);
+        // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
+        expTvTechniquesSuivi.setText(listeFiches.getSuivi());
+
+
+        //LAST VERSION
+
+
+ /*       listDataheader = new ArrayList<>();
         listHash = new HashMap<>();
 
 
@@ -156,7 +195,6 @@ public class FicheDetailsFragment extends Fragment {
         principes.add(listeFiches.getPrincipe());
 
         List<String> techniques = new ArrayList<>();
-        System.out.println("Techniques opératoires" + listeFiches.getTechnique());
         techniques.add(listeFiches.getTechnique());
 
         List<String> suites = new ArrayList<>();
@@ -174,90 +212,7 @@ public class FicheDetailsFragment extends Fragment {
         listHash.put(listDataheader.get(3), suites);
         listHash.put(listDataheader.get(4), risques);
         listHash.put(listDataheader.get(5), suivi);
-
-    }
-
-    private void setButton() {
-        final List<Glossaire> listeMotGlossaire = EdwinDatabase.getAppDatabase(listView
-                .getContext())
-                .glossaireDao().findItemGlossaireFromRefFiche(ficheInformative.getIdFiche());
-
-        mListView = (ListView) getView().findViewById(R.id.listView);
-
-        if (!listeMotGlossaire.isEmpty()) {
-
-            /*List<String> mot = new ArrayList<>();
-            List<Integer> idMotGlossaire = new ArrayList<>();
-            for(Glossaire glossaire: listeMotGlossaire){
-                mot.add(glossaire.getNomTerme());
-                idMotGlossaire.add(glossaire.getIdTerme());
-            }
-
-            Button[] btnWord = new Button[listeMotGlossaire.size()];
-            CoordinatorLayout linear;
-            linear = (CoordinatorLayout) getView().findViewById(R.id.linearLayout);
-            for (int i = 0; i < btnWord.length; i++) {
-                btnWord[i] = new Button(getContext());
-                btnWord[i].setHeight(50);
-                btnWord[i].setWidth(50);
-                btnWord[i].setTag(idMotGlossaire.get(i));
-                btnWord[i].setOnClickListener(btnClicked);
-                btnWord[i].setText(mot.get(i));
-                linear.addView(btnWord[i]);
-            }
 */
-
-            //Création de la ArrayList qui nous permettra de remplire la listView
-            ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
-            //On déclare la HashMap qui contiendra les informations pour un item
-            HashMap<String, String> map;
-
-            //On refait la manip plusieurs fois avec des données différentes pour former les
-            // items de
-            // notre ListView
-            for (Glossaire glossaire : listeMotGlossaire) {
-                map = new HashMap<String, String>();
-                map.put("titre", glossaire.getNomTerme());
-                map.put("img", String.valueOf(R.drawable.logo_cancel));
-                map.put("arrow", String.valueOf(R.drawable.logo_arrowright));
-                listItem.add(map);
-            }
-
-            //Création d'un SimpleAdapter qui se chargera de mettre les items présent dans notre
-            // list
-            // (listItem) dans la vue affichageitem
-            SimpleAdapter mSchedule = null;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                mSchedule = new SimpleAdapter(getContext(), listItem, R.layout.fiche_item,
-                        new String[]{"img", "titre", "arrow"}, new int[]{R.id.img, R.id.titre, R.id
-                        .fleche});
-            }
-
-            //On attribut à notre listView l'adapter que l'on vient de créer
-            mListView.setAdapter(mSchedule);
-
-            //Enfin on met un écouteur d'évènement sur notre listView
-            mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                    //on récupère la HashMap contenant les infos de notre item (titre,
-                    // description, img)
-                    HashMap<String, String> map = (HashMap<String, String>) mListView
-                            .getItemAtPosition(position);
-
-                    int idTerme = listeMotGlossaire.get(position).getIdTerme();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("idTerme", (Integer) idTerme);
-
-                    Fragment fragment = GlossaireDetailsFragment.newInstance();
-                    fragment.setArguments(bundle);
-                    getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id
-                            .layoutFicheDetail, fragment).commit();
-                }
-            });
-
-        }
-
     }
 
     @Override

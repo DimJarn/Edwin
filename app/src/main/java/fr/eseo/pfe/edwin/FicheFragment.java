@@ -61,7 +61,7 @@ public class FicheFragment extends Fragment {
         for (FicheInformative ficheInformative : listeFiches) {
             map = new HashMap<String, String>();
             map.put("titre", ficheInformative.getNomOperation());
-            map.put("img", String.valueOf(R.drawable.logo_sheets));
+            //map.put("img", String.valueOf(R.drawable.logo_sheets));
             map.put("arrow", String.valueOf(R.drawable.logo_arrowright));
             listItem.add(map);
         }
@@ -72,7 +72,7 @@ public class FicheFragment extends Fragment {
         SimpleAdapter mSchedule = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             mSchedule = new SimpleAdapter(getContext(), listItem, R.layout.fiche_item,
-                    new String[]{"img", "titre", "arrow"}, new int[]{R.id.img, R.id.titre, R.id
+                    new String[]{"titre", "arrow"}, new int[]{R.id.titre, R.id
                     .fleche});
         }
 

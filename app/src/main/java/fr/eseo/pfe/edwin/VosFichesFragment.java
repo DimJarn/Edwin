@@ -82,7 +82,7 @@ public class VosFichesFragment extends Fragment {
         for (FicheInformative ficheInformative : fichesFavs) {
             map = new HashMap<String, String>();
             map.put("titre", ficheInformative.getNomOperation());
-            map.put("img", String.valueOf(R.drawable.logo_star));
+            //map.put("img", String.valueOf(R.drawable.logo_star));
             map.put("arrow", String.valueOf(R.drawable.logo_arrowright));
             listItem.add(map);
         }
@@ -92,7 +92,7 @@ public class VosFichesFragment extends Fragment {
         SimpleAdapter mSchedule = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             mSchedule = new SimpleAdapter(getContext(), listItem, R.layout.fiche_item,
-                    new String[]{"img", "titre", "arrow"}, new int[]{R.id.img, R.id.titre, R.id
+                    new String[]{"titre", "arrow"}, new int[]{R.id.titre, R.id
                     .fleche});
         }
 
@@ -121,23 +121,4 @@ public class VosFichesFragment extends Fragment {
         super.onDetach();
         this.listener = null;
     }
-
-    /* *//**
-     * Methode pour initialiser les boutons de la page d'accueil
-     *//*
-    private void setUpButton() {
-        final FloatingActionButton fab = getView().findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toasty.info(getContext(), "Ajouter des fiches !", Toast.LENGTH_SHORT,
-                        true)
-                        .show();
-                startActivity(new Intent(getContext(), FicheActivity.class));
-
-            }
-        });
-
-    }*/
-
 }
