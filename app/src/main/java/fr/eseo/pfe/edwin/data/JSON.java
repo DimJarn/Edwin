@@ -73,8 +73,6 @@ public class JSON {
                 // On récupère un objet JSON du tableau
                 JSONObject objFiche = new JSONObject(array.getString(i));
 
-                System.out.println(objFiche);
-
                 FicheInformative ficheInformative = new FicheInformative();
 
                 ficheInformative.setIdFiche(objFiche.getInt("idFiche"));
@@ -131,8 +129,6 @@ public class JSON {
                 // On récupère un objet JSON du tableau
                 JSONObject objContenuFiche = new JSONObject(array.getString(i));
 
-                System.out.println(objContenuFiche);
-
                 ContenuFiche contenuFiche = new ContenuFiche();
 
                 contenuFiche.setIdContenuFiche(objContenuFiche.getInt("idContenuFiche"));
@@ -157,12 +153,32 @@ public class JSON {
         return contenuFicheArrayList;
     }
 
+    public static String getJSONContenuFiche(){
+
+        String result = "";
+
+        try {
+            String myurl = "http://simonchirat.com/contenufiche.php";
+            URL url = new URL(myurl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            connection.setRequestMethod("GET");
+
+            result = new RetrieveFeedTask().execute(connection).get();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
     public static ArrayList<Glossaire> getGlossaire(){
 
         ArrayList<Glossaire> glossaire = new ArrayList<Glossaire>();
 
         try {
-            String myurl= "http://effi-qua-propre-services.fr/glossaire.php";
+            String myurl= "http://simonchirat.com/glossaireJSON.php";
             URL url = new URL(myurl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -176,8 +192,6 @@ public class JSON {
             for (int i = 0; i < array.length(); i++) {
                 // On récupère un objet JSON du tableau
                 JSONObject objGlossaire = new JSONObject(array.getString(i));
-
-                System.out.println(objGlossaire);
 
                 Glossaire terme = new Glossaire();
 
@@ -237,8 +251,6 @@ public class JSON {
                 // On récupère un objet JSON du tableau
                 JSONObject objQuiz = new JSONObject(array.getString(i));
 
-                System.out.println(objQuiz);
-
                 Quiz quiz = new Quiz();
 
                 quiz.setIdQuiz(objQuiz.getInt("idQuiz"));
@@ -295,8 +307,6 @@ public class JSON {
                 // On récupère un objet JSON du tableau
                 JSONObject objQuestion = new JSONObject(array.getString(i));
 
-                System.out.println(objQuestion);
-
                 Question question = new Question();
 
                question.setIdQuestion(objQuestion.getInt("idQuestion"));
@@ -318,6 +328,27 @@ public class JSON {
         return questions;
     }
 
+    public static String getJSONQuestions(){
+
+        String result = "";
+
+        try {
+            String myurl = "http://simonchirat.com/questions.php";
+            URL url = new URL(myurl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            connection.setRequestMethod("GET");
+
+            result = new RetrieveFeedTask().execute(connection).get();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
     public static class RetrieveFeedTask extends AsyncTask<HttpURLConnection, Void, String> {
 
         private Exception exception;
@@ -333,7 +364,6 @@ public class JSON {
                 return result;
             } catch (Exception e) {
                 this.exception = e;
-                System.out.println("non");
                 return null;
             }
         }

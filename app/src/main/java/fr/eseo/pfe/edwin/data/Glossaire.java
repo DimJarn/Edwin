@@ -8,9 +8,7 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-@Entity(tableName = "glossaire", foreignKeys = {@ForeignKey
-        (entity= FicheInformative.class, parentColumns = "id_fiche", childColumns="ref_fiche")},
-        indices=@Index(value="ref_fiche"))
+@Entity(tableName = "glossaire")
 public class Glossaire {
 
     @PrimaryKey
