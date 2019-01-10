@@ -106,6 +106,9 @@ public class FicheDetailsFragment extends Fragment {
         ContenuFiche listeFiches = EdwinDatabase.getAppDatabase(getContext())
                 .contenuFicheDao().findContenuFicheFromId(idFiche);
 
+        TextView textViewIntro = getView().findViewById(R.id.description_ope);
+        textViewIntro.setText(listeFiches.getIntro());
+
         // sample code snippet to set the text content on the ExpandableTextView
         ExpandableTextView expTv = getView().findViewById(R.id
                 .expand_text_viewRappelAnatomique);
