@@ -1,6 +1,5 @@
 package fr.eseo.pfe.edwin.data;
 
-import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.os.AsyncTask;
@@ -59,7 +58,7 @@ public class JSON {
         ArrayList<FicheInformative> fichesList = new ArrayList<FicheInformative>();
 
         try {
-            String myurl= "http://effi-qua-propre-services.fr/fiche.php";
+            String myurl = "http://simonchirat.com/ficheJSON.php";
             URL url = new URL(myurl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -97,7 +96,7 @@ public class JSON {
         String result = "";
 
         try {
-            String myurl = "http://effi-qua-propre-services.fr/fiche.php";
+            String myurl = "http://simonchirat.com/ficheJSON.php";
             URL url = new URL(myurl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -117,7 +116,7 @@ public class JSON {
         ArrayList<ContenuFiche> contenuFicheArrayList = new ArrayList<ContenuFiche>();
 
         try {
-            String myurl= "http://effi-qua-propre-services.fr/contenufiche.php";
+            String myurl = "http://simonchirat.com/contenufiche.php";
             URL url = new URL(myurl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -203,7 +202,7 @@ public class JSON {
         String result = "";
 
         try {
-            String myurl= "http://effi-qua-propre-services.fr/glossaire.php";
+            String myurl = "http://simonchirat.com/glossaireJSON.php";
             URL url = new URL(myurl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -223,7 +222,7 @@ public class JSON {
         ArrayList<Quiz> quizArrayList = new ArrayList<Quiz>();
 
         try {
-            String myurl= "http://effi-qua-propre-services.fr/quiz.php";
+            String myurl = "http://simonchirat.com/quizJSON.php";
             URL url = new URL(myurl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -262,7 +261,7 @@ public class JSON {
         String result = "";
 
         try {
-            String myurl= "http://effi-qua-propre-services.fr/quiz.php";
+            String myurl = "http://simonchirat.com/quizJSON.php";
             URL url = new URL(myurl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -281,7 +280,7 @@ public class JSON {
         ArrayList<Question> questions = new ArrayList<Question>();
 
         try {
-            String myurl= "http://effi-qua-propre-services.fr/questions.php";
+            String myurl = "http://simonchirat.com/questions.php";
             URL url = new URL(myurl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 

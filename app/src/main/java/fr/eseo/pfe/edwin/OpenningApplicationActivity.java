@@ -54,8 +54,7 @@ public class OpenningApplicationActivity extends AppCompatActivity {
          * The theme correspond to the loading screen
          */
         setTheme(R.style.themeTest_Launcher);
-        //TODO: voir le pour le temps d'attente avec le chargement de la BDD (thread)
-        SystemClock.sleep(3000); //temps d'attente de 4s
+        SystemClock.sleep(2500); //temps d'attente de 4s
 
 
         /**
@@ -66,9 +65,11 @@ public class OpenningApplicationActivity extends AppCompatActivity {
 
         if(fiches.isEmpty()){
             populateDBFirstTime();
+            Log.d(tag, "BDD EMPTY");
             System.out.println("EMPTY");
         } else {
             System.out.println("UPDATE");
+            Log.d(tag, "BDD UPDATE");
             updateData();
         }
 
@@ -237,8 +238,8 @@ public class OpenningApplicationActivity extends AppCompatActivity {
         jsonQuiz.setContenu("quiz");
 
         EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonFiches);
-        //EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonGlossaire);
-        //EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonQuiz);
+        EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonGlossaire);
+        EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonQuiz);
 
     }
 
