@@ -223,7 +223,6 @@ public class OpenningApplicationActivity extends AppCompatActivity {
                     contenuFicheArrayList, glossaire, quizArrayList, questions);
 
         JSON jsonFiches = new JSON();
-        jsonFiches.setId(1);
         jsonFiches.setJson(JSON.getJSONFiches());
         jsonFiches.setContenu("fiches");
 
@@ -267,6 +266,7 @@ public class OpenningApplicationActivity extends AppCompatActivity {
         JSON jsonQuiz = EdwinDatabase.getAppDatabase(this).jsonDao().findJSONFromContenu("quiz");
         JSON jsonQuestions = EdwinDatabase.getAppDatabase(this).jsonDao().findJSONFromContenu("questions");
 
+        System.out.println("JSON :" +jsonContenuFiche.getJson());
         try {
             if (!((jsonFiches.getJson()).equals(JSON.getJSONFiches())) || !((jsonContenuFiche.getJson()).equals(JSON.getJSONContenuFiche())) || !((jsonGlossaire.getJson()).equals(JSON.getJSONGlossaire())) ||
                     !((jsonQuiz.getJson()).equals(JSON.getJSONQuiz())) || !((jsonQuestions.getJson()).equals(JSON.getJSONQuestions()))) {
