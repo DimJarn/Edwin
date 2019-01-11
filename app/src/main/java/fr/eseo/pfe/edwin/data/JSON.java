@@ -13,15 +13,19 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import javax.net.ssl.HttpsURLConnection;
+
 @Entity(tableName = "json")
 public class JSON {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     private int id;
 
+    @NonNull
     private String json;
 
+    @NonNull
     private String contenu;
 
     public JSON(){
@@ -58,9 +62,9 @@ public class JSON {
         ArrayList<FicheInformative> fichesList = new ArrayList<FicheInformative>();
 
         try {
-            String myurl = "http://simonchirat.com/ficheJSON.php";
+            String myurl = "https://untainting-pipes.000webhostapp.com/ficheJSON.php";
             URL url = new URL(myurl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
             connection.setRequestMethod("GET");
 
@@ -94,13 +98,17 @@ public class JSON {
         String result = "";
 
         try {
-            String myurl = "http://simonchirat.com/ficheJSON.php";
+            String myurl = "https://untainting-pipes.000webhostapp.com/ficheJSON.php";
             URL url = new URL(myurl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
             connection.setRequestMethod("GET");
 
             result = new RetrieveFeedTask().execute(connection).get();
+
+            JSONArray array = new JSONArray(result);
+
+            result = array.toString();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,9 +122,9 @@ public class JSON {
         ArrayList<ContenuFiche> contenuFicheArrayList = new ArrayList<ContenuFiche>();
 
         try {
-            String myurl = "http://simonchirat.com/contenufiche.php";
+            String myurl = "https://untainting-pipes.000webhostapp.com/contenufiche.php";
             URL url = new URL(myurl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
             connection.setRequestMethod("GET");
 
@@ -158,13 +166,17 @@ public class JSON {
         String result = "";
 
         try {
-            String myurl = "http://simonchirat.com/contenufiche.php";
+            String myurl = "https://untainting-pipes.000webhostapp.com/contenufiche.php";
             URL url = new URL(myurl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
             connection.setRequestMethod("GET");
 
             result = new RetrieveFeedTask().execute(connection).get();
+
+            JSONArray array = new JSONArray(result);
+
+            result = array.toString();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -178,9 +190,9 @@ public class JSON {
         ArrayList<Glossaire> glossaire = new ArrayList<Glossaire>();
 
         try {
-            String myurl= "http://simonchirat.com/glossaireJSON.php";
+            String myurl= "https://untainting-pipes.000webhostapp.com/glossaireJSON.php";
             URL url = new URL(myurl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
             connection.setRequestMethod("GET");
 
@@ -216,13 +228,17 @@ public class JSON {
         String result = "";
 
         try {
-            String myurl = "http://simonchirat.com/glossaireJSON.php";
+            String myurl = "https://untainting-pipes.000webhostapp.com/glossaireJSON.php";
             URL url = new URL(myurl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
             connection.setRequestMethod("GET");
 
             result = new RetrieveFeedTask().execute(connection).get();
+
+            JSONArray array = new JSONArray(result);
+
+            result = array.toString();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -236,9 +252,9 @@ public class JSON {
         ArrayList<Quiz> quizArrayList = new ArrayList<Quiz>();
 
         try {
-            String myurl = "http://simonchirat.com/quizJSON.php";
+            String myurl = "https://untainting-pipes.000webhostapp.com/quizJSON.php";
             URL url = new URL(myurl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
             connection.setRequestMethod("GET");
 
@@ -273,13 +289,18 @@ public class JSON {
         String result = "";
 
         try {
-            String myurl = "http://simonchirat.com/quizJSON.php";
+            String myurl = "https://untainting-pipes.000webhostapp.com/quizJSON.php";
             URL url = new URL(myurl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
             connection.setRequestMethod("GET");
 
             result = new RetrieveFeedTask().execute(connection).get();
+
+            JSONArray array = new JSONArray(result);
+
+            result = array.toString();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -292,9 +313,9 @@ public class JSON {
         ArrayList<Question> questions = new ArrayList<Question>();
 
         try {
-            String myurl = "http://simonchirat.com/questions.php";
+            String myurl = "https://untainting-pipes.000webhostapp.com/questions.php";
             URL url = new URL(myurl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
             connection.setRequestMethod("GET");
 
@@ -333,13 +354,17 @@ public class JSON {
         String result = "";
 
         try {
-            String myurl = "http://simonchirat.com/questions.php";
+            String myurl = "https://untainting-pipes.000webhostapp.com/questions.php";
             URL url = new URL(myurl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
             connection.setRequestMethod("GET");
 
             result = new RetrieveFeedTask().execute(connection).get();
+
+            JSONArray array = new JSONArray(result);
+
+            result = array.toString();
 
 
         } catch (Exception e) {
@@ -349,11 +374,11 @@ public class JSON {
         return result;
     }
 
-    public static class RetrieveFeedTask extends AsyncTask<HttpURLConnection, Void, String> {
+    public static class RetrieveFeedTask extends AsyncTask<HttpsURLConnection, Void, String> {
 
         private Exception exception;
 
-        protected String doInBackground(HttpURLConnection... connections) {
+        protected String doInBackground(HttpsURLConnection... connections) {
             try {
 
 

@@ -18,6 +18,11 @@ public class DatabaseInitializer {
         task.execute(ficheInformativeArrayList, contenuFicheArrayList, glossaireArrayList, quizArrayList, questionArrayList);
     }
 
+    public static void populateAsyncJSON(@NonNull final EdwinDatabase db, ArrayList jsonArrayList) {
+        PopulateJSONAsync task = new PopulateJSONAsync(db);
+        task.execute(jsonArrayList);
+    }
+
 
     private static FicheInformative addFicheInformative(final EdwinDatabase db, FicheInformative ficheInformative) {
         db.ficheInformativeDao().insertFicheInformative(ficheInformative);
@@ -54,6 +59,11 @@ public class DatabaseInitializer {
         return quiz;
     }
 
+    private static JSON addJSON(final EdwinDatabase db, JSON json){
+        db.jsonDao().insertJSON(json);
+        return json;
+    }
+
     private static void populateDatabase(EdwinDatabase db, ArrayList<FicheInformative> ficheInformativeArrayList,
                                          ArrayList<ContenuFiche> contenuFicheArrayList, ArrayList<Glossaire> glossaireArrayList,
                                          ArrayList<Quiz> quizArrayList, ArrayList<Question> questionArrayList) {
@@ -78,6 +88,12 @@ public class DatabaseInitializer {
         }
     }
 
+    private static void populateJSON(EdwinDatabase db, ArrayList<JSON> jsonArrayList) {
+        for(JSON json : jsonArrayList){
+            addJSON(db, json);
+        }
+    }
+
     private static class PopulateDbAsync extends AsyncTask<ArrayList, Void, Void> {
 
         private final EdwinDatabase mDb;
@@ -89,6 +105,21 @@ public class DatabaseInitializer {
         @Override
         protected Void doInBackground(final ArrayList... params) {
             populateDatabase(mDb, params[0], params[1], params[2], params[3], params[4]);
+            return null;
+        }
+    }
+
+    private static class PopulateJSONAsync extends AsyncTask<ArrayList, Void, Void> {
+
+        private final EdwinDatabase mDb;
+
+        PopulateJSONAsync(EdwinDatabase db) {
+            mDb = db;
+        }
+
+        @Override
+        protected Void doInBackground(final ArrayList... params) {
+            populateJSON(mDb, params[0]);
             return null;
         }
     }

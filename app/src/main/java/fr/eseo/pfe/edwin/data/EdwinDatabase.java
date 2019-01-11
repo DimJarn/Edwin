@@ -6,7 +6,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 @Database(entities = {FicheInformative.class, ContenuFiche.class, Glossaire.class,
-        Quiz.class, Question.class, APropos.class, CGU.class, JSON.class}, version = 6)
+        Quiz.class, Question.class, APropos.class, CGU.class, JSON.class}, version = 9)
 public abstract class EdwinDatabase extends RoomDatabase {
 
     private static EdwinDatabase instance;

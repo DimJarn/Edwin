@@ -61,7 +61,7 @@ public class OpenningApplicationActivity extends AppCompatActivity {
         /**
          * On charge la BDD ici avant de lancer l'accueil
          */
-        EdwinDatabase.getAppDatabase(this).clearAllTables();
+        //EdwinDatabase.getAppDatabase(this).clearAllTables();
         List<FicheInformative> fiches = EdwinDatabase.getAppDatabase(this).ficheInformativeDao().findAllFichesInformatives();
 
         if(fiches.isEmpty()){
@@ -222,36 +222,38 @@ public class OpenningApplicationActivity extends AppCompatActivity {
                     ficheInformativeArrayList,
                     contenuFicheArrayList, glossaire, quizArrayList, questions);
 
+        ArrayList<JSON> jsonArrayList = new ArrayList<JSON>();
+
         JSON jsonFiches = new JSON();
         jsonFiches.setJson(JSON.getJSONFiches());
         jsonFiches.setContenu("fiches");
+        jsonArrayList.add(jsonFiches);
 
         JSON jsonContenuFiche = new JSON();
-        jsonContenuFiche.setId(2);
         jsonContenuFiche.setJson(JSON.getJSONContenuFiche());
         jsonContenuFiche.setContenu("contenufiche");
+        jsonArrayList.add(jsonContenuFiche);
 
         JSON jsonGlossaire = new JSON();
-        jsonGlossaire.setId(3);
         jsonGlossaire.setJson(JSON.getJSONGlossaire());
         jsonGlossaire.setContenu("glossaire");
+        jsonArrayList.add(jsonGlossaire);
 
         JSON jsonQuiz = new JSON();
-        jsonQuiz.setId(4);
         jsonQuiz.setJson(JSON.getJSONQuiz());
         jsonQuiz.setContenu("quiz");
+        jsonArrayList.add(jsonQuiz);
 
         JSON jsonQuestions = new JSON();
-        jsonQuestions.setId(5);
         jsonQuestions.setJson(JSON.getJSONQuestions());
         jsonQuestions.setContenu("questions");
+        jsonArrayList.add(jsonQuestions);
 
         EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonFiches);
         EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonContenuFiche);
         EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonGlossaire);
         EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonQuiz);
         EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonQuestions);
-
 
     }
 
@@ -266,30 +268,14 @@ public class OpenningApplicationActivity extends AppCompatActivity {
         JSON jsonQuiz = EdwinDatabase.getAppDatabase(this).jsonDao().findJSONFromContenu("quiz");
         JSON jsonQuestions = EdwinDatabase.getAppDatabase(this).jsonDao().findJSONFromContenu("questions");
 
-        System.out.println("JSON :" +jsonContenuFiche.getJson());
         try {
             if (!((jsonFiches.getJson()).equals(JSON.getJSONFiches())) || !((jsonContenuFiche.getJson()).equals(JSON.getJSONContenuFiche())) || !((jsonGlossaire.getJson()).equals(JSON.getJSONGlossaire())) ||
                     !((jsonQuiz.getJson()).equals(JSON.getJSONQuiz())) || !((jsonQuestions.getJson()).equals(JSON.getJSONQuestions()))) {
 
                 EdwinDatabase.getAppDatabase(this).clearAllTables();
 
-                ArrayList<FicheInformative> ficheInformativeArrayList = JSON.getFiches();
+                populateDBFirstTime();
 
-                ArrayList<ContenuFiche> contenuFicheArrayList = JSON.getContenuFiches();
-
-                ArrayList<Glossaire> glossaire = JSON.getGlossaire();
-
-                ArrayList<Quiz> quizArrayList = JSON.getQuiz();
-
-                ArrayList<Question> questions = JSON.getQuestions();
-
-                DatabaseInitializer.populateAsync(EdwinDatabase.getAppDatabase(this),
-                        ficheInformativeArrayList,
-                        contenuFicheArrayList, glossaire, quizArrayList, questions);
-
-                jsonFiches.setJson(JSON.getJSONFiches());
-
-                EdwinDatabase.getAppDatabase(this).jsonDao().updateJSON(jsonFiches);
             }
         } catch (NullPointerException ex){
         }
