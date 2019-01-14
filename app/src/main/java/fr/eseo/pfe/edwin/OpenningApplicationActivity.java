@@ -208,6 +208,8 @@ public class OpenningApplicationActivity extends AppCompatActivity {
      */
     private void populateDBFirstTime() {
 
+        try {
+
         ArrayList<FicheInformative> ficheInformativeArrayList = JSON.getFiches();
 
         ArrayList<ContenuFiche> contenuFicheArrayList = JSON.getContenuFiches();
@@ -225,26 +227,31 @@ public class OpenningApplicationActivity extends AppCompatActivity {
         ArrayList<JSON> jsonArrayList = new ArrayList<JSON>();
 
         JSON jsonFiches = new JSON();
+        jsonFiches.setId(1);
         jsonFiches.setJson(JSON.getJSONFiches());
         jsonFiches.setContenu("fiches");
         jsonArrayList.add(jsonFiches);
 
         JSON jsonContenuFiche = new JSON();
+        jsonContenuFiche.setId(2);
         jsonContenuFiche.setJson(JSON.getJSONContenuFiche());
         jsonContenuFiche.setContenu("contenufiche");
         jsonArrayList.add(jsonContenuFiche);
 
         JSON jsonGlossaire = new JSON();
+        jsonGlossaire.setId(3);
         jsonGlossaire.setJson(JSON.getJSONGlossaire());
         jsonGlossaire.setContenu("glossaire");
         jsonArrayList.add(jsonGlossaire);
 
         JSON jsonQuiz = new JSON();
+        jsonQuiz.setId(4);
         jsonQuiz.setJson(JSON.getJSONQuiz());
         jsonQuiz.setContenu("quiz");
         jsonArrayList.add(jsonQuiz);
 
         JSON jsonQuestions = new JSON();
+        jsonQuestions.setId(5);
         jsonQuestions.setJson(JSON.getJSONQuestions());
         jsonQuestions.setContenu("questions");
         jsonArrayList.add(jsonQuestions);
@@ -254,6 +261,9 @@ public class OpenningApplicationActivity extends AppCompatActivity {
         EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonGlossaire);
         EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonQuiz);
         EdwinDatabase.getAppDatabase(this).jsonDao().insertJSON(jsonQuestions);
+
+    } catch (Exception ex){
+    }
 
     }
 
@@ -277,7 +287,7 @@ public class OpenningApplicationActivity extends AppCompatActivity {
                 populateDBFirstTime();
 
             }
-        } catch (NullPointerException ex){
+        } catch (Exception ex){
         }
     }
 
