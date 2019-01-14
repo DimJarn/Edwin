@@ -2,6 +2,7 @@ package fr.eseo.pfe.edwin;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.ms.square.android.expandabletextview.ExpandableTextView;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import es.dmoral.toasty.Toasty;
@@ -100,7 +102,7 @@ public class FicheDetailsFragment extends Fragment {
 
         ficheInformative = EdwinDatabase.getAppDatabase(getContext())
                 .ficheInformativeDao().findFicheInformativeFromId(idFiche);
-        TextView textViewTitre = getView().findViewById(R.id.nom_operation);
+        TextView textViewTitre = Objects.requireNonNull(getView()).findViewById(R.id.nom_operation);
         textViewTitre.setText(ficheInformative.getNomOperation());
 
         ContenuFiche listeFiches = EdwinDatabase.getAppDatabase(getContext())
@@ -211,8 +213,11 @@ public class FicheDetailsFragment extends Fragment {
         TinyDB tinydb = new TinyDB(getContext());
         List<Integer> listeIdsFichesFavorites = tinydb.getListInt(LISTE_FICHE_INFORMATIVE_ID_FICHE);
         if (listeIdsFichesFavorites.contains(ficheInformative.getIdFiche())) {
-            menu.findItem(R.id.item1).getIcon().mutate().setColorFilter(getResources().getColor
-                    (R.color.Gold), PorterDuff.Mode.SRC_IN);
+            // menu.findItem(R.id.item1).getIcon().mutate().setColorFilter(getResources().getColor
+            //         (R.color.Gold), PorterDuff.Mode.SRC_IN);
+            menu.findItem(R.id.item1).getIcon().mutate().setColorFilter(Color.YELLOW, PorterDuff
+                    .Mode
+                    .MULTIPLY);
         } else {
             menu.findItem(R.id.item1).setChecked(false);
         }
