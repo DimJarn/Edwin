@@ -1,5 +1,7 @@
 package fr.eseo.pfe.edwin;
 
+import android.graphics.PixelFormat;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.DrawerLayout;
@@ -8,6 +10,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.VideoView;
 
 import java.util.Objects;
 
@@ -20,6 +25,8 @@ public class AideActivity extends MainActivity {
     private DrawerLayout mDrawer;
     private ActionBarDrawerToggle drawerToggle;
     private Toolbar toolbar;
+    Button clk;
+    VideoView videov;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +40,19 @@ public class AideActivity extends MainActivity {
         drawerToggle = setupDrawerToggle();
         // Tie DrawerLayout events to the ActionBarToggle
         mDrawer.addDrawerListener(drawerToggle);
-    }
 
+        //clk = (Button) findViewById(R.id.button1);
+        //videov = (VideoView) findViewById(R.id.videoView1);
+
+    }
+/*
+    public void videoplay(View v) {
+        String videopath ="android.resource://"+getPackageName()+"/"+R.raw.chercher_fiche;
+        Uri uri = Uri.parse(videopath);
+        videov.setVideoURI(uri);
+        videov.start();
+    }
+*/
     private ActionBarDrawerToggle setupDrawerToggle() {
         // NOTE: Make sure you pass in a valid toolbar reference.  ActionBarDrawToggle() does not
         // require it

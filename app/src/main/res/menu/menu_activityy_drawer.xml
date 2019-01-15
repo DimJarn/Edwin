@@ -15,7 +15,7 @@
             android:id="@+id/fiches"
             android:icon="@drawable/logo_sheets"
             app:showAsAction="always"
-            android:title="Fiches Opérations" />
+            android:title="Fiches Opératoires" />
         <item
             android:id="@+id/glossaire"
             android:icon="@drawable/logo_dico"
