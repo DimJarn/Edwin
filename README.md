@@ -26,4 +26,4 @@ Build and run sur l'émulateur
 
 Comment utiliser l'application ? 
 
-![](chercher_mot.gif)
+![](/Volumes/Transcend/ESEO/I3/PFE/Edwin/app/src/main/res/drawable/chercher_mot.gif)
