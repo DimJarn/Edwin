@@ -45,6 +45,14 @@ public class ContenuFiche {
     @NonNull
     private String suivi;
 
+    private String nomSchema;
+
+    private String descriptionSchema;
+
+    private String imageBase64;
+
+    private String typeImage;
+
     public ContenuFiche() {
 
     }
@@ -155,5 +163,37 @@ public class ContenuFiche {
 
     public void setSuivi(@NonNull String suivi) {
         this.suivi = suivi;
+    }
+
+    public String getNomSchema() {
+        return nomSchema;
+    }
+
+    public void setNomSchema(String nomSchema) {
+        this.nomSchema = nomSchema;
+    }
+
+    public String getDescriptionSchema() {
+        return descriptionSchema;
+    }
+
+    public void setDescriptionSchema(String descriptionSchema) {
+        this.descriptionSchema = descriptionSchema;
+    }
+
+    public String getImageBase64() {
+        return imageBase64;
+    }
+
+    public void setImageBase64(String imageBase64) {
+        this.imageBase64 = imageBase64;
+    }
+
+    public String getTypeImage() {
+        return typeImage;
+    }
+
+    public void setTypeImage(String typeImage) {
+        this.typeImage = typeImage;
     }
 }

@@ -13,9 +13,9 @@ public class DatabaseInitializer {
 
     public static void populateAsync(@NonNull final EdwinDatabase db, ArrayList ficheInformativeArrayList,
                                      ArrayList contenuFicheArrayList, ArrayList glossaireArrayList,
-                                     ArrayList quizArrayList, ArrayList questionArrayList) {
+                                     ArrayList quizArrayList, ArrayList questionArrayList, ArrayList ressourcesArraylist) {
         PopulateDbAsync task = new PopulateDbAsync(db);
-        task.execute(ficheInformativeArrayList, contenuFicheArrayList, glossaireArrayList, quizArrayList, questionArrayList);
+        task.execute(ficheInformativeArrayList, contenuFicheArrayList, glossaireArrayList, quizArrayList, questionArrayList, ressourcesArraylist);
     }
 
     public static void populateAsyncJSON(@NonNull final EdwinDatabase db, ArrayList jsonArrayList) {
@@ -64,9 +64,14 @@ public class DatabaseInitializer {
         return json;
     }
 
+    private static Ressources addRessources(final EdwinDatabase db, Ressources ressources){
+        db.ressourcesDao().insertRessources(ressources);
+        return ressources;
+    }
+
     private static void populateDatabase(EdwinDatabase db, ArrayList<FicheInformative> ficheInformativeArrayList,
                                          ArrayList<ContenuFiche> contenuFicheArrayList, ArrayList<Glossaire> glossaireArrayList,
-                                         ArrayList<Quiz> quizArrayList, ArrayList<Question> questionArrayList) {
+                                         ArrayList<Quiz> quizArrayList, ArrayList<Question> questionArrayList, ArrayList<Ressources> ressourcesArrayList) {
         for(FicheInformative ficheInformative : ficheInformativeArrayList){
             addFicheInformative(db, ficheInformative);
         }
@@ -86,6 +91,10 @@ public class DatabaseInitializer {
         for(Question question : questionArrayList){
             addQuestion(db, question);
         }
+
+        for(Ressources ressources : ressourcesArrayList){
+            addRessources(db, ressources);
+        }
     }
 
     private static void populateJSON(EdwinDatabase db, ArrayList<JSON> jsonArrayList) {
@@ -104,7 +113,7 @@ public class DatabaseInitializer {
 
         @Override
         protected Void doInBackground(final ArrayList... params) {
-            populateDatabase(mDb, params[0], params[1], params[2], params[3], params[4]);
+            populateDatabase(mDb, params[0], params[1], params[2], params[3], params[4], params[5]);
             return null;
         }
     }

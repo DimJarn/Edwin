@@ -152,6 +152,10 @@ public class JSON {
                 contenuFiche.setSuites(objContenuFiche.getString("suites"));
                 contenuFiche.setRisquesOperation(objContenuFiche.getString("risquesOperation"));
                 contenuFiche.setSuivi(objContenuFiche.getString("suivi"));
+                contenuFiche.setNomSchema(objContenuFiche.getString("nomSchema"));
+                contenuFiche.setDescriptionSchema(objContenuFiche.getString("descriptionSchema"));
+                contenuFiche.setImageBase64(objContenuFiche.getString("image"));
+                contenuFiche.setTypeImage(objContenuFiche.getString("typeImage"));
 
                 contenuFicheArrayList.add(contenuFiche);
 
@@ -358,6 +362,67 @@ public class JSON {
 
         try {
             String myurl = "https://untainting-pipes.000webhostapp.com/questions.php";
+            URL url = new URL(myurl);
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+
+            connection.setRequestMethod("GET");
+
+            result = new RetrieveFeedTask().execute(connection).get();
+
+            JSONArray array = new JSONArray(result);
+
+            result = array.toString();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    public static ArrayList<Ressources> getRessources(){
+
+        ArrayList<Ressources> ressources = new ArrayList<Ressources>();
+
+        try {
+            String myurl = "https://untainting-pipes.000webhostapp.com/ressources.php";
+            URL url = new URL(myurl);
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+
+            connection.setRequestMethod("GET");
+
+            String result = new RetrieveFeedTask().execute(connection).get();
+
+            // On récupère le tableau d'objets qui nous concernent
+            JSONArray array = new JSONArray(result);
+            // Pour tous les objets on récupère les infos
+            for (int i = 0; i < array.length(); i++) {
+                // On récupère un objet JSON du tableau
+                JSONObject objRessources = new JSONObject(array.getString(i));
+
+                Ressources ressources1 = new Ressources();
+
+                ressources1.setId(objRessources.getInt("id"));
+                ressources1.setMail(objRessources.getString("mail"));
+
+                ressources.add(ressources1);
+
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ressources;
+    }
+
+    public static String getJSONRessources(){
+
+        String result = "";
+
+        try {
+            String myurl = "https://untainting-pipes.000webhostapp.com/ressources.php";
             URL url = new URL(myurl);
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
