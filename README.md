@@ -1,5 +1,7 @@
 # Edwin
 PFE
+
+Edwin, l'application chirugicale qui vous accompagne en chrirugie thoracique.
 *****************************************
 
 
@@ -26,4 +28,5 @@ Build and run sur l'émulateur
 
 Comment utiliser l'application ? 
 
-![](/Volumes/Transcend/ESEO/I3/PFE/Edwin/app/src/main/res/drawable/chercher_mot.gif)
+- Comment chercher un mot du glossaire:
+![chercher_mot](https://user-images.githubusercontent.com/28304015/51374993-eeb26a80-1b04-11e9-9f1e-6078775aaf36.gif)
