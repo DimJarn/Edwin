@@ -73,19 +73,22 @@ public class JSON {
             // On récupère le tableau d'objets qui nous concernent
             JSONArray array = new JSONArray(result);
             // Pour tous les objets on récupère les infos
-            for (int i = 0; i < array.length(); i++) {
-                // On récupère un objet JSON du tableau
-                JSONObject objFiche = new JSONObject(array.getString(i));
-
-                FicheInformative ficheInformative = new FicheInformative();
-
-                ficheInformative.setIdFiche(objFiche.getInt("idFiche"));
-                ficheInformative.setNomOperation(objFiche.getString("nomOperation"));
-
-                fichesList.add(ficheInformative);
 
 
-            }
+                for (int i = 0; i < array.length(); i++) {
+                    // On récupère un objet JSON du tableau
+                    JSONObject objFiche = new JSONObject(array.getString(i));
+
+                    FicheInformative ficheInformative = new FicheInformative();
+
+                    ficheInformative.setIdFiche(objFiche.getInt("idFiche"));
+                    ficheInformative.setNomOperation(objFiche.getString("nomOperation"));
+
+                    fichesList.add(ficheInformative);
+
+
+                }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

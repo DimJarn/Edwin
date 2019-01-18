@@ -23,7 +23,6 @@ public class FicheInformative implements Serializable {
     @ColumnInfo(name="schema_operation")
     private String schemaOperation;
 
-    @NonNull
     @ColumnInfo(name="ref_contenu_fiche")
     private int refContenuFiche;
 

@@ -278,8 +278,11 @@ public class OpenningApplicationActivity extends AppCompatActivity {
         JSON jsonQuestions = EdwinDatabase.getAppDatabase(this).jsonDao().findJSONFromContenu("questions");
 
         try {
-            if (!((jsonFiches.getJson()).equals(JSON.getJSONFiches())) || !((jsonContenuFiche.getJson()).equals(JSON.getJSONContenuFiche())) || !((jsonGlossaire.getJson()).equals(JSON.getJSONGlossaire())) ||
-                    !((jsonQuiz.getJson()).equals(JSON.getJSONQuiz())) || !((jsonQuestions.getJson()).equals(JSON.getJSONQuestions()))) {
+            if ( ( !((jsonFiches.getJson()).equals(JSON.getJSONFiches()))&& !(JSON.getJSONFiches().equals(null)) && (JSON.getJSONFiches() != null) )
+                    || ( !((jsonContenuFiche.getJson()).equals(JSON.getJSONContenuFiche())) && !(JSON.getJSONContenuFiche().equals(null)) && (JSON.getJSONContenuFiche() != null) )
+                    || ( !((jsonGlossaire.getJson()).equals(JSON.getJSONGlossaire())) && !(JSON.getJSONGlossaire().equals(null)) && (JSON.getJSONGlossaire() != null) )
+                    || ( !((jsonQuiz.getJson()).equals(JSON.getJSONQuiz())) && !(JSON.getJSONQuiz().equals(null)) && (JSON.getJSONQuiz() != null) )
+                    || ( !((jsonQuestions.getJson()).equals(JSON.getJSONQuestions()))) && !(JSON.getJSONQuestions().equals(null)) && (JSON.getJSONQuestions() != null) ) {
 
                 EdwinDatabase.getAppDatabase(this).clearAllTables();
 
