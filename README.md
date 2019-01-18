@@ -21,3 +21,9 @@ Instruction d'importation du projet sur AS:
               Android plugin version
               
 Build and run sur l'émulateur
+
+*****************************************
+
+Comment utiliser l'application ? 
+
+![](chercher_mot.gif)
