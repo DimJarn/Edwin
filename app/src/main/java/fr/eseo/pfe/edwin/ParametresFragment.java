@@ -3,29 +3,22 @@ package fr.eseo.pfe.edwin;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AlertDialog;
-import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
-
-import static fr.eseo.pfe.edwin.utilitaires.FilePropertiesUtil.getProperty;
 
 /**
  * Fragment Parametres, extends de Fragemnt
@@ -119,7 +112,7 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.idBtnModeDeveloppeur:
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                /*AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Mode developpeur");
 
                 builder.setMessage("Mot de passe : ");
@@ -174,6 +167,18 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
 
                 builder.show();
 
+                break;*/
+                try {
+                    Intent viewIntent =
+                            new Intent("android.intent.action.VIEW",
+                                    Uri.parse("                https://docs.google" +
+                                            ".com/forms/d/e/1FAIpQLSeVbUVImTys0g2srYdl5bjA6AGamqyR5X4kGFH915qUDcyUWA/viewform"));
+                    startActivity(viewIntent);
+                } catch (Exception e) {
+                    Toasty.error(getContext(), "Impossible de se connecter, Essayer de " +
+                                    "nouveau..." + e,
+                            Toast.LENGTH_SHORT, true).show();
+                }
                 break;
             case R.id.idBtnevaluerApplicationContent:
                 try {
@@ -181,7 +186,6 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
                             new Intent("android.intent.action.VIEW",
                                     Uri.parse("https://play.google.com/store/apps/details?id=com" +
                                             ".adeebhat.rabbitsvilla"));
-                    //TODO inserer la bonne adresse de l'appli
                     startActivity(viewIntent);
                 } catch (Exception e) {
                     Toasty.error(getContext(), "Impossible de se connecter, Essayer de " +

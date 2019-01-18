@@ -36,6 +36,10 @@ Expendable View :
 - des expandables views différents et facile a implementer
     implementation 'com.ms-square:expandableTextView:0.1.4'
 ****************************************************************************************************
+GIF :
+
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
+****************************************************************************************************
 
 Tests avec Robolectric :
 
