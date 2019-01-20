@@ -79,6 +79,7 @@ public class QuizzDetailsFragment extends Fragment {
         radioButton3 = view.findViewById(R.id.radioBtn3);
         buttonSuivant = view.findViewById(R.id.buttonNext);
 
+
         setQuestionView();
 
         //Enfin on met un écouteur d'évènement sur notre listView
@@ -98,7 +99,7 @@ public class QuizzDetailsFragment extends Fragment {
                             .LENGTH_SHORT, true).show();
                 } else {
                     // one of the radio buttons is checked
-                    if (currentQuestion.getReponse().contentEquals(answer.getText())) {
+                    if (currentQuestion.getReponse().equals(answer.getText().toString())) {
                         score++;
                         Log.d(YOUR_SCORE, YOUR_SCORE + score);
                     }
@@ -108,11 +109,9 @@ public class QuizzDetailsFragment extends Fragment {
                     } else {
                         Bundle bundle1 = new Bundle();
                         bundle1.putInt("score", score);
-                        Bundle bundle2 = new Bundle();
-                        bundle2.putInt("idQuiz", idQuiz);
+                        bundle1.putInt("idQuiz", idQuiz);
                         Fragment fragment = QuizzResultatFragment.newInstance();
                         fragment.setArguments(bundle1);
-                        fragment.setArguments(bundle2);
                         getFragmentManager().beginTransaction().replace(R.id.layoutFicheDetail,
                                 fragment).commit();
 

@@ -75,6 +75,7 @@
     <string name="suites_habituelles">Suites habituelles</string>
     <string name="risques_li_s">Risques liés</string>
     <string name="suivi">Suivi</string>
+    <string name="fiche_schema">Schéma</string>
 
     <!-- Parametres Details activity -->
 
@@ -91,7 +92,7 @@
     <string name="id_du_t_l_phone">ID du téléphone</string>
     <string name="contenu">Contenu :</string>
     <string name="repondre_qcm">Répondre au QCM :</string>
-    <string name="lienQCM">Lien vers le QCM</string>
+    <string name="lienQCM">Lien vers le QCM retour d\'expérience utilisateur</string>
     <string name="evaluer_l_application">Evaluer l\'application</string>
     <string name="ouvrir_google_play">Ouvrir Google Play</string>
     <string name="contacter_les_d_veloppeurs">Contacter les développeurs</string>

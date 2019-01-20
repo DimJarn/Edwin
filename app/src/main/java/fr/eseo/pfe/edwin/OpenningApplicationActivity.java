@@ -1,21 +1,12 @@
 package fr.eseo.pfe.edwin;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,28 +19,13 @@ import fr.eseo.pfe.edwin.data.JSON;
 import fr.eseo.pfe.edwin.data.Question;
 import fr.eseo.pfe.edwin.data.Quiz;
 import fr.eseo.pfe.edwin.data.Ressources;
-import fr.eseo.pfe.edwin.launch.TutorialActivity;
 
 public class OpenningApplicationActivity extends AppCompatActivity {
     ViewPager viewPager;
-    private SharedPreferences sharedPreferences;
-    private String tag;
-    public static final String NAME_FILE_CGU = "file_cgu.txt";//Name of the final to read for
-    // terms and conditions use
-    public static final String CONDITIONS_GENERALES_D_UTILISATION = "Conditions générales " +
-            "d'utilisation :";
-    public static final String YOUR_OWN_APPLICATION_PACKAGENAME_COM = "YOUR.OWN.APPLICATION" +
-            ".PACKAGENAME.COM";
-    public static final String NULL_TUTORIAL = "NullTutorial";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /**
-         * Launch the box for the tearms and conditions
-         * After, launch the Tutorial for the first time
-         */
-        termsAndConditionsDialog();
 
         /**
          * The theme correspond to the loading screen
@@ -80,128 +56,15 @@ public class OpenningApplicationActivity extends AppCompatActivity {
          */
         Intent intent = new Intent(OpenningApplicationActivity.this, AccueilActivity.class);
         startActivity(intent);
+
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
     }
 
 
-    /**
-     * Pop up to read the tearms and conditions
-     * If not accepted, the pop up will be at every start of the app
-     */
-    private void termsAndConditionsDialog() {
-        final SharedPreferences defaultSharedPreferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        boolean agreed = defaultSharedPreferences.getBoolean("agreed", false);
-        String cguMessage = readTxtFile(NAME_FILE_CGU);
-
-        if (!agreed) {
-            AlertDialog.Builder builder;
-            builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
-            builder.setTitle(CONDITIONS_GENERALES_D_UTILISATION)
-                    .setMessage(cguMessage)
-                    .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            SharedPreferences.Editor editor = defaultSharedPreferences.edit();
-                            editor.putBoolean("agreed", true);
-                            editor.commit();
-                        }
-                    })
-                    .setNegativeButton("Non", null)
-            ;
-            AlertDialog alertDialog = builder.create();
-            //alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
-            alertDialog.show();
-        }
-        detectFirstUseAOpenTutorialAndBox();
-    }
-
-    /**
-     * Launch the tutorial for the first use of the app
-     */
-    private void detectFirstUseAOpenTutorialAndBox() {
-        sharedPreferences = this.getSharedPreferences(YOUR_OWN_APPLICATION_PACKAGENAME_COM,
-                Context.MODE_PRIVATE);
-        if (promptTutorial()) {
-            // Tutorial was never prompted
-            AlertDialog.Builder builder;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                builder = new AlertDialog.Builder(this, android.R.style
-                        .Theme_Material_Dialog_Alert);
-            } else {
-                builder = new AlertDialog.Builder(this);
-            }
-
-            Intent intent = new Intent(OpenningApplicationActivity.this, TutorialActivity.class);
-            startActivity(intent);
-        }
-    }
-
-
-    /**
-     * Implement promptTutorial() which is called to decide if the dialog window needs to be
-     * prompted.
-     * <p>
-     * Basically what it does is: it checks for keyTutorial ins Shared prefs.
-     * <p>
-     * If it finds it there it will return false, because the dialog was already prompted at some
-     * point.
-     */
-    // The function that decides if you need to prompt the dialog window
-    public boolean promptTutorial() {
-        // Check fo saved value in Shared preference for key: keyTutorial return "NullTutorial"
-        // if nothing found
-        String keyTutorial = sharedPreferences.getString("keyTutorial", NULL_TUTORIAL);
-        // Log what we found in shared preference
-        Log.d(tag, "Shared Pref read: [keyTutorial: " + keyTutorial + "]");
-
-        if (keyTutorial.contains(NULL_TUTORIAL)) {
-            // if nothing found save a new value "PROMPTED" for the key: keyTutorial
-            // to save it in shared prefs just call our saveKey function
-            saveKey("keyTutorial", "PROMPTED");
-            return true;
-        }
-        // if some value was found for this key we already propted this window some time in the past
-        // no need to prompt it again
-        return false;
-    }
-
-    /**
-     * Implement Save Key, to save values in the Android Shared Preference.
-     *
-     * @param key
-     * @param value
-     */
-    // The SaveKEy function
-    public void saveKey(String key, String value) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        // Log what are we saving in the shared sharedPreferences
-        Log.d(tag, "Shared sharedPreferences Write [" + key + ":" + value + "]");
-        editor.putString(key, value);
-        editor.commit();
-    }
-
-
-    /**
-     * Read a text file
-     *
-     * @param nameFileTxt
-     * @return text string
-     */
-    public String readTxtFile(String nameFileTxt) {
-        String text = "";
-        try {
-            InputStream is = getAssets().open(nameFileTxt);
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            text = new String(buffer);
-        } catch (IOException exception) {
-            exception.printStackTrace();
-
-        }
-        return text;
-    }
 
     /**
      * Remplissaire de la BDD locale à partir de la BDD externe à la première ouverture de l'application

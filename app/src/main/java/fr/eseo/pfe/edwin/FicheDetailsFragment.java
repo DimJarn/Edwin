@@ -2,9 +2,14 @@ package fr.eseo.pfe.edwin;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,6 +17,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -159,7 +166,53 @@ public class FicheDetailsFragment extends Fragment {
         expTvTechniquesSuivi.setText(listeFiches.getSuivi());
 
 
+        TextView textViewTitreSchema = Objects.requireNonNull(getView()).findViewById(R.id
+                .ficheSchéma);
+
+        if (listeFiches.getNomSchema().equals("null")) {
+            textViewTitreSchema.setVisibility(View.GONE);
+            textViewTitreSchema.setText("Aucun nom pour le schéma");
+        } else {
+            textViewTitreSchema.setText(listeFiches.getNomSchema());
+        }
+
+        ExpandableTextView expTvFicheSchéma = getView()
+                .findViewById(R.id.expand_text_view_ficheSchéma);
+        if (listeFiches.getDescriptionSchema().equals("null")) {
+            // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
+            expTvFicheSchéma.setVisibility(View.GONE);
+        } else {
+            expTvFicheSchéma.setText(listeFiches.getDescriptionSchema());
+        }
+
         //LAST VERSION
+
+        ImageView ficheImageSchema = getView().findViewById(R.id.ficheSchemaImg);
+
+        // On diminue le poids du bitmap
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = false;
+        options.inSampleSize = calculateInSampleSize(options, 500, 500);
+
+        byte[] decodedString = Base64.decode(listeFiches.getImageBase64(), Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+        if (bitmap != null) {
+            //BitmapFactory.decodeResource(getResources(), bitmap.getGenerationId(), options);
+            WindowManager windowManager = (WindowManager) getContext().getSystemService(Context
+                    .WINDOW_SERVICE);
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+
+            windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+            int height = displayMetrics.heightPixels;
+            int width = displayMetrics.widthPixels;
+
+
+            //ficheImageSchema.setImageBitmap(resize(bitmap, width, height));
+            ficheImageSchema.setImageBitmap(resize(bitmap, width, height));
+        } else {
+            ficheImageSchema.setVisibility(View.GONE);
+        }
 
 
  /*       listDataheader = new ArrayList<>();
@@ -255,4 +308,45 @@ public class FicheDetailsFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private static Bitmap resize(Bitmap image, int maxWidth, int maxHeight) {
+        if (maxHeight > 0 && maxWidth > 0) {
+            int width = image.getWidth();
+            int height = image.getHeight();
+            float ratioBitmap = (float) width / (float) height;
+            float ratioMax = (float) maxWidth / (float) maxHeight;
+
+            int finalWidth = maxWidth;
+            int finalHeight = maxHeight;
+            if (ratioMax > ratioBitmap) {
+                finalWidth = (int) ((float) maxHeight * ratioBitmap);
+            } else {
+                finalHeight = (int) ((float) maxWidth / ratioBitmap);
+            }
+            image = Bitmap.createScaledBitmap(image, finalWidth, finalHeight, true);
+            return image;
+        } else {
+            return image;
+        }
+    }
+
+    public int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+            final int heightRatio = Math.round((float) height / (float) reqHeight);
+            final int widthRatio = Math.round((float) width / (float) reqWidth);
+            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+        }
+        final float totalPixels = width * height;
+        final float totalReqPixelsCap = reqWidth * reqHeight * 2;
+        while (totalPixels / (inSampleSize * inSampleSize) > totalReqPixelsCap) {
+            inSampleSize++;
+        }
+
+        return inSampleSize;
+    }
+
 }

@@ -19,6 +19,7 @@ import android.widget.Toast;
 import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
+import fr.eseo.pfe.edwin.data.EdwinDatabase;
 
 /**
  * Fragment Parametres, extends de Fragemnt
@@ -50,8 +51,8 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
     /**
      * Création de la vue
      *
-     * @param inflater l'inflater
-     * @param container le container
+     * @param inflater           l'inflater
+     * @param container          le container
      * @param savedInstanceState l'instance
      * @return
      */
@@ -169,9 +170,10 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
 
                 break;*/
                 try {
+
                     Intent viewIntent =
-                            new Intent("android.intent.action.VIEW",
-                                    Uri.parse("                https://docs.google" +
+                            new Intent(Intent.ACTION_VIEW,
+                                    Uri.parse("https://docs.google" +
                                             ".com/forms/d/e/1FAIpQLSeVbUVImTys0g2srYdl5bjA6AGamqyR5X4kGFH915qUDcyUWA/viewform"));
                     startActivity(viewIntent);
                 } catch (Exception e) {
@@ -195,8 +197,10 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
                 break;
             case R.id.idcontacterDvpeurContent:
                 try {
+                    String adresseMail = EdwinDatabase.getAppDatabase(getContext())
+                            .ressourcesDao().findRessourcesFromId(1).getMail();
                     Intent intent = new Intent(Intent.ACTION_SEND);
-                    String[] recipients = {"jarneau.dimitri@gmail.com"};
+                    String[] recipients = {adresseMail};
                     intent.putExtra(Intent.EXTRA_EMAIL, recipients);
                     intent.putExtra(Intent.EXTRA_SUBJECT, "Feedback requête");
                     String deviceBrand = android.os.Build.MANUFACTURER;
@@ -208,7 +212,7 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
                                     Settings.Secure.ANDROID_ID) + "\n Version de l'application : " +
                             versionCode + " " + versionName + "\n Téléphone : " + deviceBrand +
                             "" + deviceModel + "\n Version de l'OS : " + osVersion);
-                    intent.putExtra(Intent.EXTRA_CC, "mailcc@gmail.com");
+                    intent.putExtra(Intent.EXTRA_CC, adresseMail);
                     intent.setType("text/html");
                     intent.setPackage("com.google.android.gm");
                     startActivity(Intent.createChooser(intent, "Envoyer email"));
@@ -219,6 +223,9 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
                 break;
             case R.id.idPartagerAppliContent:
                 try {
+                    String adresseMail = EdwinDatabase.getAppDatabase(getContext())
+                            .ressourcesDao().findRessourcesFromId(1).getMail();
+
                     Intent intent = new Intent(Intent.ACTION_SEND);
                     String[] recipients = {};
                     intent.putExtra(Intent.EXTRA_EMAIL, recipients);
@@ -229,7 +236,7 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
 
                     intent.putExtra(Intent.EXTRA_TEXT, "Essaie l'application gratuite 'Edwin' " +
                             "!" + "\n " + lienVersGooglePlay);
-                    intent.putExtra(Intent.EXTRA_CC, "mailcc@gmail.com");
+                    intent.putExtra(Intent.EXTRA_CC, adresseMail);
                     intent.setType("text/html");
                     intent.setPackage("com.google.android.gm");
                     startActivity(Intent.createChooser(intent, "Envoyer email"));
