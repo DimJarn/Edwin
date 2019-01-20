@@ -230,9 +230,7 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
                     String[] recipients = {};
                     intent.putExtra(Intent.EXTRA_EMAIL, recipients);
                     intent.putExtra(Intent.EXTRA_SUBJECT, "Edwin");
-                    String lienVersGooglePlay = "https://play.google" +
-                            ".com/store/apps/details?id=com" +
-                            ".adeebhat.rabbitsvilla";
+                    String lienVersGooglePlay = "";
 
                     intent.putExtra(Intent.EXTRA_TEXT, "Essaie l'application gratuite 'Edwin' " +
                             "!" + "\n " + lienVersGooglePlay);
