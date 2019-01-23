@@ -17,7 +17,9 @@ import java.io.InputStream;
 
 import fr.eseo.pfe.edwin.launch.TutorialActivity;
 
-
+/**
+ * Cette classe n'est plus utilisée maintenant
+ */
 public class MainActivity extends AppCompatActivity {
 
     ViewPager viewPager;

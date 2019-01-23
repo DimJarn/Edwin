@@ -176,13 +176,13 @@ public class FicheDetailsFragment extends Fragment {
             textViewTitreSchema.setText(listeFiches.getNomSchema());
         }
 
-        ExpandableTextView expTvFicheSchéma = getView()
+        ExpandableTextView expTvFicheSchema = getView()
                 .findViewById(R.id.expand_text_view_ficheSchéma);
         if (listeFiches.getDescriptionSchema().equals("null")) {
             // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
-            expTvFicheSchéma.setVisibility(View.GONE);
+            expTvFicheSchema.setVisibility(View.GONE);
         } else {
-            expTvFicheSchéma.setText(listeFiches.getDescriptionSchema());
+            expTvFicheSchema.setText(listeFiches.getDescriptionSchema());
         }
 
         //LAST VERSION

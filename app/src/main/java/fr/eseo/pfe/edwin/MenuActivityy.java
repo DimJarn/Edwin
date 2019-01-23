@@ -2,19 +2,18 @@ package fr.eseo.pfe.edwin;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * Cette classe n'est plus utilisée maintenant
+ */
 public class MenuActivityy extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -43,7 +42,7 @@ public class MenuActivityy extends AppCompatActivity
         navigationView.setItemIconTintList(null);
 
         //appel de methode pour éviter d'avoir un fragment vide au lancement de l'app
-       // this.showFirstFragment();
+        // this.showFirstFragment();
     }
 
     private Fragment fragmentAide;
@@ -88,6 +87,7 @@ public class MenuActivityy extends AppCompatActivity
     private void configureDrawerLayout(){
         this.drawerLayout = (DrawerLayout) findViewById(R.id.activity_main_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
     }
@@ -107,7 +107,7 @@ public class MenuActivityy extends AppCompatActivity
                 //this.showFragment(FRAGMENT_ACCUEIL);
                 break;
             case R.id.aide :
-               // this.showFragment(FRAGMENT_AIDE);
+                // this.showFragment(FRAGMENT_AIDE);
                 break;
             case R.id.apropos:
                 //this.showFragment(FRAGMENT_APROPOS);
@@ -192,13 +192,13 @@ public class MenuActivityy extends AppCompatActivity
         this.startTransactionFragment(this.fragmentQuiz);
     }
 */
-    // Generic method that will replace and show a fragment inside the MenuActivity Frame Layout
-    private void startTransactionFragment(Fragment fragment){
-        if (!fragment.isVisible()){
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.activity_main_frame_layout, fragment).commit();
-        }
+// Generic method that will replace and show a fragment inside the MenuActivity Frame Layout
+private void startTransactionFragment(Fragment fragment){
+    if (!fragment.isVisible()){
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.activity_main_frame_layout, fragment).commit();
     }
+}
 /*
     // Show first fragment when activity is created
     private void showFirstFragment(){

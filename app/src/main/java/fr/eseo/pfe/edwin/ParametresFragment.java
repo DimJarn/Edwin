@@ -28,13 +28,9 @@ import fr.eseo.pfe.edwin.data.EdwinDatabase;
  * @author dimitrijarneau
  */
 public class ParametresFragment extends Fragment implements View.OnClickListener {
-
-    private static final String PROPERTY_PASSWORD_DVP = "password_dev";
-    private static String MDP_BDD_DVP = null;
     FragmentActivity listener;
     int versionCode = BuildConfig.VERSION_CODE;
     String versionName = BuildConfig.VERSION_NAME;
-    private String m_Text = "";
 
     public static ParametresFragment newInstance() {
         return (new ParametresFragment());
@@ -76,9 +72,6 @@ public class ParametresFragment extends Fragment implements View.OnClickListener
         textView.setText(Settings.Secure.getString(view.getContext()
                         .getContentResolver(),
                 Settings.Secure.ANDROID_ID));
-
-        //String[] test = chargerProprietes();
-
     }
 
 
